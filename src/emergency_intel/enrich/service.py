@@ -4,7 +4,7 @@ from concurrent.futures import ThreadPoolExecutor, TimeoutError, as_completed
 from pathlib import Path
 from typing import Iterable, List
 
-from emergency_intel.collect.adapters import _download_response_text, _extract_best_body
+from emergency_intel.collect.adapters import _download_response_text, _extract_best_body, _extract_og_image
 from emergency_intel.models import ScoredItem
 from emergency_intel.utils import normalize_whitespace, write_json
 
@@ -36,7 +36,7 @@ def enrich_fulltext(
                 content_depth=item.content_depth or "summary",
             )
 
-        full_text = _fetch_with_retry(item.url, timeout_seconds)
+        html, full_text = _fetch_with_retry(item.url, timeout_seconds)
 
         if full_text is None:
             return idx, _clone(
@@ -44,6 +44,8 @@ def enrich_fulltext(
                 body_extraction_status="failed:timeout",
                 content_depth=item.content_depth or "summary",
             )
+
+        thumbnail = _extract_og_image(html or "", base_url=item.url) if html else ""
 
         max_chars = (
             _MAX_CHARS_HIGH_SCORE if item.final_score >= _HIGH_SCORE_THRESHOLD
@@ -57,11 +59,13 @@ def enrich_fulltext(
                 raw_text=normalize_whitespace(full_text)[:max_chars],
                 content_depth="fulltext",
                 body_extraction_status="enriched",
+                thumbnail_url=thumbnail,
             )
         return idx, _clone(
             item,
             body_extraction_status="fallback_summary",
             content_depth=item.content_depth or "summary",
+            thumbnail_url=thumbnail,
         )
 
     with ThreadPoolExecutor(max_workers=_ENRICH_WORKERS) as executor:
@@ -86,33 +90,33 @@ def _should_enrich(item: ScoredItem) -> bool:
     return item.include_in_top_report or item.final_score >= 5.0
 
 
-def _fetch_with_retry(url: str, timeout_seconds: int) -> str | None:
-    """Fetch full text with one retry at double timeout on failure."""
+def _fetch_with_retry(url: str, timeout_seconds: int) -> tuple[str | None, str | None]:
+    """Fetch HTML and extracted text with one retry. Returns (html, text)."""
     result = _fetch_fulltext_with_timeout(url, timeout_seconds)
-    if result is not None:
+    if result[1] is not None:
         return result
-    # Single retry with extended timeout
     return _fetch_fulltext_with_timeout(url, timeout_seconds * 2)
 
 
-def _fetch_fulltext_with_timeout(url: str, timeout_seconds: int) -> str | None:
+def _fetch_fulltext_with_timeout(url: str, timeout_seconds: int) -> tuple[str | None, str | None]:
     executor = ThreadPoolExecutor(max_workers=1)
-    future = executor.submit(_fetch_fulltext, url)
+    future = executor.submit(_fetch_html_and_text, url)
     try:
         return future.result(timeout=timeout_seconds)
     except Exception:
-        return None
+        return None, None
     finally:
         executor.shutdown(wait=False, cancel_futures=True)
 
 
-def _fetch_fulltext(url: str) -> str:
+def _fetch_html_and_text(url: str) -> tuple[str, str]:
     html = _download_response_text(url)
-    text = _extract_best_body(html)
-    return normalize_whitespace(text)
+    text = normalize_whitespace(_extract_best_body(html))
+    return html, text
 
 
 def _clone(item: ScoredItem, **overrides: object) -> ScoredItem:
     payload = dict(item.__dict__)
     payload.update(overrides)
+    payload.setdefault("thumbnail_url", "")
     return ScoredItem(**payload)

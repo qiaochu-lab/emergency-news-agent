@@ -473,6 +473,43 @@ def _extract_meta_content(html: str, attr_name: str, attr_value: str) -> str:
     return ""
 
 
+def _extract_og_image(html: str, base_url: str = "") -> str:
+    """Extract thumbnail URL from HTML. Priority: og:image > twitter:image > first <img>.
+
+    Returns empty string if nothing found or URL looks like an icon/logo.
+    """
+    # og:image
+    url = _extract_meta_content(html, "property", "og:image")
+    if not url:
+        url = _extract_meta_content(html, "name", "twitter:image")
+
+    # Fallback: first <img> with a reasonable src
+    if not url:
+        match = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', html, re.IGNORECASE)
+        if match:
+            url = match.group(1).strip()
+
+    if not url:
+        return ""
+
+    # Resolve relative URLs
+    if base_url and url.startswith("/"):
+        from urllib.parse import urlparse
+        parsed = urlparse(base_url)
+        url = f"{parsed.scheme}://{parsed.netloc}{url}"
+
+    # Filter out icons, tracking pixels, and tiny images
+    lower = url.lower()
+    skip_patterns = ("favicon", "logo", "icon", "pixel", "tracker", "1x1", "badge", "avatar")
+    if any(p in lower for p in skip_patterns):
+        return ""
+
+    if not url.startswith(("http://", "https://")):
+        return ""
+
+    return url
+
+
 def _sort_key_for_published_at(value: str) -> float:
     cleaned = (value or "").strip()
     if not cleaned:

@@ -96,9 +96,14 @@ nav .nav-links a:hover { color: #fff; background: rgba(255,255,255,.1); text-dec
 
 /* ── Featured card ── */
 .featured-card {
-  border: 1px solid #e8ecf5; border-radius: 8px; padding: 20px; margin: 16px 0;
+  border: 1px solid #e8ecf5; border-radius: 8px; overflow: hidden; margin: 16px 0;
   border-left: 4px solid #4a6fa5;
 }
+.featured-card .fc-thumbnail {
+  width: 100%; max-height: 200px; object-fit: cover; display: block;
+  border-bottom: 1px solid #e8ecf5;
+}
+.featured-card .fc-body { padding: 20px; }
 .featured-card .fc-meta { font-size: 12px; color: #888; margin-bottom: 12px; display: flex; gap: 12px; flex-wrap: wrap; }
 .featured-card .fc-meta span { background: #f0f4ff; padding: 3px 8px; border-radius: 12px; }
 .featured-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 10px; line-height: 1.5; }
@@ -412,7 +417,16 @@ def _render_featured(report: WeeklyReport) -> str:
         if item.url:
             link_html = f'<a class="source-link" href="{_e(item.url)}" target="_blank" rel="noopener">→ 原文链接</a>'
 
+        thumbnail_url = getattr(item, "thumbnail_url", "") or ""
+        thumb_html = (
+            f'<img class="fc-thumbnail" src="{_e(thumbnail_url)}" alt="" loading="lazy" '
+            f'onerror="this.style.display=\'none\'">'
+            if thumbnail_url else ""
+        )
+
         cards.append(f"""<div class="featured-card">
+  {thumb_html}
+  <div class="fc-body">
   <div class="fc-meta">
     <span>来源：{_e(item.source_name)}</span>
     <span>日期：{_e(date_str)}</span>
@@ -426,6 +440,7 @@ def _render_featured(report: WeeklyReport) -> str:
   {decision_html}
   {fu_html}
   {link_html}
+  </div>
 </div>""")
 
     return "\n".join(cards)

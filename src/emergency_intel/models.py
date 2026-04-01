@@ -48,6 +48,7 @@ class ScoredItem(NormalizedItem):
     inclusion_reason: str = ""
     analyst_note: str = ""
     week_relevance: str = ""
+    thumbnail_url: str = ""
 
 
 @dataclass
