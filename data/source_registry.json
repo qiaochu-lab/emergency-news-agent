@@ -135,13 +135,13 @@
   },
   {
     "name": "OpenAI News RSS",
-    "url": "https://openai.com/news/rss.xml",
+    "url": "https://openai.com/news/rss",
     "source_type": "company",
     "access_method": "rss",
     "domains": [
       "AI"
     ],
-    "why_valuable": "Automated feed of OpenAI product launches, safety reports, and enterprise announcements.",
+    "why_valuable": "Official OpenAI news and product announcements RSS — covers model releases, research launches, and company updates.",
     "update_frequency": "frequent",
     "signal_quality": "high",
     "language": "en",
@@ -149,7 +149,7 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 12
+    "max_items": 8
   },
   {
     "name": "Import AI Newsletter",
@@ -827,5 +827,59 @@
     "priority": "medium",
     "automation_ready": true,
     "max_items": 4
+  },
+  {
+    "name": "Anthropic News",
+    "url": "https://www.anthropic.com/news",
+    "source_type": "official",
+    "access_method": "web",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Anthropic official news page — product launches, safety research, and Claude updates. No RSS, requires web scraping.",
+    "update_frequency": "weekly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 5
+  },
+  {
+    "name": "Anthropic Research",
+    "url": "https://www.anthropic.com/research",
+    "source_type": "official",
+    "access_method": "web",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Anthropic research publications — safety, alignment, interpretability, and capability papers. Highest signal quality for AI fundamentals.",
+    "update_frequency": "monthly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 3
+  },
+  {
+    "name": "OpenAI Research",
+    "url": "https://openai.com/research",
+    "source_type": "official",
+    "access_method": "web",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "OpenAI research publications page — GPT, reasoning, safety, and systems papers. Separate from news/product announcements.",
+    "update_frequency": "monthly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 3
   }
 ]
