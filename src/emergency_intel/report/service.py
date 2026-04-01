@@ -10,13 +10,15 @@ from emergency_intel.models import AnalyzedItem, WeeklyReport
 from emergency_intel.utils import ensure_dir
 
 
-DOMAINS = ["AI", "Drones", "Communications", "Emergency Response"]
-REPORT_TITLE = "泛应急技术行业周报"
+DOMAINS = ["AI", "Communications", "Aviation", "DisasterTech"]
+# DisasterTech 为可选专栏：有内容才输出，无内容不强求
+OPTIONAL_DOMAINS = {"DisasterTech"}
+REPORT_TITLE = "应急通信行业情报周报"
 DOMAIN_NAMES_ZH = {
-    "AI": "AI 应用 / 智能体 / 多模态",
-    "Drones": "无人机 / 低空系统",
-    "Communications": "通信网络 / 卫星互联网 / 5G-A",
-    "Emergency Response": "泛应急 / 韧性体系 / 灾害响应",
+    "AI": "🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态",
+    "Communications": "📡 通信专栏 — 卫星通信 / 5G·6G / 专网",
+    "Aviation": "✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统",
+    "DisasterTech": "💡 应急视角思考 — 本周可借鉴内容",
 }
 SOURCE_TYPE_ZH = {
     "official": "官方机构",
@@ -28,9 +30,9 @@ SOURCE_TYPE_ZH = {
 }
 DOMAIN_EMPTY_SUMMARIES = {
     "AI": "本周 AI 方向高信号事件偏少，主题仍以模型能力向垂直场景渗透和应用落地验证为主。",
-    "Drones": "本周无人机方向暂无足够强的新事件进入重点正文，建议继续跟踪公共安全、巡检和自主飞行场景。",
-    "Communications": "本周通信与网络方向新增高优先级信号有限，仍需持续观察 NTN、专网、5G-A 和韧性通信链路演进。",
-    "Emergency Response": "本周泛应急方向暂无强势新增信号，建议继续关注真实灾害场景中的技术验证与体系协同。",
+    "Communications": "本周通信方向新增高优先级信号有限，仍需持续观察 NTN、专网、5G-A、卫星直连和韧性通信链路演进。",
+    "Aviation": "本周无人机与航空方向暂无强势新事件，建议继续跟踪空中中继、BVLOS 监管和飞艇平台进展。",
+    "DisasterTech": None,  # None 表示该专栏无内容时整体跳过，不显示空文案
 }
 
 MAX_DOMAIN_ITEMS = 10
@@ -213,9 +215,11 @@ def build_weekly_report(items: List[AnalyzedItem], week_range: str) -> WeeklyRep
     section_summaries: Dict[str, str] = {}
     for domain in DOMAINS:
         domain_items = grouped.get(domain, [])
-        section_summaries[domain] = (
-            _section_summary(domain_items) if domain_items else DOMAIN_EMPTY_SUMMARIES[domain]
-        )
+        if domain_items:
+            section_summaries[domain] = _section_summary(domain_items)
+        elif domain not in OPTIONAL_DOMAINS:
+            section_summaries[domain] = DOMAIN_EMPTY_SUMMARIES[domain]
+        # OPTIONAL_DOMAINS (e.g. DisasterTech) are omitted entirely when empty
 
     weekly_insights = _cross_domain_insights(selected_items)
     return WeeklyReport(
@@ -228,10 +232,10 @@ def build_weekly_report(items: List[AnalyzedItem], week_range: str) -> WeeklyRep
 
 # Domain caps for the deep-dive section (max items per domain)
 _DOMAIN_CAPS = {
-    "AI": 2,
-    "Drones": 2,
-    "Communications": 2,
-    "Emergency Response": 2,
+    "AI": 3,
+    "Communications": 3,
+    "Aviation": 2,
+    "DisasterTech": 2,
 }
 
 
@@ -256,8 +260,8 @@ def _select_balanced_featured(items: List[AnalyzedItem], max_count: int) -> List
     seen_ids: set = set()
     domain_counts: Dict[str, int] = defaultdict(int)
 
-    # Round 1: one top item per domain (priority order: Emergency > AI > Comms > Drones)
-    priority_order = ["Emergency Response", "AI", "Communications", "Drones"]
+    # Round 1: one top item per domain (priority order: Comms > AI > Aviation > DisasterTech)
+    priority_order = ["Communications", "AI", "Aviation", "DisasterTech"]
     for domain in priority_order:
         if len(selected) >= max_count:
             break
@@ -366,8 +370,14 @@ def render_report_markdown(report: WeeklyReport, output_path: Path) -> str:
     # ── Chapter 3 ──
     lines += ["## 三、各领域精选动态", ""]
     chapter3_seen: set = set()
-    for sec_idx, domain in enumerate(DOMAINS, 1):
-        lines += _render_domain_section(sec_idx, domain, domain_groups.get(domain, []), chapter3_seen)
+    sec_idx = 1
+    for domain in DOMAINS:
+        domain_items = domain_groups.get(domain, [])
+        # Skip optional domains with no content
+        if domain in OPTIONAL_DOMAINS and not domain_items:
+            continue
+        lines += _render_domain_section(sec_idx, domain, domain_items, chapter3_seen)
+        sec_idx += 1
     lines += ["---", ""]
 
     # ── Chapter 4 ──
@@ -511,7 +521,9 @@ def _render_domain_section(
     # Deduplicate: only show items not already shown in a previous domain section
     unique_items = [it for it in items if it.id not in seen_ids]
     if not unique_items:
-        lines += [DOMAIN_EMPTY_SUMMARIES[domain], "", ""]
+        empty_msg = DOMAIN_EMPTY_SUMMARIES.get(domain)
+        if empty_msg:
+            lines += [empty_msg, "", ""]
         return lines
 
     domain_items = unique_items[:MAX_DOMAIN_ITEMS]

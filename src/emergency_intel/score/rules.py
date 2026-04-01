@@ -1,54 +1,63 @@
 IMPORTANT_TERMS = {
     3: [
-        # Original high-weight terms (all lowercase — text is lowercased before matching)
+        # Policy / procurement signals
         "regulation", "standard", "deployment", "procurement",
-        "emergency response", "search and rescue",
-        # Emergency response additions
-        "first responder", "public safety", "disaster relief",
-        "critical infrastructure", "mass casualty", "incident command",
-        "emergency management", "fema", "firstnet", "public safety broadband",
-        "wildfire response", "flood response", "disaster recovery",
-        "mission critical communications", "interoperable communications",
-        # Official signals
         "executive order", "federal mandate", "budget allocation",
+        # Disaster comms — core business
+        "disaster communication", "network recovery", "communication recovery",
+        "post-disaster", "deployable network", "resilient network",
+        "mission-critical communication", "interoperable communications",
+        "first responder", "public safety broadband", "firstnet",
+        "emergency management", "fema", "incident command",
+        "disaster recovery", "critical infrastructure",
+        # Satellite comms — strategic
+        "leo satellite", "non-terrestrial network", "satellite communication",
+        "starlink", "direct-to-device", "ntn deployment",
+        # Aviation — strategic
+        "airship relay", "haps deployment", "stratospheric platform",
+        "aerial communication relay",
     ],
     2: [
-        # Original medium-weight terms
-        "partnership", "funding", "trial", "pilot", "research", "satellite",
-        # Emergency & resilience additions
+        # General tech signals
+        "partnership", "funding", "trial", "pilot", "research",
+        # Comms & resilience
         "resilience", "continuity of operations", "interoperability",
         "mission critical", "command and control", "situational awareness",
-        "disaster response", "humanitarian aid", "crisis management",
         "public safety network", "emergency broadband", "tactical network",
-        "search rescue", "wildfire", "earthquake", "hurricane response",
-        # Technology signals
-        "autonomous system", "swarm", "network slicing", "private network",
-        "non-terrestrial network", "ntn", "low-altitude",
-        # AI / agent signals (lowercase)
+        "mcptt", "tetra", "p25", "private network", "network slicing",
+        "5g", "6g", "spectrum", "broadband", "satellite",
+        # Satellite & NTN
+        "low earth orbit", "geo satellite", "non-terrestrial", "ntn",
+        "high-altitude platform", "haps", "aerostat",
+        # Aviation
+        "drone response", "uav relay", "autonomous aerial", "bvlos",
+        "unmanned aerial", "uas", "utm", "evtol", "airship",
+        "counter-drone", "swarm coordination", "aerial survey",
+        # Disaster / crisis
+        "disaster response", "humanitarian aid", "crisis management",
+        "wildfire", "earthquake", "hurricane response", "flood response",
+        "search rescue", "mass casualty",
+        # AI signals
         "large language model", "llm", "generative ai", "foundation model",
         "ai agent", "multimodal", "real-time ai", "ai-powered",
-        "reasoning model", "agentic", "context window", "fine-tuning",
-        "alignment", "safety research", "inference", "benchmark",
+        "reasoning model", "agentic", "fine-tuning", "alignment",
         "anthropic", "claude", "openai", "gemini", "deepmind",
-        "gpt", "o3", "o4", "grok", "mistral", "llama",
-        # Drone / airspace signals
-        "unmanned aerial", "uas", "uav", "bvlos", "utm", "drone response",
-        "counter-drone", "aerial survey", "low altitude",
-        # Communications signals
-        "5g", "6g", "spectrum", "broadband", "cellular", "satellite communication",
+        "gpt", "grok", "mistral", "llama",
     ],
     1: [
-        # Original low-weight terms
+        # Generic signals
         "update", "launch", "paper", "release",
-        # Additional signals
         "sensor", "detection", "autonomous", "communication system",
         "payload", "firmware", "protocol",
-        # General AI/tech signals
+        # General AI/tech
         "artificial intelligence", "machine learning", "deep learning",
         "neural network", "robotics", "automation",
-        # AI builder / developer signals
+        # Developer / builder signals
         "mcp", "tool use", "prompt", "token", "embedding", "rag",
         "agent loop", "chain of thought", "system prompt", "api",
+        # Comms general
+        "lte", "telecom", "bandwidth", "latency", "fiber", "wireless",
+        "cellular", "mesh network",
     ],
 }
 

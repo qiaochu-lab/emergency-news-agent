@@ -18,7 +18,7 @@ def classify_items(items: Iterable[NormalizedItem], output_path: Path) -> List[N
         if not domain_tags:
             # Social posts with no clear domain keyword go to AI (most follow-builders content)
             # Other types fall back to Emergency Response only if truly unclassifiable
-            domain_tags = ["AI"] if item.source_type == "social" else ["Emergency Response"]
+            domain_tags = ["AI"] if item.source_type == "social" else ["DisasterTech"]
 
         item.domain_tags = domain_tags
         item.region_tags = region_tags or ["Global"]
