@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.local
+
+data/raw/items.json
+data/normalized/items.json
+data/deduped/items.json
+data/classified/items.json
+data/scored/items.json
+data/scored/analyzed_items.json
+outputs/weekly/*.md
+
+everything-claude-code/
+.claude/

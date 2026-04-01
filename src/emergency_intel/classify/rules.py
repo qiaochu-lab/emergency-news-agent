@@ -1,0 +1,53 @@
+DOMAIN_KEYWORDS = {
+    "AI": [
+        "ai",
+        "artificial intelligence",
+        "model",
+        "llm",
+        "foundation model",
+        "machine learning",
+    ],
+    "Drones": [
+        "drone",
+        "uav",
+        "uas",
+        "counter-uas",
+        "swarm",
+    ],
+    "Communications": [
+        "satellite",
+        "5g",
+        "6g",
+        "network",
+        "communications",
+        "spectrum",
+        "mesh",
+    ],
+    "Emergency Response": [
+        "emergency",
+        "disaster",
+        "rescue",
+        "humanitarian",
+        "preparedness",
+        "first responder",
+        "public safety",
+        "incident command",
+        "emergency management",
+        "fema",
+        "wildfire",
+        "flood response",
+        "crisis response",
+        "disaster relief",
+        "emergency broadcast",
+        "mass casualty",
+        "search and rescue",
+        "critical infrastructure protection",
+    ],
+}
+
+REGION_KEYWORDS = {
+    "US": ["u.s.", "united states", "fema", "fcc", "nasa", "nist"],
+    "Europe": ["eu", "europe", "european"],
+    "China": ["china", "beijing", "shenzhen"],
+    "Indo-Pacific": ["indo-pacific", "japan", "australia", "india"],
+}
