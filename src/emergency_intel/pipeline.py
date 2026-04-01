@@ -67,6 +67,7 @@ def run_weekly_pipeline(
             source_registry,
             raw_path,
             per_source_timeout_seconds=settings.collect_timeout_seconds,
+            manual_dir=DATA_DIR / "manual",
         )
 
     normalized_items = normalize_items(raw_items, normalized_path)

@@ -15,9 +15,12 @@ def score_items(items: Iterable[NormalizedItem], output_path: Path) -> List[Scor
         importance = min(10.0, _score_from_terms(text, IMPORTANT_TERMS) + _domain_bonus(item.domain_tags) + _evidence_bonus(item.evidence_level))
         heat = min(10.0, _score_from_terms(text, HEAT_TERMS) + _source_heat(item.source_type))
         final_score = round(importance * 0.7 + heat * 0.3, 2)
-        # Boost curated feeds from known high-quality AI sources
+        # Boost curated feeds from known high-quality sources
         if item.source_name in ("follow-builders X Feed",):
             final_score = min(10.0, round(final_score + 1.5, 2))
+        # Grok精选：人工筛选内容，加权 +1.0
+        if item.source_name == "Grok精选":
+            final_score = min(10.0, round(final_score + 1.0, 2))
         scored.append(
             ScoredItem(
                 **item.__dict__,

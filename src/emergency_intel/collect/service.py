@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import List, Tuple
 
 from emergency_intel.collect.adapters import build_adapters
+from emergency_intel.collect.manual import load_manual_items
 from emergency_intel.models import RawItem
 from emergency_intel.utils import read_json, write_json
 
@@ -16,6 +17,7 @@ def collect_items(
     source_registry_path: Path,
     raw_output_path: Path,
     per_source_timeout_seconds: int = 25,
+    manual_dir: Path | None = None,
 ) -> Tuple[List[RawItem], List[str]]:
     registry = read_json(source_registry_path, default=[])
     adapters = build_adapters(registry)  # type: ignore[arg-type]
@@ -53,6 +55,11 @@ def collect_items(
             for name in remaining:
                 errors.append(f"{name}: overall budget exceeded ({overall_timeout}s)")
             print(f"[采集] 总预算超时，{len(remaining)} 个信源未响应", flush=True)
+
+    # Merge manual Grok input for the current week
+    if manual_dir is not None:
+        manual_items = load_manual_items(manual_dir)
+        collected.extend(manual_items)
 
     print(f"[采集] 完成：共 {len(collected)} 条，{len(errors)} 个错误", flush=True)
     write_json(raw_output_path, [item.to_dict() for item in collected])
