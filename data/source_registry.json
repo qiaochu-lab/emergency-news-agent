@@ -16,7 +16,9 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 5
+    "max_items": 5,
+    "enabled": false,
+    "disabled_reason": "403反爬"
   },
   {
     "name": "DroneDJ",
@@ -35,7 +37,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 5
+    "max_items": 5,
+    "enabled": true
   },
   {
     "name": "DroneLife",
@@ -55,7 +58,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 5
+    "max_items": 5,
+    "enabled": true
   },
   {
     "name": "Commercial UAV News",
@@ -73,7 +77,8 @@
     "stable_access": true,
     "requires_auth": false,
     "priority": "high",
-    "automation_ready": false
+    "automation_ready": false,
+    "enabled": true
   },
   {
     "name": "Emergency Management Magazine",
@@ -92,7 +97,9 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 15
+    "max_items": 15,
+    "enabled": false,
+    "disabled_reason": "DNS解析失败"
   },
   {
     "name": "Hugging Face Blog",
@@ -110,7 +117,8 @@
     "requires_auth": false,
     "priority": "medium",
     "automation_ready": true,
-    "max_items": 10
+    "max_items": 10,
+    "enabled": true
   },
   {
     "name": "DARPA News RSS",
@@ -131,7 +139,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 12
+    "max_items": 12,
+    "enabled": true
   },
   {
     "name": "OpenAI News RSS",
@@ -149,7 +158,9 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 8
+    "max_items": 8,
+    "enabled": false,
+    "disabled_reason": "403反爬，改用手动补充"
   },
   {
     "name": "Import AI Newsletter",
@@ -167,7 +178,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 5
+    "max_items": 5,
+    "enabled": true
   },
   {
     "name": "arXiv Applied AI and Robotics",
@@ -186,7 +198,8 @@
     "stable_access": true,
     "requires_auth": false,
     "priority": "high",
-    "automation_ready": true
+    "automation_ready": true,
+    "enabled": true
   },
   {
     "name": "arXiv Emergency and Disaster Response",
@@ -205,7 +218,8 @@
     "stable_access": true,
     "requires_auth": false,
     "priority": "high",
-    "automation_ready": true
+    "automation_ready": true,
+    "enabled": true
   },
   {
     "name": "FEMA News",
@@ -223,7 +237,9 @@
     "stable_access": true,
     "requires_auth": false,
     "priority": "high",
-    "automation_ready": false
+    "automation_ready": false,
+    "enabled": false,
+    "disabled_reason": "403反爬"
   },
   {
     "name": "FirstNet Authority",
@@ -241,7 +257,8 @@
     "stable_access": true,
     "requires_auth": false,
     "priority": "high",
-    "automation_ready": false
+    "automation_ready": false,
+    "enabled": true
   },
   {
     "name": "NTIA News",
@@ -259,7 +276,9 @@
     "stable_access": true,
     "requires_auth": false,
     "priority": "high",
-    "automation_ready": false
+    "automation_ready": false,
+    "enabled": false,
+    "disabled_reason": "SSL证书错误"
   },
   {
     "name": "X - Jack Clark",
@@ -280,7 +299,8 @@
     "stable_access": true,
     "requires_auth": true,
     "priority": "high",
-    "automation_ready": true
+    "automation_ready": true,
+    "enabled": true
   },
   {
     "name": "X - Andrej Karpathy",
@@ -301,7 +321,8 @@
     "stable_access": true,
     "requires_auth": true,
     "priority": "high",
-    "automation_ready": true
+    "automation_ready": true,
+    "enabled": true
   },
   {
     "name": "X - Ethan Mollick",
@@ -322,7 +343,8 @@
     "stable_access": true,
     "requires_auth": true,
     "priority": "high",
-    "automation_ready": true
+    "automation_ready": true,
+    "enabled": true
   },
   {
     "name": "X - Yann LeCun",
@@ -343,7 +365,8 @@
     "stable_access": true,
     "requires_auth": true,
     "priority": "medium",
-    "automation_ready": true
+    "automation_ready": true,
+    "enabled": true
   },
   {
     "name": "X - Greg McNeal",
@@ -365,7 +388,8 @@
     "stable_access": true,
     "requires_auth": true,
     "priority": "high",
-    "automation_ready": true
+    "automation_ready": true,
+    "enabled": true
   },
   {
     "name": "X - Colin Snow",
@@ -386,7 +410,8 @@
     "stable_access": true,
     "requires_auth": true,
     "priority": "medium",
-    "automation_ready": true
+    "automation_ready": true,
+    "enabled": true
   },
   {
     "name": "X - Patrick Egan",
@@ -408,7 +433,8 @@
     "stable_access": true,
     "requires_auth": true,
     "priority": "high",
-    "automation_ready": true
+    "automation_ready": true,
+    "enabled": true
   },
   {
     "name": "X - Dean Bubley",
@@ -429,7 +455,8 @@
     "stable_access": true,
     "requires_auth": true,
     "priority": "high",
-    "automation_ready": true
+    "automation_ready": true,
+    "enabled": true
   },
   {
     "name": "X - FirstNet Authority",
@@ -451,7 +478,8 @@
     "stable_access": true,
     "requires_auth": true,
     "priority": "high",
-    "automation_ready": true
+    "automation_ready": true,
+    "enabled": true
   },
   {
     "name": "X - FEMA",
@@ -472,7 +500,8 @@
     "stable_access": true,
     "requires_auth": true,
     "priority": "high",
-    "automation_ready": true
+    "automation_ready": true,
+    "enabled": true
   },
   {
     "name": "X - Kim Stephens",
@@ -493,7 +522,8 @@
     "stable_access": true,
     "requires_auth": true,
     "priority": "medium",
-    "automation_ready": true
+    "automation_ready": true,
+    "enabled": true
   },
   {
     "name": "Google AI Blog",
@@ -511,7 +541,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 8
+    "max_items": 8,
+    "enabled": true
   },
   {
     "name": "Google DeepMind Blog",
@@ -529,7 +560,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 8
+    "max_items": 8,
+    "enabled": true
   },
   {
     "name": "follow-builders Blogs Feed",
@@ -547,7 +579,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 10
+    "max_items": 10,
+    "enabled": true
   },
   {
     "name": "follow-builders X Feed",
@@ -565,7 +598,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 20
+    "max_items": 20,
+    "enabled": true
   },
   {
     "name": "arXiv Networking & Communications",
@@ -585,7 +619,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 10
+    "max_items": 10,
+    "enabled": true
   },
   {
     "name": "Frontiers in Communications and Networks",
@@ -605,7 +640,8 @@
     "requires_auth": false,
     "priority": "medium",
     "automation_ready": true,
-    "max_items": 8
+    "max_items": 8,
+    "enabled": true
   },
   {
     "name": "APCO International",
@@ -624,7 +660,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 8
+    "max_items": 8,
+    "enabled": true
   },
   {
     "name": "TCCA Critical Communications",
@@ -643,7 +680,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 8
+    "max_items": 8,
+    "enabled": true
   },
   {
     "name": "SpaceNews",
@@ -661,7 +699,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 5
+    "max_items": 5,
+    "enabled": true
   },
   {
     "name": "Via Satellite",
@@ -679,7 +718,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 5
+    "max_items": 5,
+    "enabled": true
   },
   {
     "name": "ITU News",
@@ -698,7 +738,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 5
+    "max_items": 5,
+    "enabled": true
   },
   {
     "name": "arXiv Satellite & NTN Communications",
@@ -716,7 +757,8 @@
     "requires_auth": false,
     "priority": "medium",
     "automation_ready": true,
-    "max_items": 3
+    "max_items": 3,
+    "enabled": true
   },
   {
     "name": "Aviation Week Network",
@@ -735,7 +777,8 @@
     "requires_auth": false,
     "priority": "medium",
     "automation_ready": true,
-    "max_items": 4
+    "max_items": 4,
+    "enabled": true
   },
   {
     "name": "The Air Current",
@@ -753,7 +796,8 @@
     "requires_auth": false,
     "priority": "medium",
     "automation_ready": true,
-    "max_items": 3
+    "max_items": 3,
+    "enabled": true
   },
   {
     "name": "CISA Alerts & Advisories",
@@ -772,7 +816,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 4
+    "max_items": 4,
+    "enabled": true
   },
   {
     "name": "UN OCHA ReliefWeb",
@@ -790,7 +835,8 @@
     "requires_auth": false,
     "priority": "medium",
     "automation_ready": true,
-    "max_items": 3
+    "max_items": 3,
+    "enabled": true
   },
   {
     "name": "GSMA Intelligence Blog",
@@ -808,7 +854,9 @@
     "requires_auth": false,
     "priority": "medium",
     "automation_ready": true,
-    "max_items": 4
+    "max_items": 4,
+    "enabled": false,
+    "disabled_reason": "403反爬"
   },
   {
     "name": "Light Reading Telecom News",
@@ -826,7 +874,9 @@
     "requires_auth": false,
     "priority": "medium",
     "automation_ready": true,
-    "max_items": 4
+    "max_items": 4,
+    "enabled": false,
+    "disabled_reason": "403反爬"
   },
   {
     "name": "Anthropic News",
@@ -844,7 +894,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 5
+    "max_items": 5,
+    "enabled": true
   },
   {
     "name": "Anthropic Research",
@@ -862,7 +913,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 3
+    "max_items": 3,
+    "enabled": true
   },
   {
     "name": "OpenAI Research",
@@ -880,6 +932,8 @@
     "requires_auth": false,
     "priority": "high",
     "automation_ready": true,
-    "max_items": 3
+    "max_items": 3,
+    "enabled": false,
+    "disabled_reason": "403反爬，改用手动补充"
   }
 ]
