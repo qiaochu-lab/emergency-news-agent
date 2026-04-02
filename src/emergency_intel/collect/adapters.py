@@ -359,7 +359,11 @@ def _download_response_text(url: str, headers: Dict[str, str] | None = None) -> 
 
 
 def build_adapters(source_registry: Iterable[Dict[str, object]]) -> List[SourceAdapter]:
-    return [SourceAdapter(source=entry) for entry in source_registry]
+    return [
+        SourceAdapter(source=entry)
+        for entry in source_registry
+        if entry.get("enabled", True)  # skip sources explicitly disabled
+    ]
 
 
 def _discover_article_links(base_url: str, html: str) -> List[str]:

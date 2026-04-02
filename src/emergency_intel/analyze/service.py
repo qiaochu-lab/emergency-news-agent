@@ -246,9 +246,9 @@ def _is_this_week_signal(item: ScoredItem, reference_date: date | None) -> bool:
     if not published:
         return False
     ref = reference_date or date.today()
-    start = ref.fromordinal(ref.toordinal() - ref.weekday() - 7)
-    end = start.fromordinal(start.toordinal() + 6)
-    return start <= published <= end
+    # Accept anything published in the past 10 days (covers weekly runs with some slack)
+    start = ref.fromordinal(ref.toordinal() - 10)
+    return start <= published <= ref
 
 
 def _parse_date(value: str) -> date | None:

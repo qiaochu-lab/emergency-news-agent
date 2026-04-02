@@ -156,7 +156,16 @@ def _mock_raw_items() -> List[Dict[str, object]]:
 
 
 def _report_filename(week_range: str, source_registry_path: Path, use_mock_data: bool) -> str:
+    from datetime import datetime
+    ts = datetime.now().strftime("%Y%m%d-%H%M")
+    # Derive ISO week from week_range (e.g. "2026-03-23 to 2026-03-29" → 2026-W14)
     if " to " in week_range:
-        start, end = week_range.split(" to ", 1)
-        return f"应急周报_{start}_{end}.md"
-    return f"应急周报_{week_range}.md"
+        start_str = week_range.split(" to ")[0].strip()
+        try:
+            d = datetime.strptime(start_str, "%Y-%m-%d")
+            iso_week = f"{d.isocalendar()[0]}-W{d.isocalendar()[1]:02d}"
+        except ValueError:
+            iso_week = start_str
+    else:
+        iso_week = week_range
+    return f"应急周报_{iso_week}_{ts}.md"

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>泛应急技术行业周报 2026-03-23 to 2026-03-29</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f5f6fa; color: #1a1a2e; font-size: 15px; line-height: 1.7;
+}
+a { color: #4a6fa5; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Nav ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: #1a1a2e; color: #fff;
+  display: flex; align-items: center; gap: 0; padding: 0 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+nav .brand { font-weight: 700; font-size: 16px; padding: 14px 20px 14px 0; white-space: nowrap; }
+nav .nav-links { display: flex; flex-wrap: wrap; gap: 4px; }
+nav .nav-links a {
+  color: #b0c4de; font-size: 13px; padding: 8px 12px; border-radius: 4px; white-space: nowrap;
+}
+nav .nav-links a:hover { color: #fff; background: rgba(255,255,255,.1); text-decoration: none; }
+
+/* ── Layout ── */
+.container { max-width: 960px; margin: 0 auto; padding: 24px 16px 60px; }
+
+/* ── Cover card ── */
+.cover-card {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+  color: #fff; border-radius: 12px; padding: 36px 32px; margin-bottom: 28px;
+}
+.cover-card h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+.cover-card .week { font-size: 15px; opacity: .8; margin-bottom: 20px; }
+.cover-meta { display: flex; flex-wrap: wrap; gap: 12px; }
+.cover-meta .badge {
+  background: rgba(255,255,255,.12); border-radius: 6px; padding: 6px 14px; font-size: 13px;
+}
+.cover-meta .badge strong { display: block; font-size: 11px; opacity: .7; margin-bottom: 2px; }
+
+/* ── Section ── */
+.section { background: #fff; border-radius: 10px; margin-bottom: 20px; overflow: hidden;
+           box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; cursor: pointer; user-select: none;
+  border-bottom: 1px solid #f0f0f0;
+}
+.section-header:hover { background: #fafbff; }
+.section-header h2 { font-size: 17px; font-weight: 600; }
+.section-header .toggle { font-size: 20px; color: #888; transition: transform .2s; }
+.section-header.open .toggle { transform: rotate(180deg); }
+.section-body { padding: 0 20px 20px; display: none; }
+.section-body.open { display: block; }
+
+/* ── Summary table ── */
+.summary-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.summary-table th, .summary-table td { padding: 9px 14px; border: 1px solid #e8e8e8; text-align: left; }
+.summary-table th { background: #f5f6fa; font-weight: 600; width: 30%; }
+
+/* ── Signal dist table ── */
+.dist-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+.dist-table th { background: #f5f6fa; padding: 8px 12px; text-align: left; border-bottom: 2px solid #dde; font-size: 12px; }
+.dist-table td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; }
+.strength-strong { color: #27ae60; font-weight: 600; }
+.strength-mid { color: #e67e22; }
+.strength-weak { color: #bbb; }
+
+/* ── Featured card ── */
+.featured-card {
+  border: 1px solid #e8ecf5; border-radius: 8px; overflow: hidden; margin: 16px 0;
+  border-left: 4px solid #4a6fa5;
+}
+.featured-card .fc-thumbnail {
+  width: 100%; max-height: 200px; object-fit: cover; display: block;
+  border-bottom: 1px solid #e8ecf5;
+}
+.featured-card .fc-body { padding: 20px; }
+.featured-card .fc-meta { font-size: 12px; color: #888; margin-bottom: 12px; display: flex; gap: 12px; flex-wrap: wrap; }
+.featured-card .fc-meta span { background: #f0f4ff; padding: 3px 8px; border-radius: 12px; }
+.featured-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 10px; line-height: 1.5; }
+.featured-card .section-label { font-size: 12px; font-weight: 700; color: #4a6fa5; text-transform: uppercase;
+  letter-spacing: .5px; margin: 14px 0 6px; }
+.featured-card p { font-size: 14px; color: #333; margin-bottom: 8px; }
+.key-points { padding-left: 20px; margin: 6px 0; }
+.key-points li { font-size: 14px; color: #333; margin-bottom: 4px; }
+.follow-up-list { padding-left: 20px; }
+.follow-up-list li { font-size: 13px; color: #555; margin-bottom: 3px; }
+.source-link { display: inline-block; margin-top: 10px; font-size: 13px;
+  background: #f0f4ff; padding: 4px 12px; border-radius: 4px; }
+
+/* ── Domain item list ── */
+.domain-item { border-bottom: 1px solid #f5f5f5; padding: 14px 0; }
+.domain-item:last-child { border-bottom: none; }
+.domain-item .di-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; line-height: 1.5; }
+.domain-item .di-summary { font-size: 13px; color: #555; margin-bottom: 6px; }
+.domain-item .di-meta { font-size: 12px; color: #999; }
+.domain-tag { display: inline-block; background: #eef3ff; color: #4a6fa5;
+  padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-right: 4px; }
+
+/* ── Calendar table ── */
+.cal-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+.cal-table th { background: #f5f6fa; padding: 8px 12px; text-align: left; border-bottom: 2px solid #dde; font-size: 12px; }
+.cal-table td { padding: 9px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+
+/* ── Risk / recommendation lists ── */
+.rec-list, .risk-list { padding-left: 20px; margin: 10px 0; }
+.rec-list li { color: #333; margin-bottom: 6px; font-size: 14px; }
+.risk-list li { color: #c0392b; margin-bottom: 6px; font-size: 14px; }
+
+/* ── Appendix table ── */
+.appendix-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.appendix-table th { background: #f5f6fa; padding: 8px 12px; text-align: left;
+  border-bottom: 2px solid #dde; font-size: 12px; }
+.appendix-table td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; }
+
+/* ── Insights ── */
+.insight-item { background: #f8f9ff; border-left: 3px solid #4a6fa5;
+  padding: 10px 14px; margin: 8px 0; border-radius: 0 6px 6px 0; font-size: 14px; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  nav .nav-links a { font-size: 11px; padding: 6px 8px; }
+  .cover-card { padding: 24px 16px; }
+  .cover-card h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <span class="brand">泛应急周报 · 2026-03-23 — 2026-03-29</span>
+  <div class="nav-links"><a href="#exec-summary">执行摘要</a><a href="#overview">本周概览</a><a href="#featured">重点事件</a><a href="#domains">各领域动态</a><a href="#calendar">事件日历</a><a href="#recs">建议与风险</a><a href="#appendix">信源附录</a></div>
+</nav>
+<div class="container">
+<div class="cover-card">
+  <h1>泛应急技术行业周报</h1>
+  <div class="week">2026.03.23 — 2026.03.29</div>
+  <div class="cover-meta">
+    <div class="badge"><strong>研报评级</strong>中性</div>
+    <div class="badge"><strong>覆盖领域</strong>AI · 无人机 · 通信网络 · 泛应急</div>
+    <div class="badge"><strong>本期信号数</strong>40 条</div>
+    <div class="badge"><strong>生成时间</strong>2026-04-02 08:25</div>
+  </div>
+</div><div class="section" id="exec-summary">
+  <div class="section-header open">
+    <h2>执行摘要</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body open"><table class="summary-table"><tr><th>景气度</th><td>整体活跃，跨领域融合驱动</td></tr><tr><th>核心主线</th><td>跨领域信号仍在增加，AI、通信、无人系统与应急体系开始出现更明显的耦合。</td></tr><tr><th>重点事件</th><td>9-1-1/Emergency Communications | First R...</td></tr><tr><th>风险提示</th><td>政策推进节奏不及预期风险</td></tr></table>
+<p style="margin-top:12px;font-size:14px;color:#555">本周泛应急技术相关主题整体维持活跃，跨领域融合方向仍是景气度相对较高的主线。</p></div>
+</div><div class="section" id="overview">
+  <div class="section-header">
+    <h2>一、本周概览</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><h3 style="margin:16px 0 8px;font-size:15px">1.1 行业整体表现</h3>
+<p style="font-size:14px;color:#333;margin-bottom:8px">本周泛应急技术相关主题整体维持活跃，跨领域融合方向仍是景气度相对较高的主线。</p>
+<ul style="padding-left:20px;font-size:14px;color:#555"><li>本周共筛出 40 条重点事件，覆盖 🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统、💡 应急视角思考 — 本周可借鉴内容 等方向。</li><li>高价值来源主要来自 Grok精选、arXiv Networking &amp; Communications、TCCA Critical Communications。</li><li>官方公告和机构动向仍是最值得优先跟踪的线索来源。</li><li>学术论文信号本周有一定贡献，前沿研究向场景落地路径值得观察。</li></ul>
+<h3 style="margin:20px 0 8px;font-size:15px">1.2 各领域信号分布</h3>
+<table class="dist-table">
+  <tr><th>领域</th><th>信号数</th><th>强弱</th><th>代表性事件</th></tr>
+  <tr><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</td><td>34</td><td class='strength-strong'>强</td><td>9-1-1/Emergency Communicatio...</td></tr><tr><td>📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>21</td><td class='strength-strong'>强</td><td>9-1-1/Emergency Communicatio...</td></tr><tr><td>✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>7</td><td class='strength-strong'>强</td><td>Learning Compact Terrain-Con...</td></tr><tr><td>💡 应急视角思考 — 本周可借鉴内容</td><td>3</td><td class='strength-strong'>强</td><td>9-1-1/Emergency Communicatio...</td></tr>
+</table>
+<h3 style="margin:20px 0 8px;font-size:15px">1.3 重点主体动态</h3>
+<div class="domain-item">
+  <div class="di-title">9-1-1/Emergency Communications | First Responder Network Authority <span style="font-size:12px;color:#888">（FirstNet Authority）</span></div>
+  <div class="di-summary">FirstNet Authority发布针对9-1-1/应急通信专家的资源页面，强调通过FirstNet网络提升应急响应速度与安全性，旨在推广其工具手册并吸引订阅。这反映了官方持续推动公共安全宽带应用的意图，但未披露新政策或预算信息。</div>
+</div><div class="domain-item">
+  <div class="di-title">Emergency Management | First Responder Network Authority <span style="font-size:12px;color:#888">（FirstNet Authority）</span></div>
+  <div class="di-summary">FirstNet Authority发布应急管理资源指南和操作手册，旨在帮助应急管理人员更有效地利用FirstNet网络进行数据收集与共享。这是官方机构主动推动网络应用落地的信号，表明FirstNet正从基础建设转向深度运营阶段。</div>
+</div><div class="domain-item">
+  <div class="di-title">Adversarial Attacks in AI-Driven RAN Slicing: SLA Violations and Recovery <span style="font-size:12px;color:#888">（arXiv Networking &amp; Communications）</span></div>
+  <div class="di-summary">研究揭示了对抗攻击能通过选择性干扰影响AI驱动的RAN切片决策，导致服务等级协议（SLA）违反和恢复延迟，对应急通信网络韧性构成直接威胁。</div>
+</div><div class="domain-item">
+  <div class="di-title">RFSS: A Multi-Standard RF Signal Source Separation Dataset with 3GPP-Standardized Channel and Hardware Impairments <span style="font-size:12px;color:#888">（arXiv Satellite &amp; NTN Communications）</span></div>
+  <div class="di-summary">该研究发布了首个符合3GPP标准的开源多标准RF信号分离数据集RFSS，填补了2G-5G异构网络共存场景下数据驱动研究的空白。数据集包含10万个样本，模拟真实信道和硬件损伤，为应急通信多代际网络共存提供了关键训练资源。</div>
+</div><div class="domain-item">
+  <div class="di-title">Emerging NGSO constellations: spectral coexistence with GSO satellite communication systems <span style="font-size:12px;color:#888">（Frontiers in Communications and Networks）</span></div>
+  <div class="di-summary">前沿研究聚焦NGSO与GSO卫星系统频谱共存挑战，结合WRC-23监管更新与AI技术应用，为应急通信频谱管理提供技术路径。该研究提出自适应监管工具和概率干扰模型，旨在支持可持续的轨道频谱共享。</div>
+</div></div>
+</div><div class="section" id="featured">
+  <div class="section-header">
+    <h2>二、重点事件深度分析</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><div class="featured-card">
+  <img class="fc-thumbnail" src="https://firstnet.gov/sites/default/files/x.svg" alt="" loading="lazy" onerror="this.style.display='none'">
+  <div class="fc-body">
+  <div class="fc-meta">
+    <span>来源：FirstNet Authority</span>
+    <span>日期：2026.04.02</span>
+    <span>领域：🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网、💡 应急视角思考 — 本周可借鉴内容</span>
+  </div>
+  <h3>1. 9-1-1/Emergency Communications | First Responder Network Authority</h3>
+  <div class="section-label">事件概述</div>
+  <p>FirstNet Authority发布针对9-1-1/应急通信专家的资源页面，强调通过FirstNet网络提升应急响应速度与安全性，旨在推广其工具手册并吸引订阅。这反映了官方持续推动公共安全宽带应用的意图，但未披露新政策或预算信息。</p>
+  <div class="section-label">核心要点</div><ul class="key-points"><li>发布FirstNet操作手册，为应急通信人员提供整合指南</li><li>设立专家订阅服务，以季度简报形式深化主题交流</li><li>页面聚焦推广现有资源，未宣布新部署或采购计划</li></ul>
+  <div class="section-label">分析判断</div><p>该事件在技术或应用层面未展示突破性创新，主要侧重于机制优化。通过发布FirstNet操作手册，FirstNet Authority系统化整理了网络工具、技术和解决方案的概述，旨在帮助公共安全机构（包括9-1-1/应急通信、执法、消防等）更有效地将FirstNet集成到日常运营中。这种资源整合机制提升了用户友好性和可操作性，可能促进跨部门协同，但创新价值有限，更多是现有服务的标准化和推广。</p>
+  <div class="section-label">决策启示</div><p>本事件对政策制定者、采购方或部署决策者意味着FirstNet Authority正加强用户教育和资源支持，以推动FirstNet网络的更广泛应用。这暗示官方可能通过提升用户采纳率来间接影响未来预算分配或采购决策，但当前无直接政策变化信号。</p>
+  <div class="section-label">跟踪建议</div><ul class="follow-up-list"><li>持续关注相关政策文件和预算安排</li><li>跟踪后续采购或标准化进展</li><li>观察国际同类动向</li></ul>
+  <a class="source-link" href="https://firstnet.gov/public-safety/firstnet-for/9-1-1-emergency-communications" target="_blank" rel="noopener">→ 原文链接</a>
+  </div>
+</div>
+<div class="featured-card">
+  <img class="fc-thumbnail" src="https://firstnet.gov/sites/default/files/x.svg" alt="" loading="lazy" onerror="this.style.display='none'">
+  <div class="fc-body">
+  <div class="fc-meta">
+    <span>来源：FirstNet Authority</span>
+    <span>日期：2026.04.02</span>
+    <span>领域：🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网、💡 应急视角思考 — 本周可借鉴内容</span>
+  </div>
+  <h3>2. Emergency Management | First Responder Network Authority</h3>
+  <div class="section-label">事件概述</div>
+  <p>FirstNet Authority发布应急管理资源指南和操作手册，旨在帮助应急管理人员更有效地利用FirstNet网络进行数据收集与共享。这是官方机构主动推动网络应用落地的信号，表明FirstNet正从基础建设转向深度运营阶段。</p>
+  <div class="section-label">核心要点</div><ul class="key-points"><li>发布应急管理资源指南和操作手册，推动FirstNet在应急响应中的实际应用</li><li>设立专家联系渠道，提供季度深度内容，强化与应急管理人员的直接沟通</li><li>资源提供多语言版本，显示对多元化用户群体的覆盖意图</li></ul>
+  <div class="section-label">分析判断</div><p>本次事件的核心创新在于FirstNet Authority通过系统化的资源整合与分发机制，将技术能力转化为可操作的应急管理工具。不同于单纯的技术发布，官方提供了《FirstNet操作手册》这一综合性参考文件，覆盖从现场响应到应急指挥中心的多场景应用，并配套西班牙语资源指南，体现了对用户友好性和可及性的重视。这种“技术+指南”的组合模式，有助于降低公共安全机构采用FirstNet的门槛，加速网络与现有应急体系的融合。虽然未提及具体技术突破，但通过标准化操作流程和最佳实践分享，提升了网络在复杂应急环境下的实用价值。</p>
+  <div class="section-label">决策启示</div><p>对政策制定者和采购方而言，FirstNet Authority主动发布应用指南，表明网络建设已进入成熟推广期，决策重点应从“是否部署”转向“如何优化使用”。这为地方政府和应急机构提供了明确的实施参考，可能影响后续采购决策，更倾向于选择配套资源完善的技术方案。</p>
+  <div class="section-label">跟踪建议</div><ul class="follow-up-list"><li>持续关注相关政策文件和预算安排</li><li>跟踪后续采购或标准化进展</li><li>观察国际同类动向</li></ul>
+  <a class="source-link" href="https://firstnet.gov/public-safety/firstnet-for/emergency-management" target="_blank" rel="noopener">→ 原文链接</a>
+  </div>
+</div>
+<div class="featured-card">
+  
+  <div class="fc-body">
+  <div class="fc-meta">
+    <span>来源：arXiv Satellite &amp; NTN Communications</span>
+    <span>日期：2026.04.02</span>
+    <span>领域：🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</span>
+  </div>
+  <h3>3. Learning Compact Terrain-Context Representations for Feasibility-Aware Offline Reinforcement Learning in UAV Relaying Networks</h3>
+  <div class="section-label">事件概述</div>
+  <p>本研究提出了一种结合紧凑地形表征与可行性感知机制的离线强化学习方法，用于优化无人机中继网络的部署。该方法通过变分自编码器压缩高维地形数据，并引入候选集可行性上界来区分物理限制与控制策略不足，显著提升了离线学习的稳定性和收敛速度。</p>
+  <div class="section-label">核心要点</div><ul class="key-points"><li>使用变分自编码器压缩高维地形数据，提升离线强化学习效率</li><li>引入候选集可行性上界机制，区分物理限制与控制策略不足</li><li>在仿真中验证了方法能更快收敛到可行中继配置，减少次优性</li></ul>
+  <div class="section-label">分析判断</div><p>本研究的核心创新在于将高维地形上下文压缩与可行性感知机制相结合，为无人机中继网络的离线强化学习提供了系统化解决方案。技术层面，采用变分自编码器（VAE）将地图类观测数据压缩为低维潜在表征，有效解决了原始高维输入导致学习收敛慢的问题；机制层面，提出的候选集可行性上界（CS-FUB）通过估计受限无人机放置集下的最大用户覆盖，清晰区分了由用户移动性等外部因素决定的物理可行性限制与无人机控制策略导致的次优性，避免了传统方法中混淆两者而导致的无效优化。应用层面，该方法使得无人机系统能在不进行昂贵在线探索的前提下，从固定数据集中学习出更稳定、更接近物理极限的中继策略，尤其适用于地形复杂、通信环境动态变化的灾害应急场景，代表了AI驱动无人机通信从理论模型向实际部署迈进的关键一步。</p>
+  <div class="section-label">决策启示</div><p>本事件对政策制定者和采购方意味着，AI驱动的无人机通信优化正从在线学习转向更安全、高效的离线学习模式，这降低了部署风险并提升了预算可控性，可能推动相关标准或采购规范向支持数据驱动、可行性感知的智能中继系统倾斜。</p>
+  <div class="section-label">跟踪建议</div><ul class="follow-up-list"><li>关注代码开源或复现进展</li><li>跟踪工业界是否跟进落地</li><li>观察同类研究后续发表</li></ul>
+  <a class="source-link" href="https://arxiv.org/abs/2604.00224" target="_blank" rel="noopener">→ 原文链接</a>
+  </div>
+</div>
+<div class="featured-card">
+  <img class="fc-thumbnail" src="https://tcca.info/wp-content/uploads/2026/03/Moto-ISC.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+  <div class="fc-body">
+  <div class="fc-meta">
+    <span>来源：TCCA Critical Communications</span>
+    <span>日期：2026.03.23</span>
+    <span>领域：💡 应急视角思考 — 本周可借鉴内容</span>
+  </div>
+  <h3>4. Motorola Solutions Showcases Enterprise Intelligence and Operational Resilience at ISC West 2026</h3>
+  <div class="section-label">事件概述</div>
+  <p>摩托罗拉解决方案在ISC West 2026上展示其企业智能与运营韧性平台扩展，强调从被动监控转向自主响应，以提升企业安全与合规能力。该事件凸显应急通信行业向智能化、集成化发展的趋势，可能影响垂直行业的采购决策。</p>
+  <div class="section-label">核心要点</div><ul class="key-points"><li>展示企业智能平台扩展，针对医疗、零售等垂直行业定制安全解决方案</li><li>强调从被动监控转向自主响应，通过AI减轻人工操作负担</li><li>提供混合灵活性，支持本地与云系统集成，提升运营韧性</li></ul>
+  <div class="section-label">分析判断</div><p>本次展示的核心创新在于将物理安全技术从传统的事件检测升级为实时运营智能层。通过引入新的智能软件层，摩托罗拉解决方案整合视频流、视觉警报和访问控制，实现模式识别、威胁验证和自动化响应，从而将人工监控转变为自主编排的行动。这代表了应急通信领域的技术突破，从单纯依赖AI进行视觉分析转向“代理AI”驱动的主动响应机制，能更快速、一致地处理事件，如提前预警堵塞的消防出口或液体泄漏，减少人为失误并提升业务连续性。这种集成化平台扩展，特别是在垂直行业的定制化应用，展示了应急技术向更智能、更协同的方向演进，可能推动行业标准向自动化响应倾斜。</p>
+  <div class="section-label">决策启示</div><p>本事件对政策制定者和采购方意味着应急通信系统正加速向智能化、集成化转型，强调实时响应和运营韧性，可能促使相关机构更新安全标准或预算分配，以支持自动化解决方案的部署。</p>
+  <div class="section-label">跟踪建议</div><ul class="follow-up-list"><li>持续关注相关政策文件和预算安排</li><li>跟踪后续采购或标准化进展</li><li>观察国际同类动向</li></ul>
+  <a class="source-link" href="https://tcca.info/motorola-solutions-showcases-enterprise-intelligence-and-operational-resilience-at-isc-west-2026/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=motorola-solutions-showcases-enterprise-intelligence-and-operational-resilience-at-isc-west-2026" target="_blank" rel="noopener">→ 原文链接</a>
+  </div>
+</div>
+<div class="featured-card">
+  
+  <div class="fc-body">
+  <div class="fc-meta">
+    <span>来源：arXiv Networking &amp; Communications</span>
+    <span>日期：2026.04.02</span>
+    <span>领域：🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</span>
+  </div>
+  <h3>5. Adversarial Attacks in AI-Driven RAN Slicing: SLA Violations and Recovery</h3>
+  <div class="section-label">事件概述</div>
+  <p>研究揭示了对抗攻击能通过选择性干扰影响AI驱动的RAN切片决策，导致服务等级协议（SLA）违反和恢复延迟，对应急通信网络韧性构成直接威胁。</p>
+  <div class="section-label">核心要点</div><ul class="key-points"><li>预算受限的对抗性干扰可导致严重、切片依赖的SLA违反</li><li>深度强化学习（DRL）代理需非可忽略恢复期才能收敛至基线</li><li>研究为应急网络设计提供安全测试参考，需验证实际部署效果</li></ul>
+  <div class="section-label">分析判断</div><p>本研究在技术层面提出了一种针对AI驱动RAN切片的新型对抗攻击模型，通过预算受限的选择性干扰，精准影响DRL资源分配决策，导致SLA违反。机制上，它量化了攻击对eMBB、mMTC、URLLC等异构切片的差异化影响，并分析了攻击后DRL代理的恢复行为，揭示了AI系统在动态环境中的脆弱性。应用层面，这为应急通信场景（如灾害中需优先保障URLLC切片）提供了安全评估框架，但技术成熟度较低，目前处于学术研究阶段，从研究到应用可能需结合真实网络数据验证和标准化安全协议开发。</p>
+  <div class="section-label">决策启示</div><p>本事件对政策制定者和采购方意味着，在推进AI驱动的应急通信网络时，需将对抗攻击防护纳入安全标准和采购要求，以避免关键服务中断。</p>
+  <div class="section-label">跟踪建议</div><ul class="follow-up-list"><li>关注代码开源或复现进展</li><li>跟踪工业界是否跟进落地</li><li>观察同类研究后续发表</li></ul>
+  <a class="source-link" href="https://arxiv.org/abs/2604.01049" target="_blank" rel="noopener">→ 原文链接</a>
+  </div>
+</div></div>
+</div><div class="section" id="domains">
+  <div class="section-header">
+    <h2>三、各领域精选动态</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><h3 style="margin:20px 0 10px;font-size:15px;border-left:3px solid #4a6fa5;padding-left:10px">1. 🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</h3>
+<p style="font-size:13px;color:#888;margin-bottom:10px">精选本周高信号事件（共 10 条）</p>
+<div class="domain-item">
+  <div class="di-title"><a href="https://firstnet.gov/public-safety/firstnet-for/9-1-1-emergency-communications" target="_blank" rel="noopener">9-1-1/Emergency Communications | First Responder Network Authority</a></div>
+  <div class="di-summary">FirstNet Authority发布针对9-1-1/应急通信专家的资源页面，强调通过FirstNet网络提升应急响应速度与安全性，旨在推广其工具手册并吸引订阅。这反映了官方持续推动公共安全宽带应用的意图，但未披露新政策或预算信息。</div>
+  <div class="di-meta">FirstNet Authority | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://firstnet.gov/public-safety/firstnet-for/emergency-management" target="_blank" rel="noopener">Emergency Management | First Responder Network Authority</a></div>
+  <div class="di-summary">FirstNet Authority发布应急管理资源指南和操作手册，旨在帮助应急管理人员更有效地利用FirstNet网络进行数据收集与共享。这是官方机构主动推动网络应用落地的信号，表明FirstNet正从基础建设转向深度运营阶段。</div>
+  <div class="di-meta">FirstNet Authority | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://arxiv.org/abs/2604.01049" target="_blank" rel="noopener">Adversarial Attacks in AI-Driven RAN Slicing: SLA Violations and Recovery</a></div>
+  <div class="di-summary">研究揭示了对抗攻击能通过选择性干扰影响AI驱动的RAN切片决策，导致服务等级协议（SLA）违反和恢复延迟，对应急通信网络韧性构成直接威胁。</div>
+  <div class="di-meta">arXiv Networking &amp; Communications | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://arxiv.org/abs/2604.00398" target="_blank" rel="noopener">RFSS: A Multi-Standard RF Signal Source Separation Dataset with 3GPP-Standardized Channel and Hardware Impairments</a></div>
+  <div class="di-summary">该研究发布了首个符合3GPP标准的开源多标准RF信号分离数据集RFSS，填补了2G-5G异构网络共存场景下数据驱动研究的空白。数据集包含10万个样本，模拟真实信道和硬件损伤，为应急通信多代际网络共存提供了关键训练资源。</div>
+  <div class="di-meta">arXiv Satellite &amp; NTN Communications | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.frontiersin.org/articles/10.3389/frcmn.2026.1730921" target="_blank" rel="noopener">Emerging NGSO constellations: spectral coexistence with GSO satellite communication systems</a></div>
+  <div class="di-summary">前沿研究聚焦NGSO与GSO卫星系统频谱共存挑战，结合WRC-23监管更新与AI技术应用，为应急通信频谱管理提供技术路径。该研究提出自适应监管工具和概率干扰模型，旨在支持可持续的轨道频谱共享。</div>
+  <div class="di-meta">Frontiers in Communications and Networks | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://arxiv.org/abs/2604.00701" target="_blank" rel="noopener">Birdcast: Interest-aware BEV Multicasting for Infrastructure-assisted Collaborative Perception</a></div>
+  <div class="di-summary">Birdcast提出了一种面向车路协同感知的BEV特征图高效组播框架，通过联合特征选择与分组优化解决异构信息需求下的通信瓶颈。该技术可显著提升系统效用与感知质量，为智能交通基础设施部署提供关键通信优化方案。</div>
+  <div class="di-meta">arXiv Networking &amp; Communications | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://reliefweb.int/map/world/alertes-de-maladies-epidemiques-et-emergentes-en-oceanie-le-24-mars-2026-0" target="_blank" rel="noopener">World: Alertes de maladies épidémiques et émergentes en Océanie le 24 mars 2026</a></div>
+  <div class="di-summary">联合国人道协调厅发布大洋洲疫情警报，库克群岛和新喀里多尼亚登革热疫情持续，应急通信在疫情监测和响应中发挥关键作用。这凸显了公共卫生事件对应急通信需求的驱动，特别是在偏远岛屿地区的部署挑战。</div>
+  <div class="di-meta">UN OCHA ReliefWeb | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.frontiersin.org/articles/10.3389/frcmn.2026.1750955" target="_blank" rel="noopener">Direct-to-satellite internet of things (DtS-IoT): a tutorial review on architectures, protocols, and future directions</a></div>
+  <div class="di-summary">前沿学术期刊发布关于卫星直连物联网（DtS-IoT）的教程综述，系统梳理了该领域从架构到协议的关键技术要素，为应急通信在偏远和灾害场景的覆盖提供了技术储备。该论文作为本周高相关信号，反映了学术界对卫星物联网融合应用的持续关注。</div>
+  <div class="di-meta">Frontiers in Communications and Networks | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://x.com/trq212/status/2039453692592873587" target="_blank" rel="noopener">not an April Fools joke, we rewrote the Claude Code renderer to use a virtual viewport you can use your mouse, the promp</a></div>
+  <div class="di-summary">Anthropic发布Claude Code渲染器实验性更新，引入虚拟视口等交互优化，旨在提升AI代码生成工具的用户体验。该更新虽处实验阶段，但反映了AI工具向更直观、高效界面演进的趋势。</div>
+  <div class="di-meta">follow-builders X Feed | 2026.04.01</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://arxiv.org/abs/2604.01087" target="_blank" rel="noopener">POLARIS: PHY-Aware Spectrum Steering for Dynamic Spectrum Sharing</a></div>
+  <div class="di-summary">POLARIS研究首次基于物理层（PHY）特征量化了5G动态频谱共享（DSS）中五种设备迁移机制的延迟差异，并设计了一个基于O-RAN的智能选择系统，将平均延迟降低85.1%，尾部延迟超过50ms的情况降至零。这为DSS的实时优化提供了可测量的技术基础，标志着频谱管理从静态配置向动态、感知驱动的决策...</div>
+  <div class="di-meta">arXiv Networking &amp; Communications | 2026.04.02</div>
+</div>
+<h3 style="margin:20px 0 10px;font-size:15px;border-left:3px solid #4a6fa5;padding-left:10px">2. 📡 通信专栏 — 卫星通信 / 5G·6G / 专网</h3>
+<p style="font-size:13px;color:#888;margin-bottom:10px">精选本周高信号事件（共 10 条）</p>
+<div class="domain-item">
+  <div class="di-title"><a href="https://tcca.info/uk%e2%80%99s-first-cloud-based-emergency-control-room-deployed-for-west-yorkshire-fire-and-rescue-service/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=uk%25e2%2580%2599s-first-cloud-based-emergency-control-room-deployed-for-west-yorkshire-fire-and-rescue-service" target="_blank" rel="noopener">UK’s first cloud-based emergency control room deployed for West Yorkshire Fire and Rescue Service</a></div>
+  <div class="di-summary">英国西约克郡消防与救援服务部署了全国首个基于公共云的应急指挥中心系统，标志着关键任务通信向公共云迁移的实质性突破。该系统由Frequentis提供，整合了语音、数据和调度功能，为其他应急服务机构的云化转型提供了可参考的部署案例。</div>
+  <div class="di-meta">TCCA Critical Communications | 2026.03.25</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://arxiv.org/abs/2604.00224" target="_blank" rel="noopener">Learning Compact Terrain-Context Representations for Feasibility-Aware Offline Reinforcement Learning in UAV Relaying Networks</a></div>
+  <div class="di-summary">本研究提出了一种结合紧凑地形表征与可行性感知机制的离线强化学习方法，用于优化无人机中继网络的部署。该方法通过变分自编码器压缩高维地形数据，并引入候选集可行性上界来区分物理限制与控制策略不足，显著提升了离线学习的稳定性和收敛速度。</div>
+  <div class="di-meta">arXiv Satellite &amp; NTN Communications | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://tcca.info/softil-unveils-future-of-emergency-response-communications-combining-tak-with-mcx-at-bapco-2026/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=softil-unveils-future-of-emergency-response-communications-combining-tak-with-mcx-at-bapco-2026" target="_blank" rel="noopener">Softil Unveils Future of Emergency Response Communications Combining TAK with MCX at BAPCO 2026</a></div>
+  <div class="di-summary">Softil在BAPCO 2026展会上首次展示其BEEHD MCX技术与TAK的集成方案，标志着应急通信向宽带化、智能化融合迈出关键一步。该方案通过地理围栏、动态组群等新功能，显著提升现场指挥效率，为公共安全机构提供更灵活的部署选项。</div>
+  <div class="di-meta">TCCA Critical Communications | 2026.03.24</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.satellitetoday.com/satshow-2026/2026/04/01/live-in-the-booth-arianespace-ceo-david-cavailloles-previews-ariane-6-ramp-up/" target="_blank" rel="noopener">Live in the Booth: Arianespace CEO David Cavaillolès Previews Ariane 6 Ramp-Up</a></div>
+  <div class="di-summary">阿丽亚娜空间公司CEO在SATShow访谈中透露，阿里安6号火箭发射活动正加速推进，以支持亚马逊低轨星座等客户需求，并强调欧洲主权航天和工业协调是关键挑战。这表明欧洲发射能力正进入密集部署期，对应急通信等卫星服务供应链有直接影响。</div>
+  <div class="di-meta">Via Satellite | 2026.04.01</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://blog.google/products-and-platforms/products/earth/satellite-imagery-brazilian-deforestation/" target="_blank" rel="noopener">We’re creating a new satellite imagery map to help protect Brazil’s forests.</a></div>
+  <div class="di-summary">谷歌与巴西政府合作发布高精度历史卫星地图，为森林保护提供关键数据支撑。该地图精度提升6倍，首次实现森林斑块级监测，现已开放于谷歌地球平台。此举标志着商业卫星数据在公共环境治理领域的深度应用突破。</div>
+  <div class="di-meta">Google AI Blog | 2026.04.01</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.frontiersin.org/articles/10.3389/frcmn.2026.1783248" target="_blank" rel="noopener">A walrus optimization algorithm (WOA) for cluster head selection to optimize energy-efficiency in UWSNs-based IoT</a></div>
+  <div class="di-summary">一项针对水下无线传感器网络（UWSNs）的物联网（IoT）应用，提出了一种基于海象优化算法（WOA）的簇头选择方法，以优化能量效率。该算法在模拟测试中显示出比现有方法更优的性能，但作为2026年的预印本，其技术成熟度与应用路径尚待验证。</div>
+  <div class="di-meta">Frontiers in Communications and Networks | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://arxiv.org/abs/2604.00317" target="_blank" rel="noopener">From Skew to Symmetry: Node-Interconnect Multi-Path Balancing with Execution-time Planning for Modern GPU Clusters</a></div>
+  <div class="di-summary">NIMBLE系统通过动态路径平衡优化GPU集群通信性能，显著提升AI训练效率。该技术无需修改应用即可透明集成，在流量倾斜场景下带宽提升最高达5.2倍。</div>
+  <div class="di-meta">arXiv Networking &amp; Communications | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.satellitetoday.com/launch/2026/04/01/nasa-launches-artemis-ii-in-further-step-toward-a-moon-return/" target="_blank" rel="noopener">NASA Launches Artemis II in Further Step Toward a Moon Return</a></div>
+  <div class="di-summary">NASA成功发射首次载人Artemis II任务，标志着其重返月球计划进入关键验证阶段。该任务将测试猎户座飞船的生命支持系统，为后续月球表面任务铺平道路，是本周应急通信领域值得关注的重要进展。</div>
+  <div class="di-meta">Via Satellite | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://dronelife.com/2026/04/01/manna-raises-50m-to-expand-drone-delivery-network-in-the-u-s/" target="_blank" rel="noopener">Manna Raises $50M to Expand Drone Delivery Network in the U.S.</a></div>
+  <div class="di-summary">Manna Air Delivery完成5000万美元B轮融资，用于在美国和欧洲扩展无人机配送网络，计划新建40个基地。这标志着资本对规模化无人机物流的持续看好，可能加速郊区应急物资配送的商业化进程。</div>
+  <div class="di-meta">DroneLife | 2026.04.01</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.satellitetoday.com/partner-content/2026/04/01/canarysat-ceo-antonio-abad-outlines-the-sovereign-secure-approach-behind-the-magec-constellation/" target="_blank" rel="noopener">CanarySat CEO Antonio Abad Outlines the Sovereign, Secure Approach Behind the Magec Constellation</a></div>
+  <div class="di-summary">西班牙CanarySat公司公布Magec星座计划，强调主权与安全设计，旨在为应急通信提供独立可控的LEO卫星服务。该计划由Arquimea集团支持，在SATShow Week期间发布，凸显欧洲在卫星通信领域寻求自主可控的新动向。</div>
+  <div class="di-meta">Via Satellite | 2026.04.01</div>
+</div>
+<h3 style="margin:20px 0 10px;font-size:15px;border-left:3px solid #4a6fa5;padding-left:10px">3. ✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</h3>
+<p style="font-size:13px;color:#888;margin-bottom:10px">精选本周高信号事件（共 5 条）</p>
+<div class="domain-item">
+  <div class="di-title"><a href="https://www.commercialuavnews.com/european-drone-certification-airworthiness-testing-webinar" target="_blank" rel="noopener">Upcoming Webinar to Cover Pan-European Drone Testing</a></div>
+  <div class="di-summary">欧洲无人机测试网络即将举办网络研讨会，旨在解决欧洲无人机适航认证碎片化问题。该活动由欧洲无人机测试网络组织，直接回应欧洲各国监管标准不一的痛点，可能推动区域测试标准化进程。</div>
+  <div class="di-meta">Commercial UAV News | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://dronedj.com/2026/03/31/xtend-parazero-drone-net-catcher/" target="_blank" rel="noopener">AI drones are now catching aerial threats like flying cops</a></div>
+  <div class="di-summary">XTEND与ParaZero合作推出全自主无人机拦截系统，采用物理网捕方式捕获威胁无人机，显著提升城市和敏感区域反无人机作业的安全性。该系统基于AI驱动，支持跨空、陆、海多域操作，标志着反无人机技术向非动能、可回收方向演进。</div>
+  <div class="di-meta">DroneDJ | 2026.03.31</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://tcca.info/airbus-brings-digital-technology-to-firefighting/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=airbus-brings-digital-technology-to-firefighting" target="_blank" rel="noopener">Airbus brings digital technology to firefighting</a></div>
+  <div class="di-summary">空客成功完成首次森林灭火数字技术集成试验，通过私有移动网络和AI数据处理，实现了飞机、无人机与地面人员的实时互联与精准协同。该试验由法国官方机构参与验证，标志着应急通信向空地一体化实战应用迈出关键一步。</div>
+  <div class="di-meta">TCCA Critical Communications | 2026.03.26</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://dronedj.com/2026/03/31/droneshield-amsterdam-europe-counter-drone/" target="_blank" rel="noopener">DroneShield opens Amsterdam HQ as counter-drone demand grows</a></div>
+  <div class="di-summary">DroneShield在阿姆斯特丹设立欧洲总部，以响应欧洲防务自主化和反无人机需求激增。此举标志着该公司从生产到部署的欧洲本土化战略深化，旨在抓住欧洲市场增长机遇。</div>
+  <div class="di-meta">DroneDJ | 2026.03.31</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://dronedj.com/2026/04/01/dronedeploy-irish-housing-construction-drones/" target="_blank" rel="noopener">DroneDeploy brings AI-powered site visibility to Irish housing projects</a></div>
+  <div class="di-summary">DroneDeploy与爱尔兰领先开发商Cairn Homes合作，在超过25个住宅项目中部署AI驱动的无人机现实捕捉技术，旨在提升建筑工地的智能化、安全性和数据驱动水平。此举标志着无人机AI解决方案在应急通信相关基建领域的规模化应用落地，可能为行业提供新的部署范本。</div>
+  <div class="di-meta">DroneDJ | 2026.04.01</div>
+</div>
+<h3 style="margin:20px 0 10px;font-size:15px;border-left:3px solid #4a6fa5;padding-left:10px">4. 💡 应急视角思考 — 本周可借鉴内容</h3>
+<p style="font-size:13px;color:#888;margin-bottom:10px">精选本周高信号事件（共 1 条）</p>
+<div class="domain-item">
+  <div class="di-title"><a href="https://tcca.info/motorola-solutions-showcases-enterprise-intelligence-and-operational-resilience-at-isc-west-2026/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=motorola-solutions-showcases-enterprise-intelligence-and-operational-resilience-at-isc-west-2026" target="_blank" rel="noopener">Motorola Solutions Showcases Enterprise Intelligence and Operational Resilience at ISC West 2026</a></div>
+  <div class="di-summary">摩托罗拉解决方案在ISC West 2026上展示其企业智能与运营韧性平台扩展，强调从被动监控转向自主响应，以提升企业安全与合规能力。该事件凸显应急通信行业向智能化、集成化发展的趋势，可能影响垂直行业的采购决策。</div>
+  <div class="di-meta">TCCA Critical Communications | 2026.03.23</div>
+</div></div>
+</div><div class="section" id="calendar">
+  <div class="section-header">
+    <h2>四、事件日历</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><h3 style="margin:16px 0 8px;font-size:15px">本周重要事件</h3>
+<table class="cal-table">
+  <tr><th>日期</th><th>事件标题</th><th>来源</th><th>要点</th></tr>
+  <tr><td>2026.04.02</td><td><a href="https://firstnet.gov/public-safety/firstnet-for/9-1-1-emergency-communications" target="_blank" rel="noopener">9-1-1/Emergency Communications |...</a></td><td>FirstNet Authority</td><td>FirstNet Authority发布针对9-1-1/应急通信专家的资源页面，强调通过F...</td></tr><tr><td>2026.04.02</td><td><a href="https://firstnet.gov/public-safety/firstnet-for/emergency-management" target="_blank" rel="noopener">Emergency Management | First Res...</a></td><td>FirstNet Authority</td><td>FirstNet Authority发布应急管理资源指南和操作手册，旨在帮助应急管理人员更...</td></tr><tr><td>2026.04.02</td><td><a href="https://arxiv.org/abs/2604.01049" target="_blank" rel="noopener">Adversarial Attacks in AI-Driven...</a></td><td>arXiv Networking &amp; Communications</td><td>研究揭示了对抗攻击能通过选择性干扰影响AI驱动的RAN切片决策，导致服务等级协议（SLA）...</td></tr><tr><td>2026.04.02</td><td><a href="https://arxiv.org/abs/2604.00398" target="_blank" rel="noopener">RFSS: A Multi-Standard RF Signal...</a></td><td>arXiv Satellite &amp; NTN Communications</td><td>该研究发布了首个符合3GPP标准的开源多标准RF信号分离数据集RFSS，填补了2G-5G异...</td></tr><tr><td>2026.04.02</td><td><a href="https://www.frontiersin.org/articles/10.3389/frcmn.2026.1730921" target="_blank" rel="noopener">Emerging NGSO constellations: sp...</a></td><td>Frontiers in Communications and Networks</td><td>前沿研究聚焦NGSO与GSO卫星系统频谱共存挑战，结合WRC-23监管更新与AI技术应用，...</td></tr><tr><td>2026.04.02</td><td><a href="https://arxiv.org/abs/2604.00701" target="_blank" rel="noopener">Birdcast: Interest-aware BEV Mul...</a></td><td>arXiv Networking &amp; Communications</td><td>Birdcast提出了一种面向车路协同感知的BEV特征图高效组播框架，通过联合特征选择与分...</td></tr><tr><td>2026.04.02</td><td><a href="https://reliefweb.int/map/world/alertes-de-maladies-epidemiques-et-emergentes-en-oceanie-le-24-mars-2026-0" target="_blank" rel="noopener">World: Alertes de maladies épidé...</a></td><td>UN OCHA ReliefWeb</td><td>联合国人道协调厅发布大洋洲疫情警报，库克群岛和新喀里多尼亚登革热疫情持续，应急通信在疫情监...</td></tr><tr><td>2026.04.02</td><td><a href="https://www.frontiersin.org/articles/10.3389/frcmn.2026.1750955" target="_blank" rel="noopener">Direct-to-satellite internet of ...</a></td><td>Frontiers in Communications and Networks</td><td>前沿学术期刊发布关于卫星直连物联网（DtS-IoT）的教程综述，系统梳理了该领域从架构到协...</td></tr>
+</table></div>
+</div><div class="section" id="recs">
+  <div class="section-header">
+    <h2>五、建议与风险</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><h3 style="margin:16px 0 8px;font-size:15px">建议关注方向</h3>
+<ul class="rec-list"><li>技术主线：建议持续关注 🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统、💡 应急视角思考 — 本周可借鉴内容 相关链条，重点看能力组合是否继续增强。</li><li>场景主线：围绕「9-1-1/Emergency Communications」所代表的应用场景，跟踪是否出现规模化部署或跨部门协同验证。</li><li>验证点：优先观察政策升级、重点项目、预算投入、产业合作和应用落地信号。</li></ul>
+<h3 style="margin:20px 0 8px;font-size:15px">风险提示</h3>
+<ul class="risk-list"><li>政策推进节奏不及预期风险</li><li>产业落地节奏不及预期风险</li><li>市场需求或项目预算不及预期风险</li><li>技术成熟度与工程化转化不及预期风险</li></ul></div>
+</div><div class="section" id="appendix">
+  <div class="section-header">
+    <h2>附录：本期信源列表</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><table class="appendix-table">
+  <tr><th>#</th><th>来源名称</th><th>类型</th><th>领域</th><th>本期条目数</th><th>代表链接</th></tr>
+  <tr><td>1</td><td>FirstNet Authority</td><td>官方机构</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>2</td><td><a href="https://firstnet.gov/public-safety/firstnet-for/9-1-1-emergency-communications" target="_blank" rel="noopener">链接</a></td></tr><tr><td>2</td><td>arXiv Networking &amp; Communications</td><td>学术论文</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>6</td><td><a href="https://arxiv.org/abs/2604.01049" target="_blank" rel="noopener">链接</a></td></tr><tr><td>3</td><td>arXiv Satellite &amp; NTN Communications</td><td>学术论文</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>2</td><td><a href="https://arxiv.org/abs/2604.00398" target="_blank" rel="noopener">链接</a></td></tr><tr><td>4</td><td>Frontiers in Communications and Networks</td><td>学术论文</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>3</td><td><a href="https://www.frontiersin.org/articles/10.3389/frcmn.2026.1730921" target="_blank" rel="noopener">链接</a></td></tr><tr><td>5</td><td>UN OCHA ReliefWeb</td><td>官方机构</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://reliefweb.int/map/world/alertes-de-maladies-epidemiques-et-emergentes-en-oceanie-le-24-mars-2026-0" target="_blank" rel="noopener">链接</a></td></tr><tr><td>6</td><td>TCCA Critical Communications</td><td>官方机构</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>4</td><td><a href="https://tcca.info/uk%e2%80%99s-first-cloud-based-emergency-control-room-deployed-for-west-yorkshire-fire-and-rescue-service/?utm_source=rss&amp;utm_medium=rss&amp;utm_campaign=uk%25e2%2580%2599s-first-cloud-based-emergency-control-room-deployed-for-west-yorkshire-fire-and-rescue-service" target="_blank" rel="noopener">链接</a></td></tr><tr><td>7</td><td>follow-builders X Feed</td><td>social</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</td><td>2</td><td><a href="https://x.com/trq212/status/2039453692592873587" target="_blank" rel="noopener">链接</a></td></tr><tr><td>8</td><td>Commercial UAV News</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>1</td><td><a href="https://www.commercialuavnews.com/european-drone-certification-airworthiness-testing-webinar" target="_blank" rel="noopener">链接</a></td></tr><tr><td>9</td><td>DroneDJ</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>3</td><td><a href="https://dronedj.com/2026/03/31/xtend-parazero-drone-net-catcher/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>10</td><td>Grok精选</td><td>social</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</td><td>9</td><td><a href="https://x.com/karpathy/status/2039054981719089202" target="_blank" rel="noopener">链接</a></td></tr><tr><td>11</td><td>Via Satellite</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>3</td><td><a href="https://www.satellitetoday.com/satshow-2026/2026/04/01/live-in-the-booth-arianespace-ceo-david-cavailloles-previews-ariane-6-ramp-up/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>12</td><td>Google AI Blog</td><td>企业博客</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>2</td><td><a href="https://blog.google/products-and-platforms/products/earth/satellite-imagery-brazilian-deforestation/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>13</td><td>DroneLife</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>1</td><td><a href="https://dronelife.com/2026/04/01/manna-raises-50m-to-expand-drone-delivery-network-in-the-u-s/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>14</td><td>Google DeepMind Blog</td><td>企业博客</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://deepmind.google/blog/gemini-3-1-flash-live-making-audio-ai-more-natural-and-reliable/" target="_blank" rel="noopener">链接</a></td></tr>
+</table></div>
+</div>
+</div>
+<script>
+document.querySelectorAll('.section-header').forEach(function(header) {
+  header.addEventListener('click', function() {
+    var body = header.nextElementSibling;
+    var isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    header.classList.toggle('open', !isOpen);
+  });
+});
+// Open first section by default
+var first = document.querySelector('.section-body');
+if (first) {
+  first.classList.add('open');
+  first.previousElementSibling.classList.add('open');
+}
+</script>
+</body>
+</html>

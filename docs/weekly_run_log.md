@@ -372,3 +372,27 @@ Fields to review after each run:
 - Failed sources / errors: Emergency Management Magazine: <urlopen error [Errno 8] nodename nor servname provided, or not known>；FEMA News: HTTP Error 403: Forbidden；NTIA News: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>；X - Andrej Karpathy: HTTP Error 402: Payment Required；X - Jack Clark: HTTP Error 402: Payment Required
 - Analyst notes: 
 
+
+## 2026-04-02 15:54
+
+- Source registry: `/Users/chuchu/Desktop/泛应急agent/data/source_registry.json`
+- Collected items: `142`
+- Screened in: `4`
+- Selected for report: `6`
+- Duplicates removed: `1`
+- Report path: `/Users/chuchu/Desktop/泛应急agent/outputs/weekly/应急周报_2026-03-23_2026-03-29.md`
+- Failed sources / errors: DroneDJ: <urlopen error [Errno 54] Connection reset by peer>；Hugging Face Blog: <urlopen error [Errno 54] Connection reset by peer>；Emergency Management Magazine: <urlopen error [Errno 8] nodename nor servname provided, or not known>；FEMA News: HTTP Error 403: Forbidden；NTIA News: <urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1129)>
+- Analyst notes: 
+
+
+## 2026-04-02 16:25
+
+- Source registry: `/Users/chuchu/Desktop/泛应急agent/data/source_registry.json`
+- Collected items: `156`
+- Screened in: `73`
+- Selected for report: `40`
+- Duplicates removed: `1`
+- Report path: `/Users/chuchu/Desktop/泛应急agent/outputs/weekly/应急周报_2026-03-23_2026-03-29.md`
+- Failed sources / errors: Hugging Face Blog: <urlopen error [Errno 54] Connection reset by peer>；X - Jack Clark: HTTP Error 402: Payment Required；X - Andrej Karpathy: HTTP Error 402: Payment Required；X - Yann LeCun: HTTP Error 402: Payment Required；X - Ethan Mollick: HTTP Error 402: Payment Required
+- Analyst notes: 
+
