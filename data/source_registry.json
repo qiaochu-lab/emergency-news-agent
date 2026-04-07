@@ -226,6 +226,7 @@
     "url": "https://www.fema.gov/about/news-multimedia/press-releases",
     "source_type": "official",
     "access_method": "web",
+    "preferred_client": "curl_cffi",
     "domains": [
       "DisasterTech",
       "Communications"
@@ -237,9 +238,9 @@
     "stable_access": true,
     "requires_auth": false,
     "priority": "high",
-    "automation_ready": false,
-    "enabled": false,
-    "disabled_reason": "403反爬"
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
   },
   {
     "name": "FirstNet Authority",
@@ -265,6 +266,7 @@
     "url": "https://www.ntia.gov/",
     "source_type": "official",
     "access_method": "web",
+    "preferred_client": "curl_cffi",
     "domains": [
       "Communications",
       "DisasterTech"
@@ -276,9 +278,9 @@
     "stable_access": true,
     "requires_auth": false,
     "priority": "high",
-    "automation_ready": false,
-    "enabled": false,
-    "disabled_reason": "SSL证书错误"
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
   },
   {
     "name": "X - Jack Clark",
@@ -300,7 +302,8 @@
     "requires_auth": true,
     "priority": "high",
     "automation_ready": true,
-    "enabled": true
+    "enabled": false,
+    "disabled_reason": "X API requires paid tier (402)"
   },
   {
     "name": "X - Andrej Karpathy",
@@ -322,7 +325,8 @@
     "requires_auth": true,
     "priority": "high",
     "automation_ready": true,
-    "enabled": true
+    "enabled": false,
+    "disabled_reason": "X API requires paid tier (402)"
   },
   {
     "name": "X - Ethan Mollick",
@@ -344,7 +348,8 @@
     "requires_auth": true,
     "priority": "high",
     "automation_ready": true,
-    "enabled": true
+    "enabled": false,
+    "disabled_reason": "X API requires paid tier (402)"
   },
   {
     "name": "X - Yann LeCun",
@@ -366,7 +371,8 @@
     "requires_auth": true,
     "priority": "medium",
     "automation_ready": true,
-    "enabled": true
+    "enabled": false,
+    "disabled_reason": "X API requires paid tier (402)"
   },
   {
     "name": "X - Greg McNeal",
@@ -389,7 +395,8 @@
     "requires_auth": true,
     "priority": "high",
     "automation_ready": true,
-    "enabled": true
+    "enabled": false,
+    "disabled_reason": "X API requires paid tier (402)"
   },
   {
     "name": "X - Colin Snow",
@@ -411,7 +418,8 @@
     "requires_auth": true,
     "priority": "medium",
     "automation_ready": true,
-    "enabled": true
+    "enabled": false,
+    "disabled_reason": "X API requires paid tier (402)"
   },
   {
     "name": "X - Patrick Egan",
@@ -434,7 +442,8 @@
     "requires_auth": true,
     "priority": "high",
     "automation_ready": true,
-    "enabled": true
+    "enabled": false,
+    "disabled_reason": "X API requires paid tier (402)"
   },
   {
     "name": "X - Dean Bubley",
@@ -456,7 +465,8 @@
     "requires_auth": true,
     "priority": "high",
     "automation_ready": true,
-    "enabled": true
+    "enabled": false,
+    "disabled_reason": "X API requires paid tier (402)"
   },
   {
     "name": "X - FirstNet Authority",
@@ -479,7 +489,8 @@
     "requires_auth": true,
     "priority": "high",
     "automation_ready": true,
-    "enabled": true
+    "enabled": false,
+    "disabled_reason": "X API requires paid tier (402)"
   },
   {
     "name": "X - FEMA",
@@ -501,7 +512,8 @@
     "requires_auth": true,
     "priority": "high",
     "automation_ready": true,
-    "enabled": true
+    "enabled": false,
+    "disabled_reason": "X API requires paid tier (402)"
   },
   {
     "name": "X - Kim Stephens",
@@ -523,6 +535,26 @@
     "requires_auth": true,
     "priority": "medium",
     "automation_ready": true,
+    "enabled": false,
+    "disabled_reason": "X API requires paid tier (402)"
+  },
+  {
+    "name": "The Rundown AI",
+    "url": "https://www.therundown.ai/archive",
+    "source_type": "news",
+    "access_method": "web",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Top AI daily newsletter with 2M+ readers. Covers major model releases, product launches, funding, and applied AI signals in clear summaries.",
+    "update_frequency": "daily",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 5,
     "enabled": true
   },
   {
@@ -644,26 +676,6 @@
     "enabled": true
   },
   {
-    "name": "APCO International",
-    "url": "https://www.apcointl.org/feed/",
-    "source_type": "official",
-    "access_method": "rss",
-    "domains": [
-      "DisasterTech",
-      "Communications"
-    ],
-    "why_valuable": "North America's largest public safety communications organization — standards, spectrum policy, and practitioner-level deployment signals.",
-    "update_frequency": "weekly",
-    "signal_quality": "high",
-    "language": "en",
-    "stable_access": true,
-    "requires_auth": false,
-    "priority": "high",
-    "automation_ready": true,
-    "max_items": 8,
-    "enabled": true
-  },
-  {
     "name": "TCCA Critical Communications",
     "url": "https://tcca.info/feed/",
     "source_type": "official",
@@ -681,7 +693,8 @@
     "priority": "high",
     "automation_ready": true,
     "max_items": 8,
-    "enabled": true
+    "enabled": false,
+    "disabled_reason": "Consistently 403 forbidden"
   },
   {
     "name": "SpaceNews",
@@ -882,7 +895,7 @@
     "name": "Anthropic News",
     "url": "https://www.anthropic.com/news",
     "source_type": "official",
-    "access_method": "web",
+    "access_method": "playwright",
     "domains": [
       "AI"
     ],
@@ -895,13 +908,14 @@
     "priority": "high",
     "automation_ready": true,
     "max_items": 5,
-    "enabled": true
+    "enabled": false,
+    "disabled_reason": "playwright太慢，内容交给Tavily"
   },
   {
     "name": "Anthropic Research",
     "url": "https://www.anthropic.com/research",
     "source_type": "official",
-    "access_method": "web",
+    "access_method": "playwright",
     "domains": [
       "AI"
     ],
@@ -914,7 +928,8 @@
     "priority": "high",
     "automation_ready": true,
     "max_items": 3,
-    "enabled": true
+    "enabled": false,
+    "disabled_reason": "playwright太慢，内容交给Tavily"
   },
   {
     "name": "OpenAI Research",
@@ -935,5 +950,842 @@
     "max_items": 3,
     "enabled": false,
     "disabled_reason": "403反爬，改用手动补充"
+  },
+  {
+    "name": "C4ISRNET",
+    "url": "https://www.c4isrnet.com/arc/outboundfeeds/rss/",
+    "source_type": "news",
+    "access_method": "rss",
+    "domains": [
+      "Aviation",
+      "Communications",
+      "DisasterTech"
+    ],
+    "why_valuable": "Defense/military C4I technology coverage — unmanned systems, tactical comms, command networks, and DoD procurement signals.",
+    "update_frequency": "daily",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 6,
+    "enabled": true
+  },
+  {
+    "name": "Defense One Technology",
+    "url": "https://www.defenseone.com/rss/technology/",
+    "source_type": "news",
+    "access_method": "rss",
+    "domains": [
+      "Aviation",
+      "Communications",
+      "DisasterTech"
+    ],
+    "why_valuable": "US defense technology policy and procurement — autonomous systems, resilient comms, AI adoption by government and military.",
+    "update_frequency": "daily",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 6,
+    "enabled": true
+  },
+  {
+    "name": "Fierce Wireless",
+    "url": "https://www.fiercewireless.com/rss/xml",
+    "source_type": "news",
+    "access_method": "rss",
+    "domains": [
+      "Communications"
+    ],
+    "why_valuable": "Telecom industry daily — 5G deployment, spectrum auctions, private networks, and carrier strategy signals.",
+    "update_frequency": "daily",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 6,
+    "enabled": true
+  },
+  {
+    "name": "RCR Wireless News",
+    "url": "https://www.rcrwireless.com/feed",
+    "source_type": "news",
+    "access_method": "rss",
+    "domains": [
+      "Communications"
+    ],
+    "why_valuable": "Carrier/operator news — 5G/6G research milestones, NTN trials, private LTE/5G deployments, and spectrum policy.",
+    "update_frequency": "daily",
+    "signal_quality": "medium",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "IEEE Spectrum",
+    "url": "https://spectrum.ieee.org/feeds/feed.rss",
+    "source_type": "news",
+    "access_method": "rss",
+    "domains": [
+      "Communications",
+      "AI",
+      "Aviation"
+    ],
+    "why_valuable": "IEEE's flagship magazine — authoritative technical depth on wireless comms, AI systems, autonomous vehicles, and emerging tech.",
+    "update_frequency": "multiple_times_per_week",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 6,
+    "enabled": true
+  },
+  {
+    "name": "Space.com News",
+    "url": "https://www.space.com/feeds/all",
+    "source_type": "news",
+    "access_method": "rss",
+    "domains": [
+      "Communications"
+    ],
+    "why_valuable": "Commercial space and satellite launches — LEO constellation updates, Starlink/OneWeb, government satellite comms programs.",
+    "update_frequency": "daily",
+    "signal_quality": "medium",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "MIT Technology Review",
+    "url": "https://www.technologyreview.com/feed/",
+    "source_type": "news",
+    "access_method": "rss",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Deep technical analysis of AI policy, ethics, and deployment — one of the most trusted long-form AI journalism sources.",
+    "update_frequency": "multiple_times_per_week",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "Ars Technica Technology Lab",
+    "url": "https://feeds.arstechnica.com/arstechnica/technology-lab",
+    "source_type": "news",
+    "access_method": "rss",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Rigorous technical reporting on AI hardware, model releases, and research — the most accurate mainstream tech outlet.",
+    "update_frequency": "daily",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "VentureBeat AI",
+    "url": "https://feeds.feedburner.com/venturebeat/SZYF",
+    "source_type": "news",
+    "access_method": "rss",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Fast AI business and product news — model releases, enterprise AI adoption, funding rounds, and startup signals.",
+    "update_frequency": "daily",
+    "signal_quality": "medium",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 6,
+    "enabled": true
+  },
+  {
+    "name": "Simon Willison's Blog",
+    "url": "https://simonwillison.net/atom/everything/",
+    "source_type": "blog",
+    "access_method": "rss",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Top LLM engineering practitioner — weekly tool experiments, prompt engineering breakthroughs, and practical capability signals.",
+    "update_frequency": "multiple_times_per_week",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "Interconnects (Nathan Lambert)",
+    "url": "https://nathanlambert.substack.com/feed",
+    "source_type": "blog",
+    "access_method": "rss",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "HuggingFace researcher, deep frontier model analysis — RLHF, alignment, capability evaluations. Highest technical depth per post.",
+    "update_frequency": "weekly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 3,
+    "enabled": true
+  },
+  {
+    "name": "Ahead of AI (Sebastian Raschka)",
+    "url": "https://magazine.sebastianraschka.com/feed",
+    "source_type": "blog",
+    "access_method": "rss",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Best AI paper digest newsletter — monthly deep dives into the most important ML research with practical implications.",
+    "update_frequency": "monthly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 3,
+    "enabled": true
+  },
+  {
+    "name": "FloodList",
+    "url": "https://floodlist.com/feed",
+    "source_type": "news",
+    "access_method": "rss",
+    "domains": [
+      "DisasterTech"
+    ],
+    "why_valuable": "Global flood disaster tracking — real-world UAV, satellite imagery, and emergency comms deployment case studies from active disasters.",
+    "update_frequency": "daily",
+    "signal_quality": "medium",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 4,
+    "enabled": true
+  },
+  {
+    "name": "PreventionWeb",
+    "url": "https://www.preventionweb.net/rss.xml",
+    "source_type": "official",
+    "access_method": "rss",
+    "domains": [
+      "DisasterTech"
+    ],
+    "why_valuable": "UN Office for Disaster Risk Reduction — global policy, technology deployments, and capacity building for disaster resilience.",
+    "update_frequency": "daily",
+    "signal_quality": "medium",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 4,
+    "enabled": true
+  },
+  {
+    "name": "Disaster Channel",
+    "url": "https://disasterchannel.co/feed/",
+    "source_type": "news",
+    "access_method": "rss",
+    "domains": [
+      "DisasterTech"
+    ],
+    "why_valuable": "Disaster technology focused media — UAV rescue deployments, emergency communications case studies, and field technology reports.",
+    "update_frequency": "weekly",
+    "signal_quality": "medium",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 4,
+    "enabled": true
+  },
+  {
+    "name": "Urgent Communications",
+    "url": "https://urgentcomm.com/rss.xml",
+    "source_type": "news",
+    "access_method": "rss",
+    "domains": [
+      "Communications",
+      "DisasterTech"
+    ],
+    "why_valuable": "Public safety comms technology news — PSAPs, wireless, LTE/5G first-responder trends and product updates.",
+    "update_frequency": "daily",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 8,
+    "enabled": true
+  },
+  {
+    "name": "Nokia Public Safety Blog",
+    "url": "https://www.nokia.com/blog/rss/",
+    "source_type": "industry",
+    "access_method": "rss",
+    "domains": [
+      "Communications"
+    ],
+    "why_valuable": "Nokia mission-critical 5G and TETRA perspectives — private networks, public safety broadband, and Next-Gen 911.",
+    "update_frequency": "weekly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "DroneSense Blog",
+    "url": "https://blog.dronesense.com/rss.xml",
+    "source_type": "industry",
+    "access_method": "rss",
+    "domains": [
+      "Aviation",
+      "DisasterTech"
+    ],
+    "why_valuable": "Public safety drone software operator — deployment case studies, incident management integration, real-world UAS response examples.",
+    "update_frequency": "weekly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "Google Research Blog",
+    "url": "https://research.google/blog/rss/",
+    "source_type": "research",
+    "access_method": "rss",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Google Research flagship blog — flood forecasting, wildfire detection (FireSat), and applied AI for disaster response.",
+    "update_frequency": "weekly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 6,
+    "enabled": true
+  },
+  {
+    "name": "Everbridge Public Safety Blog",
+    "url": "https://www.everbridge.com/blog/feed/",
+    "source_type": "industry",
+    "access_method": "rss",
+    "domains": [
+      "Communications",
+      "DisasterTech"
+    ],
+    "why_valuable": "Mass notification and critical event management — emergency alerting systems, public safety case studies, and resilience platform trends.",
+    "update_frequency": "weekly",
+    "signal_quality": "medium",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "Ground Control First Responders Blog",
+    "url": "https://www.groundcontrol.com/blog/feed/",
+    "source_type": "industry",
+    "access_method": "rss",
+    "domains": [
+      "Communications",
+      "DisasterTech"
+    ],
+    "why_valuable": "Satellite and cellular connectivity for first responders — deployment guides, use cases, and emerging connectivity tech.",
+    "update_frequency": "weekly",
+    "signal_quality": "medium",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 4,
+    "enabled": true
+  },
+  {
+    "name": "NGA911 Blog",
+    "url": "https://nga911.com/blogs",
+    "source_type": "industry",
+    "access_method": "web",
+    "domains": [
+      "Communications"
+    ],
+    "why_valuable": "Next Generation 9-1-1 technology news and product updates — NG911 data communications, CAD integration, and standards adoption.",
+    "update_frequency": "weekly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 6,
+    "enabled": true
+  },
+  {
+    "name": "Iridium Blog",
+    "url": "https://www.iridium.com/blog/",
+    "source_type": "industry",
+    "access_method": "web",
+    "domains": [
+      "Communications",
+      "DisasterTech"
+    ],
+    "why_valuable": "Global satellite network disaster connectivity — coverage in remote areas, emergency response deployments, and polar/maritime use cases.",
+    "update_frequency": "weekly",
+    "signal_quality": "medium",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "Verizon Frontline Newsroom",
+    "url": "https://www.verizon.com/about/news/",
+    "source_type": "industry",
+    "access_method": "web",
+    "domains": [
+      "Communications"
+    ],
+    "why_valuable": "Verizon first responder 5G updates — network slicing, deployable cells, disaster activations and public safety partnerships.",
+    "update_frequency": "daily",
+    "signal_quality": "medium",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "T-Mobile Newsroom",
+    "url": "https://www.t-mobile.com/news/",
+    "source_type": "industry",
+    "access_method": "web",
+    "domains": [
+      "Communications"
+    ],
+    "why_valuable": "T-Mobile T-Priority 5G for public safety — network expansion, first responder program announcements, and emergency network activations.",
+    "update_frequency": "daily",
+    "signal_quality": "medium",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "Skydio Blog",
+    "url": "https://www.skydio.com/blog",
+    "source_type": "industry",
+    "access_method": "web",
+    "domains": [
+      "Aviation"
+    ],
+    "why_valuable": "Skydio autonomous drone platform — public safety deployments, law enforcement/fire UAS use cases, and autonomy technology updates.",
+    "update_frequency": "weekly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "Flock Safety Blog",
+    "url": "https://www.flocksafety.com/blog",
+    "source_type": "industry",
+    "access_method": "web",
+    "domains": [
+      "Aviation",
+      "DisasterTech"
+    ],
+    "why_valuable": "Automated drone-as-first-responder systems — BVLOS deployments, real-time aerial response, integration with 911 dispatch.",
+    "update_frequency": "weekly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "CTIF Drones in Emergency Response",
+    "url": "https://ctif.org/topics/drones-emergency-response",
+    "source_type": "official",
+    "access_method": "web",
+    "domains": [
+      "Aviation",
+      "DisasterTech"
+    ],
+    "why_valuable": "International fire and rescue federation — global UAS deployment case studies, standards, and firefighting drone operations.",
+    "update_frequency": "monthly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 4,
+    "enabled": true
+  },
+  {
+    "name": "Mission Critical Partners Newsroom",
+    "url": "https://resources.missioncriticalpartners.com/news",
+    "source_type": "industry",
+    "access_method": "web",
+    "domains": [
+      "Communications",
+      "DisasterTech"
+    ],
+    "why_valuable": "Public safety consulting firm — 911 center modernization, NG911 migration, PSAP technology advisory, and infrastructure resilience.",
+    "update_frequency": "weekly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 6,
+    "enabled": true
+  },
+  {
+    "name": "Inside Unmanned Systems",
+    "url": "https://insideunmannedsystems.com/",
+    "source_type": "news",
+    "access_method": "web",
+    "domains": [
+      "Aviation",
+      "Communications"
+    ],
+    "why_valuable": "Unmanned systems news including disaster communication restoration via UAS — relay drones, mesh networking, and emergency deployments.",
+    "update_frequency": "weekly",
+    "signal_quality": "medium",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "REDCOM Disaster Response Blog",
+    "url": "https://www.redcom.com/disaster-response-humanitarian-aid/",
+    "source_type": "industry",
+    "access_method": "web",
+    "domains": [
+      "Communications",
+      "DisasterTech"
+    ],
+    "why_valuable": "Infrastructure-independent tactical communications — deployable voice/data systems for disaster zones without network coverage.",
+    "update_frequency": "monthly",
+    "signal_quality": "medium",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 4,
+    "enabled": true
+  },
+  {
+    "name": "In Public Safety Blog",
+    "url": "http://inpublicsafety.com/",
+    "source_type": "news",
+    "access_method": "web",
+    "domains": [
+      "Communications",
+      "DisasterTech"
+    ],
+    "why_valuable": "Public safety expert commentary — law enforcement, fire, EMS, and emergency management technology and operations perspectives.",
+    "update_frequency": "weekly",
+    "signal_quality": "medium",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "medium",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "Esri Emergency Management Blog",
+    "url": "https://www.esri.com/about/newsroom/blog/",
+    "source_type": "industry",
+    "access_method": "web",
+    "preferred_client": "curl_cffi",
+    "domains": [
+      "DisasterTech",
+      "AI"
+    ],
+    "why_valuable": "Esri GIS for emergency management — real-time situational awareness, disaster mapping, AI-powered spatial analytics for response.",
+    "update_frequency": "weekly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 5,
+    "enabled": true
+  },
+  {
+    "name": "Motorola Solutions Blog",
+    "url": "https://blog.motorolasolutions.com/",
+    "source_type": "industry",
+    "access_method": "web",
+    "preferred_client": "curl_cffi",
+    "domains": [
+      "Communications"
+    ],
+    "why_valuable": "Motorola Solutions public safety technology blog — radio communications, body cameras, CAD systems, and first responder innovation.",
+    "update_frequency": "weekly",
+    "signal_quality": "high",
+    "language": "en",
+    "stable_access": true,
+    "requires_auth": false,
+    "priority": "high",
+    "automation_ready": true,
+    "max_items": 6,
+    "enabled": true
+  },
+  {
+    "name": "Andrej Karpathy",
+    "url": "UCe4jUOmQPKMDvOkzJpDfMRQ",
+    "source_type": "blog",
+    "access_method": "youtube",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Ex-OpenAI/Tesla AI director, deep lectures on LLM internals and neural networks.",
+    "language": "en",
+    "enabled": false,
+    "disabled_reason": "按需转录：在 data/media/YYYY-WXX-urls.txt 手动指定URL"
+  },
+  {
+    "name": "Lex Fridman (YouTube)",
+    "url": "UCSHZKyawb77ixDdsGog4iWA",
+    "source_type": "blog",
+    "access_method": "youtube",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Long-form interviews with AI researchers, founders, and scientists.",
+    "language": "en",
+    "enabled": false,
+    "disabled_reason": "按需转录：在 data/media/YYYY-WXX-urls.txt 手动指定URL"
+  },
+  {
+    "name": "Yannic Kilcher",
+    "url": "UCZHmQk67mSJgfCCTn7xBfew",
+    "source_type": "blog",
+    "access_method": "youtube",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "In-depth ML paper explanations; strong signal on what research matters.",
+    "language": "en",
+    "enabled": false,
+    "disabled_reason": "按需转录：在 data/media/YYYY-WXX-urls.txt 手动指定URL"
+  },
+  {
+    "name": "Two Minute Papers",
+    "url": "UCbfYPyITQ-7l4upoX8nvctg",
+    "source_type": "blog",
+    "access_method": "youtube",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Short, accessible summaries of AI/ML research papers.",
+    "language": "en",
+    "enabled": false,
+    "disabled_reason": "按需转录：在 data/media/YYYY-WXX-urls.txt 手动指定URL"
+  },
+  {
+    "name": "Dwarkesh Patel",
+    "url": "UCXl4i9dYBrFOabk0xGmbkRA",
+    "source_type": "blog",
+    "access_method": "youtube",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Deep strategic interviews with AI lab founders and researchers (Anthropic, OpenAI, DeepMind).",
+    "language": "en",
+    "enabled": false,
+    "disabled_reason": "按需转录：在 data/media/YYYY-WXX-urls.txt 手动指定URL"
+  },
+  {
+    "name": "Google DeepMind",
+    "url": "UCP7jMXSY2xbc3KCAE0MHQ-A",
+    "source_type": "official",
+    "access_method": "youtube",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Official DeepMind research talks and announcements.",
+    "language": "en",
+    "enabled": false,
+    "disabled_reason": "按需转录：在 data/media/YYYY-WXX-urls.txt 手动指定URL"
+  },
+  {
+    "name": "ITU Webinars",
+    "url": "UCkmgK1xLBMQGmtkS2gJi9EQ",
+    "source_type": "official",
+    "access_method": "youtube",
+    "domains": [
+      "Communications",
+      "DisasterTech"
+    ],
+    "why_valuable": "ITU official webinars on satellite, spectrum, and emergency communications standards.",
+    "language": "en",
+    "enabled": false,
+    "disabled_reason": "按需转录：在 data/media/YYYY-WXX-urls.txt 手动指定URL"
+  },
+  {
+    "name": "APCO International",
+    "url": "UCcYCBK5jEDXkCtJAQPNovgg",
+    "source_type": "official",
+    "access_method": "youtube",
+    "domains": [
+      "Communications",
+      "DisasterTech"
+    ],
+    "why_valuable": "Public safety communications conference talks and training.",
+    "language": "en",
+    "enabled": false,
+    "disabled_reason": "按需转录：在 data/media/YYYY-WXX-urls.txt 手动指定URL"
+  },
+  {
+    "name": "Lex Fridman Podcast",
+    "url": "https://lexfridman.com/feed/podcast/",
+    "source_type": "blog",
+    "access_method": "podcast_rss",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Long-form AI research interviews; often breaks news on frontier models.",
+    "language": "en",
+    "enabled": false,
+    "disabled_reason": "按需转录：在 data/media/YYYY-WXX-urls.txt 手动指定URL"
+  },
+  {
+    "name": "TWIML AI Podcast",
+    "url": "https://feeds.megaphone.fm/MLN2155636141",
+    "source_type": "blog",
+    "access_method": "podcast_rss",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "This Week in Machine Learning — weekly practitioner interviews and paper reviews.",
+    "language": "en",
+    "enabled": false,
+    "disabled_reason": "按需转录：在 data/media/YYYY-WXX-urls.txt 手动指定URL"
+  },
+  {
+    "name": "Practical AI Podcast",
+    "url": "https://changelog.com/practicalai/feed",
+    "source_type": "blog",
+    "access_method": "podcast_rss",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Applied AI and ML deployment topics; enterprise and government use cases.",
+    "language": "en",
+    "enabled": false,
+    "disabled_reason": "按需转录：在 data/media/YYYY-WXX-urls.txt 手动指定URL"
+  },
+  {
+    "name": "Dwarkesh Podcast",
+    "url": "https://www.dwarkeshpatel.com/feed",
+    "source_type": "blog",
+    "access_method": "podcast_rss",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "Strategic AI policy and frontier lab interviews.",
+    "language": "en",
+    "enabled": false,
+    "disabled_reason": "按需转录：在 data/media/YYYY-WXX-urls.txt 手动指定URL"
+  },
+  {
+    "name": "Hard Fork (NYT)",
+    "url": "https://feeds.simplecast.com/l2i9YnTd",
+    "source_type": "news",
+    "access_method": "podcast_rss",
+    "domains": [
+      "AI"
+    ],
+    "why_valuable": "NYT tech reporters on weekly AI industry developments and policy.",
+    "language": "en",
+    "enabled": false,
+    "disabled_reason": "按需转录：在 data/media/YYYY-WXX-urls.txt 手动指定URL"
   }
 ]

@@ -396,3 +396,63 @@ Fields to review after each run:
 - Failed sources / errors: Hugging Face Blog: <urlopen error [Errno 54] Connection reset by peer>；X - Jack Clark: HTTP Error 402: Payment Required；X - Andrej Karpathy: HTTP Error 402: Payment Required；X - Yann LeCun: HTTP Error 402: Payment Required；X - Ethan Mollick: HTTP Error 402: Payment Required
 - Analyst notes: 
 
+
+## 2026-04-03 09:32
+
+- Source registry: `/Users/chuchu/Desktop/泛应急agent/data/source_registry.json`
+- Collected items: `166`
+- Screened in: `77`
+- Selected for report: `40`
+- Duplicates removed: `1`
+- Report path: `/Users/chuchu/Desktop/泛应急agent/outputs/weekly/应急周报_2026-W13_20260403-0932.md`
+- Failed sources / errors: X - Jack Clark: HTTP Error 402: Payment Required；X - Andrej Karpathy: HTTP Error 402: Payment Required；X - Ethan Mollick: HTTP Error 402: Payment Required；X - Yann LeCun: HTTP Error 402: Payment Required；X - Greg McNeal: HTTP Error 402: Payment Required
+- Analyst notes: 
+
+
+## 2026-04-05 00:23
+
+- Source registry: `/Users/chuchu/Desktop/泛应急agent/data/source_registry.json`
+- Collected items: `3`
+- Screened in: `0`
+- Selected for report: `0`
+- Duplicates removed: `0`
+- Report path: `/Users/chuchu/Desktop/泛应急agent/outputs/weekly/应急周报_2026-W13_20260405-002312.md`
+- Failed sources / errors: 无
+- Analyst notes: 
+
+
+## 2026-04-05 22:41
+
+- Source registry: `/Users/chuchu/Desktop/泛应急agent/data/source_registry.json`
+- Collected items: `3`
+- Screened in: `0`
+- Selected for report: `0`
+- Duplicates removed: `0`
+- Report path: `/Users/chuchu/Desktop/泛应急agent/outputs/weekly/应急周报_2026-W13_20260405-224120.md`
+- Failed sources / errors: 无
+- Analyst notes: 
+
+
+## 2026-04-06 00:04
+
+- Source registry: `/Users/chuchu/Desktop/泛应急agent/data/source_registry.json`
+- Collected items: `3`
+- Screened in: `0`
+- Selected for report: `0`
+- Duplicates removed: `0`
+- Report path: `/Users/chuchu/Desktop/泛应急agent/outputs/weekly/应急周报_2026-W14_20260406-000420.md`
+- Failed sources / errors: 无
+- Analyst notes: 
+
+
+## 2026-04-06 22:17
+
+- Source registry: `/Users/chuchu/Desktop/泛应急agent/data/source_registry.json`
+- Collected items: `291`
+- Screened in: `99`
+- Selected for report: `40`
+- Duplicates removed: `10`
+- Report path: `/Users/chuchu/Desktop/泛应急agent/outputs/weekly/应急周报_2026-W14_20260406-221755.md`
+- Failed sources / errors: 无
+- Analyst notes: 
+

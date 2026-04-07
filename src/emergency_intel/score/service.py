@@ -3,12 +3,14 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Iterable, List
 
+from emergency_intel.feedback.agent import apply_preference_boost, load_preferences
 from emergency_intel.models import NormalizedItem, ScoredItem
 from emergency_intel.score.rules import HEAT_TERMS, IMPORTANT_TERMS
 from emergency_intel.utils import normalize_whitespace, write_json
 
 
 def score_items(items: Iterable[NormalizedItem], output_path: Path) -> List[ScoredItem]:
+    preferences = load_preferences()
     scored: List[ScoredItem] = []
     for item in items:
         text = normalize_whitespace(f"{item.title} {item.raw_text}").lower()
@@ -21,6 +23,8 @@ def score_items(items: Iterable[NormalizedItem], output_path: Path) -> List[Scor
         # Grok精选：人工筛选内容，加权 +1.0
         if item.source_name == "Grok精选":
             final_score = min(10.0, round(final_score + 1.0, 2))
+        # Apply reader preference boost/penalize from preferences.json
+        final_score = apply_preference_boost(f"{item.title} {item.raw_text}", final_score, preferences)
         scored.append(
             ScoredItem(
                 **item.__dict__,

@@ -12,9 +12,10 @@ from emergency_intel.analyze.prompts import (
     NEWS_ANALYSIS_PROMPT,
     OFFICIAL_ANALYSIS_PROMPT,
     PAPER_ANALYSIS_PROMPT,
-    SCREENING_PROMPT,
+    build_screening_prompt,
 )
 from emergency_intel.analyze.provider import ProviderClient, ProviderError, generate_structured_analysis
+from emergency_intel.feedback.agent import load_preferences
 from emergency_intel.models import AnalyzedItem, ScoredItem
 from emergency_intel.utils import normalize_whitespace, write_json
 
@@ -30,6 +31,10 @@ def screen_items(
 ) -> List[ScoredItem]:
     item_list = list(items)
     heuristic_results = [_heuristic_screen(item, reference_date) for item in item_list]
+
+    # Load preferences once for this screening run
+    preferences = load_preferences()
+    screening_prompt = build_screening_prompt(preferences)
 
     # Identify items that need LLM screening
     llm_candidates = [
@@ -47,7 +52,7 @@ def screen_items(
         idx, item = idx_item
         prompt_input = _build_screening_prompt_input(item, reference_date)
         try:
-            llm_result = generate_structured_analysis(prompt_input, SCREENING_PROMPT, provider_client)
+            llm_result = generate_structured_analysis(prompt_input, screening_prompt, provider_client)
             return idx, _merge_screening_result(heuristic_results[idx], llm_result)
         except ProviderError:
             return idx, heuristic_results[idx]
@@ -97,13 +102,21 @@ def analyze_items(
             analysis = generate_structured_analysis(prompt_input, prompt_template, provider_client)
         except ProviderError:
             analysis = {}
+        raw_glossary = analysis.get("glossary_terms", [])
+        glossary_terms = [
+            {"term": str(g.get("term", "")), "explanation": str(g.get("explanation", ""))}
+            for g in (raw_glossary if isinstance(raw_glossary, list) else [])
+            if isinstance(g, dict) and g.get("term") and g.get("explanation")
+        ]
         return AnalyzedItem(
             **item.__dict__,
             summary=str(analysis.get("summary", "")),
+            key_facts=[str(f) for f in analysis.get("key_facts", []) if f],
             key_points=[str(point) for point in analysis.get("key_points", [])],
             innovation=str(analysis.get("innovation", "")),
             takeaway=str(analysis.get("takeaway", "")),
             non_expert_explanation=str(analysis.get("non_expert_explanation", "")),
+            glossary_terms=glossary_terms,
         )
 
     analyzed: List[AnalyzedItem] = [None] * len(item_list)  # type: ignore[list-item]
@@ -205,6 +218,13 @@ def _heuristic_screen(item: ScoredItem, reference_date: date | None) -> dict[str
         and max(emergency_score, communication_score) >= 3
     ):
         include = True
+    # Transcribed media items always enter the report
+    if item.body_extraction_status == "transcript_summarized":
+        include = True
+    # All manual Grok items enter the report (shown in 本周X平台热议 section)
+    if item.body_extraction_status.startswith("manual"):
+        include = True
+
     why_this_week = _why_this_week(item, week_signal)
     inclusion_reason = _inclusion_reason(item, include, report_content_type, week_signal)
     analyst_note = _analyst_note(item, report_content_type, include, week_signal)

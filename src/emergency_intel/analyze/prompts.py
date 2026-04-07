@@ -1,6 +1,11 @@
+from __future__ import annotations
+
 PROMPT_OUTPUT_SCHEMA = """
 以 JSON 格式返回分析结果，所有内容用中文，包含以下字段：
 - summary: string，2-3 句话事件概述，结论前置，简洁客观，不要重复标题
+- key_facts: list of strings，2-5 条具体事实，只提取可验证的数字/日期/金额/机构/技术参数，
+  格式如「金额：$1.2B」「时间：2026-Q3」「覆盖：48州」「标准：3GPP Rel.18」，
+  不含分析判断，没有则返回空列表
 - key_points: list of strings，2-4 条要点，每条不超过 40 字，聚焦决策相关信息
 - innovation: string，100-200 字，以连贯段落分析技术/机制/应用层面的突破价值；
   不要使用"key: value"键值格式，直接输出段落
@@ -10,6 +15,9 @@ PROMPT_OUTPUT_SCHEMA = """
     第三段：以"建议跟踪："开头，列出 3 条具体可操作的跟踪行动
     重要：不要使用 decision_relevance、downstream_impact、follow_up 等英文键值格式
 - non_expert_explanation: string，50-80 字，用通俗语言解释事件对普通读者意味着什么
+- glossary_terms: list of objects，本文中出现的需要解释的专业术语，
+  格式：[{"term": "MCPTT", "explanation": "任务关键型一键通，基于LTE的专网语音通信标准"}]
+  只列出本文实际出现、且读者可能不熟悉的术语，explanation 不超过 25 字，无则返回空列表
 """
 
 COMMON_STYLE = """
@@ -20,6 +28,15 @@ COMMON_STYLE = """
 - 区分事实与判断，证据不足时明确注明"待验证"
 - 避免标题重复、避免夸大、避免空话套话
 - 全部用中文输出，专有名词可保留英文缩写
+
+术语自动解释规则（隐式执行，不要输出处理过程）：
+- 生成前先内部扫描全文，标记所有需解释术语，确保首次出现时已补充解释
+- 需解释范围：所有英文缩写（RAG、NTN、MCPTT）、英文短语（semantic chunking）、中英混用表达、首次出现且可能影响非技术读者的专业概念
+- 豁免：AI、API、5G、GPS 等极常见缩写可不解释
+- 解释格式：术语（中文含义，一句话说明其作用）
+  示例：RAG（检索增强生成，先检索相关信息再生成答案）、NTN（非地面网络，指卫星或高空平台组成的通信网络）
+- 每个术语只解释一次，后文直接使用缩写
+- 解释≤20字，用通俗业务语言，禁止用专业术语解释专业术语
 """
 
 # ── 通用基础 prompt ──────────────────────────────────────────────────────────
@@ -149,6 +166,18 @@ SCREENING_PROMPT = """
   * 无人机/飞艇空中中继通信
   * 涉及采购、预算、标准发布、重大部署的官方内容
 """
+
+# ── 筛选 prompt 构建函数 ─────────────────────────────────────────────────────
+
+def build_screening_prompt(preferences: dict | None = None) -> str:
+    """
+    Build the screening prompt, optionally injecting few-shot examples
+    and reader notes from preferences.json.
+    """
+    from emergency_intel.feedback.agent import build_few_shot_prompt_block
+    few_shot_block = build_few_shot_prompt_block(preferences or {})
+    return SCREENING_PROMPT + few_shot_block
+
 
 # ── domain → prompt 映射 ─────────────────────────────────────────────────────
 

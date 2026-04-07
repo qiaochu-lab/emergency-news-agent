@@ -189,7 +189,11 @@ def _simple_judgment(item: AnalyzedItem) -> str:
 # Report builder
 # ──────────────────────────────────────────────
 
-def build_weekly_report(items: List[AnalyzedItem], week_range: str) -> WeeklyReport:
+def build_weekly_report(
+    items: List[AnalyzedItem],
+    week_range: str,
+    source_stats: list | None = None,
+) -> WeeklyReport:
     primary_items = [item for item in items if item.include_in_top_report]
     supplementary = [
         item for item in items
@@ -198,9 +202,13 @@ def build_weekly_report(items: List[AnalyzedItem], week_range: str) -> WeeklyRep
         and item.final_score >= 2.5
     ]
 
+    # Items explicitly flagged for injection always make it in (before the :40 cap)
+    forced = [it for it in primary_items if "手动指定" in (it.inclusion_reason or "")]
+    normal = [it for it in primary_items if it not in forced]
+
     seen_ids: set = set()
     selected_items: List[AnalyzedItem] = []
-    for item in primary_items + supplementary:
+    for item in forced + normal + supplementary:
         if item.id not in seen_ids:
             seen_ids.add(item.id)
             selected_items.append(item)
@@ -208,9 +216,10 @@ def build_weekly_report(items: List[AnalyzedItem], week_range: str) -> WeeklyRep
 
     grouped: Dict[str, List[AnalyzedItem]] = defaultdict(list)
     for item in selected_items:
-        for tag in item.domain_tags:
-            if tag in DOMAINS:
-                grouped[tag].append(item)
+        # Use only the primary domain (domain_tags[0]) so each item appears in exactly one column
+        primary = next((tag for tag in item.domain_tags if tag in DOMAINS), None)
+        if primary:
+            grouped[primary].append(item)
 
     section_summaries: Dict[str, str] = {}
     for domain in DOMAINS:
@@ -227,6 +236,7 @@ def build_weekly_report(items: List[AnalyzedItem], week_range: str) -> WeeklyRep
         selected_items=selected_items,
         section_summaries=section_summaries,
         weekly_insights=weekly_insights,
+        source_stats=source_stats or [],
     )
 
 
@@ -304,9 +314,9 @@ def render_report_markdown(report: WeeklyReport, output_path: Path) -> str:
 
     domain_groups: Dict[str, List[AnalyzedItem]] = defaultdict(list)
     for item in report.selected_items:
-        for tag in item.domain_tags:
-            if tag in DOMAINS:
-                domain_groups[tag].append(item)
+        primary = next((tag for tag in item.domain_tags if tag in DOMAINS), None)
+        if primary:
+            domain_groups[primary].append(item)
 
     featured = _select_balanced_featured(report.selected_items, MAX_FEATURED_ITEMS)
 

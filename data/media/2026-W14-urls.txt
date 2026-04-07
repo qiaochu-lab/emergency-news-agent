@@ -1,0 +1,2 @@
+# 本周手动指定转录（每行一个URL，支持 YouTube / Spotify / 网页transcript）
+https://www.lennysnewsletter.com/p/anthropics-1b-to-19b-growth-run?showTranscript=true

@@ -1,0 +1,31 @@
+{
+  "_comment": "Tavily 搜索查询配置。enabled=false 可临时关闭。search_depth: basic(快) / advanced(慢但准)。days: 只返回最近N天内容。",
+  "enabled": true,
+  "search_depth": "advanced",
+  "max_results_per_query": 5,
+  "days": 7,
+  "domains": {
+    "AI": [
+      "AI agent framework public safety emergency 2026",
+      "large language model autonomous systems disaster response",
+      "AI situational awareness emergency communications"
+    ],
+    "Communications": [
+      "satellite communication disaster network recovery 2026",
+      "LEO NTN non-terrestrial network emergency deployment",
+      "MCPTT FirstNet public safety broadband 2026",
+      "5G private network mission critical communications deployment",
+      "deployable communications network disaster recovery"
+    ],
+    "Aviation": [
+      "drone UAV communication relay emergency disaster 2026",
+      "HAPS high altitude platform communication coverage",
+      "UAS beyond visual line of sight BVLOS public safety"
+    ],
+    "DisasterTech": [
+      "post-disaster communication network resilience 2026",
+      "emergency broadband rapid deployment field operations",
+      "disaster communication interoperability standard"
+    ]
+  }
+}

@@ -49,6 +49,12 @@ nav .nav-links a {
   color: #b0c4de; font-size: 13px; padding: 8px 12px; border-radius: 4px; white-space: nowrap;
 }
 nav .nav-links a:hover { color: #fff; background: rgba(255,255,255,.1); text-decoration: none; }
+.edition-select {
+  background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.25);
+  border-radius: 4px; padding: 5px 10px; font-size: 13px; cursor: pointer;
+  margin-right: 12px; outline: none;
+}
+.edition-select option { background: #1a1a2e; color: #fff; }
 
 /* ── Layout ── */
 .container { max-width: 960px; margin: 0 auto; padding: 24px 16px 60px; }
@@ -110,10 +116,19 @@ nav .nav-links a:hover { color: #fff; background: rgba(255,255,255,.1); text-dec
 .featured-card .section-label { font-size: 12px; font-weight: 700; color: #4a6fa5; text-transform: uppercase;
   letter-spacing: .5px; margin: 14px 0 6px; }
 .featured-card p { font-size: 14px; color: #333; margin-bottom: 8px; }
+.key-facts { padding-left: 0; margin: 6px 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.key-facts li { font-size: 12px; font-weight: 500; color: #0f3460; background: #e8f0fb; border-radius: 4px; padding: 2px 10px; }
 .key-points { padding-left: 20px; margin: 6px 0; }
 .key-points li { font-size: 14px; color: #333; margin-bottom: 4px; }
 .follow-up-list { padding-left: 20px; }
 .follow-up-list li { font-size: 13px; color: #555; margin-bottom: 3px; }
+.glossary-block { margin-top: 12px; border-top: 1px dashed #ddd; padding-top: 8px; }
+.glossary-block summary { font-size: 12px; color: #888; cursor: pointer; user-select: none; }
+.glossary-block summary:hover { color: #555; }
+.glossary-list { padding-left: 0; margin: 6px 0 0; list-style: none; }
+.glossary-list li { font-size: 12px; color: #555; padding: 3px 0; border-bottom: 1px solid #f0f0f0; }
+.glossary-list li:last-child { border-bottom: none; }
+.glossary-term { font-weight: 600; color: #333; margin-right: 4px; }
 .source-link { display: inline-block; margin-top: 10px; font-size: 13px;
   background: #f0f4ff; padding: 4px 12px; border-radius: 4px; }
 
@@ -145,6 +160,23 @@ nav .nav-links a:hover { color: #fff; background: rgba(255,255,255,.1); text-dec
 /* ── Insights ── */
 .insight-item { background: #f8f9ff; border-left: 3px solid #4a6fa5;
   padding: 10px 14px; margin: 8px 0; border-radius: 0 6px 6px 0; font-size: 14px; }
+
+/* ── X平台热议 ── */
+.x-feed-card { border: 1px solid #e8ecf5; border-radius: 8px; padding: 14px 16px; margin: 10px 0; background: #fafbff; }
+.x-feed-card.force-include { border-left: 3px solid #4a6fa5; }
+.x-feed-meta { font-size: 12px; color: #888; margin-bottom: 6px; }
+.x-feed-meta .x-author { font-weight: 600; color: #1da1f2; margin-right: 8px; }
+.x-feed-meta .x-force-badge { background: #4a6fa5; color: #fff; border-radius: 3px; padding: 1px 6px; font-size: 11px; }
+.x-feed-title { font-size: 14px; font-weight: 600; color: #222; margin-bottom: 6px; line-height: 1.5; }
+.x-feed-why { font-size: 13px; color: #555; margin-bottom: 8px; }
+.x-feed-link { font-size: 12px; color: #4a6fa5; }
+
+/* ── 转录摘要 ── */
+.transcript-card { border: 1px solid #e0efe0; border-radius: 8px; padding: 14px 16px; margin: 10px 0; background: #f9fff9; }
+.transcript-card .tc-meta { font-size: 12px; color: #888; margin-bottom: 6px; }
+.transcript-card .tc-title { font-size: 14px; font-weight: 600; color: #222; margin-bottom: 6px; }
+.transcript-card .tc-summary { font-size: 13px; color: #444; margin-bottom: 8px; }
+.transcript-card .tc-badge { background: #27ae60; color: #fff; border-radius: 3px; padding: 1px 6px; font-size: 11px; margin-right: 6px; }
 
 /* ── Responsive ── */
 @media (max-width: 600px) {
@@ -180,66 +212,83 @@ def render_report_html(report: WeeklyReport, output_path: Path) -> str:
     ensure_dir(output_path.parent)
     rating = _report_rating(report)
 
-    domain_groups: Dict[str, List[AnalyzedItem]] = {}
-    for domain in DOMAINS:
-        domain_groups[domain] = []
+    domain_groups: Dict[str, List[AnalyzedItem]] = {d: [] for d in DOMAINS}
     for item in report.selected_items:
-        for tag in item.domain_tags:
-            if tag in DOMAINS:
-                domain_groups[tag].append(item)
+        primary = next((tag for tag in item.domain_tags if tag in DOMAINS), None)
+        if primary:
+            domain_groups[primary].append(item)
 
     # Deduplicate across domain sections (same rule as markdown renderer)
     chapter3_seen: set = set()
+
+    _ZH_NUM = ["一", "二", "三", "四", "五", "六", "七", "八", "九", "十"]
+    _sec_idx = 0
+
+    def _next_title(label: str) -> str:
+        nonlocal _sec_idx
+        n = _ZH_NUM[_sec_idx] if _sec_idx < len(_ZH_NUM) else str(_sec_idx + 1)
+        _sec_idx += 1
+        return f"{n}、{label}"
 
     body_parts: List[str] = []
 
     # Cover
     body_parts.append(_render_cover(report, rating))
 
-    # Section 1: 执行摘要 (open by default via JS)
+    # 执行摘要（不参与编号）
     body_parts.append(_render_section(
         "exec-summary", "执行摘要",
         _render_exec_summary(report, rating),
         open_default=True,
     ))
 
-    # Section 2: 本周概览
     body_parts.append(_render_section(
-        "overview", "一、本周概览",
+        "overview", _next_title("本周概览"),
         _render_overview(report, domain_groups),
     ))
 
-    # Section 3: 重点事件
     body_parts.append(_render_section(
-        "featured", "二、重点事件深度分析",
+        "featured", _next_title("重点事件深度分析"),
         _render_featured(report),
     ))
 
-    # Section 4: 各领域动态
     body_parts.append(_render_section(
-        "domains", "三、各领域精选动态",
+        "domains", _next_title("各领域精选动态"),
         _render_domains(domain_groups, chapter3_seen),
     ))
 
-    # Section 5: 事件日历
+    # 精选博客/播客（仅有内容时显示）
+    transcript_html = _render_transcripts(report)
+    if transcript_html:
+        body_parts.append(_render_section(
+            "transcripts", _next_title("本周精选博客/播客"),
+            transcript_html,
+        ))
+
+    # X平台热议（仅有内容时显示）
+    x_feed_html = _render_x_feed(report)
+    if x_feed_html:
+        body_parts.append(_render_section(
+            "x-feed", _next_title("本周X平台热议"),
+            x_feed_html,
+        ))
+
     body_parts.append(_render_section(
-        "calendar", "四、事件日历",
+        "calendar", _next_title("事件日历"),
         _render_calendar(report),
     ))
 
-    # Section 6: 建议与风险
     body_parts.append(_render_section(
-        "recs", "五、建议与风险",
+        "recs", _next_title("建议与风险"),
         _render_recommendations(report),
     ))
 
-    # Section 7: 附录
     body_parts.append(_render_section(
-        "appendix", "附录：本期信源列表",
+        "appendix", "附录：信源与采集统计",
         _render_appendix(report),
     ))
 
-    nav_html = _render_nav(report)
+    nav_html = _render_nav(report, output_path)
     page_html = f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -262,6 +311,85 @@ def render_report_html(report: WeeklyReport, output_path: Path) -> str:
     return page_html
 
 
+def render_index_html(outputs_dir: Path) -> None:
+    """Regenerate outputs_dir/index.html listing all report editions."""
+    ensure_dir(outputs_dir)
+    files = sorted(
+        outputs_dir.glob("应急周报_*.html"),
+        key=lambda p: p.stat().st_mtime,
+    )
+
+    rows = ""
+    for idx, f in enumerate(files, 1):
+        # Extract week label from filename: 应急周报_2026-W14_20260403-120000.html
+        stem = f.stem  # e.g. 应急周报_2026-W14_20260403-120000
+        parts = stem.split("_", 2)
+        week_label = parts[1] if len(parts) >= 2 else stem
+        raw_ts = parts[2] if len(parts) >= 3 else ""
+        # Format 20260403-120000 → 2026-04-03 12:00
+        if len(raw_ts) >= 8 and raw_ts[:8].isdigit():
+            d = raw_ts[:8]
+            ts_label = f"{d[:4]}-{d[4:6]}-{d[6:8]}"
+            t = raw_ts[9:13] if len(raw_ts) >= 13 else raw_ts[9:]
+            if len(t) >= 4:
+                ts_label += f" {t[:2]}:{t[2:4]}"
+        else:
+            ts_label = raw_ts
+        rows += (
+            f'<tr><td style="text-align:center">{idx}</td>'
+            f'<td><a href="{_e(f.name)}">{_e(week_label)}</a></td>'
+            f'<td style="color:#888;font-size:13px">{_e(ts_label)}</td></tr>\n'
+        )
+
+    if not rows:
+        rows = '<tr><td colspan="3" style="color:#888;text-align:center">暂无报告</td></tr>'
+
+    index_css = """
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+       background: #f5f6fa; color: #1a1a2e; font-size: 15px; line-height: 1.7; }
+nav { background: #1a1a2e; color: #fff; padding: 14px 20px; }
+nav .brand { font-weight: 700; font-size: 16px; }
+.container { max-width: 640px; margin: 40px auto; padding: 0 16px; }
+h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.subtitle { font-size: 14px; color: #888; margin-bottom: 24px; }
+table { width: 100%; border-collapse: collapse; background: #fff;
+        border-radius: 10px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+th { background: #f5f6fa; padding: 10px 16px; text-align: left;
+     border-bottom: 2px solid #dde; font-size: 13px; }
+td { padding: 11px 16px; border-bottom: 1px solid #f0f0f0; }
+tr:last-child td { border-bottom: none; }
+a { color: #4a6fa5; text-decoration: none; }
+a:hover { text-decoration: underline; }
+"""
+
+    content = f"""<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>泛应急周报 · 期次列表</title>
+<style>{index_css}</style>
+</head>
+<body>
+<nav><span class="brand">泛应急周报</span></nav>
+<div class="container">
+  <h1>期次列表</h1>
+  <p class="subtitle">共 {len(files)} 期报告，点击期次查看详情</p>
+  <table>
+    <tr><th>#</th><th>期次 / 周</th><th>生成时间</th></tr>
+    {rows}
+  </table>
+</div>
+</body>
+</html>"""
+
+    index_path = outputs_dir / "index.html"
+    with index_path.open("w", encoding="utf-8") as fh:
+        fh.write(content)
+    print(f"[报告] 期次列表已更新 → {index_path}", flush=True)
+
+
 # ──────────────────────────────────────────────
 # Render helpers
 # ──────────────────────────────────────────────
@@ -271,7 +399,7 @@ def _e(text: str) -> str:
     return html.escape(str(text or ""))
 
 
-def _render_nav(report: WeeklyReport) -> str:
+def _render_nav(report: WeeklyReport, output_path: Path) -> str:
     links = [
         ("#exec-summary", "执行摘要"),
         ("#overview", "本周概览"),
@@ -282,9 +410,11 @@ def _render_nav(report: WeeklyReport) -> str:
         ("#appendix", "信源附录"),
     ]
     links_html = "".join(f'<a href="{href}">{_e(label)}</a>' for href, label in links)
-    week = report.week_range.replace(" to ", " — ")
+
     return f"""<nav>
-  <span class="brand">泛应急周报 · {_e(week)}</span>
+  <a class="brand" href="index.html" style="color:inherit;text-decoration:none">← 期次列表</a>
+  <span class="brand" style="opacity:.4;padding:0 4px">|</span>
+  <span class="brand">泛应急周报</span>
   <div class="nav-links">{links_html}</div>
 </nav>"""
 
@@ -400,6 +530,12 @@ def _render_featured(report: WeeklyReport) -> str:
         decision_text = _get_decision_relevance(item)
         follow_up_items = _get_follow_up_items(item)
 
+        kf_html = ""
+        key_facts = getattr(item, "key_facts", []) or []
+        if key_facts:
+            kf_items = "".join(f"<li>{_e(str(f))}</li>" for f in key_facts[:5] if f)
+            kf_html = f'<div class="section-label">关键事实</div><ul class="key-facts">{kf_items}</ul>'
+
         kp_html = ""
         if item.key_points:
             kp_items = "".join(f"<li>{_e(str(kp))}</li>" for kp in item.key_points[:4] if kp)
@@ -412,6 +548,21 @@ def _render_featured(report: WeeklyReport) -> str:
         if follow_up_items:
             fu_items = "".join(f"<li>{_e(tip)}</li>" for tip in follow_up_items)
             fu_html = f'<div class="section-label">跟踪建议</div><ul class="follow-up-list">{fu_items}</ul>'
+
+        glossary_html = ""
+        glossary_terms = getattr(item, "glossary_terms", []) or []
+        if glossary_terms:
+            gl_items = "".join(
+                f'<li><span class="glossary-term">{_e(str(g.get("term", "")))}</span>{_e(str(g.get("explanation", "")))}</li>'
+                for g in glossary_terms if g.get("term") and g.get("explanation")
+            )
+            if gl_items:
+                glossary_html = (
+                    f'<details class="glossary-block">'
+                    f'<summary>术语注释 ({len(glossary_terms)})</summary>'
+                    f'<ul class="glossary-list">{gl_items}</ul>'
+                    f'</details>'
+                )
 
         link_html = ""
         if item.url:
@@ -435,10 +586,12 @@ def _render_featured(report: WeeklyReport) -> str:
   <h3>{idx}. {_e(item.title)}</h3>
   <div class="section-label">事件概述</div>
   <p>{_e(summary_text)}</p>
+  {kf_html}
   {kp_html}
   {innovation_html}
   {decision_html}
   {fu_html}
+  {glossary_html}
   {link_html}
   </div>
 </div>""")
@@ -514,33 +667,159 @@ def _render_recommendations(report: WeeklyReport) -> str:
 
 
 def _render_appendix(report: WeeklyReport) -> str:
-    if not report.selected_items:
-        return '<p style="color:#888;font-size:14px">本期暂无来源记录。</p>'
+    parts: List[str] = []
 
-    from collections import Counter
-    seen_sources: dict = {}
-    for item in report.selected_items:
-        if item.source_name not in seen_sources:
-            seen_sources[item.source_name] = item
-    source_count = Counter(item.source_name for item in report.selected_items)
+    # ── Section A: 入报信源 ──
+    if report.selected_items:
+        from collections import Counter
+        seen_sources: dict = {}
+        for item in report.selected_items:
+            if item.source_name not in seen_sources:
+                seen_sources[item.source_name] = item
+        source_count = Counter(item.source_name for item in report.selected_items)
 
-    rows = ""
-    for idx, (source_name, rep_item) in enumerate(seen_sources.items(), 1):
-        type_zh = SOURCE_TYPE_ZH.get(rep_item.source_type, rep_item.source_type)
-        domain_tags = sorted({
-            tag for item in report.selected_items
-            if item.source_name == source_name
-            for tag in item.domain_tags
-        })
-        domain_zh = "、".join(DOMAIN_NAMES_ZH.get(d, d) for d in domain_tags[:2])
-        count = source_count[source_name]
-        link = f'<a href="{_e(rep_item.url)}" target="_blank" rel="noopener">链接</a>' if rep_item.url else "—"
-        rows += f"<tr><td>{idx}</td><td>{_e(source_name)}</td><td>{_e(type_zh)}</td><td>{_e(domain_zh)}</td><td>{count}</td><td>{link}</td></tr>"
+        rows = ""
+        for idx, (source_name, rep_item) in enumerate(seen_sources.items(), 1):
+            type_zh = SOURCE_TYPE_ZH.get(rep_item.source_type, rep_item.source_type)
+            domain_tags = sorted({
+                tag for item in report.selected_items
+                if item.source_name == source_name
+                for tag in item.domain_tags
+            })
+            domain_zh = "、".join(DOMAIN_NAMES_ZH.get(d, d) for d in domain_tags[:2])
+            count = source_count[source_name]
+            link = f'<a href="{_e(rep_item.url)}" target="_blank" rel="noopener">链接</a>' if rep_item.url else "—"
+            rows += f"<tr><td>{idx}</td><td>{_e(source_name)}</td><td>{_e(type_zh)}</td><td>{_e(domain_zh)}</td><td>{count}</td><td>{link}</td></tr>"
 
-    return f"""<table class="appendix-table">
+        parts.append(f"""<h3 style="margin:16px 0 10px;font-size:15px">A. 入报信源列表</h3>
+<table class="appendix-table">
   <tr><th>#</th><th>来源名称</th><th>类型</th><th>领域</th><th>本期条目数</th><th>代表链接</th></tr>
   {rows}
-</table>"""
+</table>""")
+    else:
+        parts.append('<p style="color:#888;font-size:14px">本期暂无来源记录。</p>')
+
+    # ── Section B: 全量采集统计 ──
+    if report.source_stats:
+        ok_stats = [s for s in report.source_stats if s.get("status") == "ok"]
+        err_stats = [s for s in report.source_stats if s.get("status") != "ok"]
+        total_collected = sum(s.get("count", 0) for s in report.source_stats)
+
+        stat_rows = ""
+        for s in sorted(report.source_stats, key=lambda x: -x.get("count", 0)):
+            name = s.get("name", "")
+            count = s.get("count", 0)
+            status = s.get("status", "")
+            access = s.get("access_method", "")
+            if status == "ok":
+                status_html = f'<span style="color:#27ae60">✓ {count} 条</span>'
+            else:
+                short_err = status[:40] + "..." if len(status) > 40 else status
+                status_html = f'<span style="color:#c0392b" title="{_e(status)}">✗ {_e(short_err)}</span>'
+            stat_rows += f"<tr><td>{_e(name)}</td><td style='color:#888;font-size:12px'>{_e(access)}</td><td>{status_html}</td></tr>"
+
+        parts.append(f"""<h3 style="margin:24px 0 10px;font-size:15px">B. 本次采集统计
+  <span style="font-weight:400;font-size:13px;color:#888;margin-left:8px">
+    共抓取 {total_collected} 条 · {len(ok_stats)} 个信源成功 · {len(err_stats)} 个失败/超时
+  </span>
+</h3>
+<table class="appendix-table">
+  <tr><th>信源名称</th><th>接入方式</th><th>采集结果</th></tr>
+  {stat_rows}
+</table>""")
+
+    return "\n".join(parts) if parts else '<p style="color:#888;font-size:14px">本期暂无来源记录。</p>'
+
+
+def _render_x_feed(report: WeeklyReport) -> str:
+    """渲染本周X平台热议栏目（Grok精选手动输入条目）。"""
+    grok_items = [
+        item for item in report.selected_items
+        if item.source_name == "Grok精选"
+    ]
+    if not grok_items:
+        return ""
+
+    cards = []
+    for item in grok_items:
+        status = item.body_extraction_status or ""
+        is_force = "force" in status
+        # Extract author from status: "manual:force:@author" or "manual:@author"
+        author = ""
+        parts = status.split(":")
+        for p in parts:
+            if p.startswith("@"):
+                author = p
+                break
+
+        force_badge = '<span class="x-force-badge">重点推荐</span>' if is_force else ""
+        author_html = f'<span class="x-author">{_e(author)}</span>' if author else ""
+        link_html = f'<a class="x-feed-link" href="{_e(item.url)}" target="_blank" rel="noopener">→ 原帖链接</a>' if item.url else ""
+        card_class = "x-feed-card force-include" if is_force else "x-feed-card"
+
+        # raw_text = summary + why_notable combined; split on first sentence boundary
+        raw = item.raw_text or ""
+        half = len(raw) // 2
+        summary_part = raw[:half].strip() if half > 40 else raw
+        why_part = raw[half:].strip() if half > 40 else ""
+
+        cards.append(f"""<div class="{card_class}">
+  <div class="x-feed-meta">{author_html}{force_badge}</div>
+  <div class="x-feed-title">{_e(item.title)}</div>
+  <div class="x-feed-why">{_e(summary_part)}</div>
+  {f'<div class="x-feed-why" style="color:#777;font-size:12px">▸ {_e(why_part)}</div>' if why_part else ""}
+  {link_html}
+</div>""")
+
+    inner = "\n".join(cards)
+    count = len(grok_items)
+    force_count = sum(1 for item in grok_items if "force" in (item.body_extraction_status or ""))
+    subtitle = f'共 {count} 条 · {force_count} 条标记为重点推荐 · 来源：Grok精选'
+    return f'<p style="font-size:13px;color:#888;margin-bottom:12px">{subtitle}</p>{inner}'
+
+
+def _render_transcripts(report: WeeklyReport) -> str:
+    """渲染本周精选博客/播客栏目（转录内容 + 手动指定博客）。"""
+    _TRANSCRIPT_STATUSES = {"transcript_summarized", "web_transcript"}
+    transcript_items = [
+        item for item in report.selected_items
+        if (
+            item.body_extraction_status in _TRANSCRIPT_STATUSES
+            or "手动指定" in (item.inclusion_reason or "")
+            or item.source_type == "podcast"
+        )
+    ]
+    if not transcript_items:
+        return ""
+
+    cards = []
+    for item in transcript_items:
+        date_str = _short_date(item.published_at)
+        summary = item.summary or item.raw_text[:200]
+        kp_html = ""
+        if item.key_points:
+            kp_items = "".join(f"<li>{_e(str(kp))}</li>" for kp in item.key_points[:5] if kp)
+            kp_html = f'<ul style="padding-left:18px;margin:6px 0;font-size:13px;color:#444">{kp_items}</ul>'
+        innovation = item.innovation or ""
+        innovation_html = f'<p style="font-size:13px;color:#555;margin:6px 0"><strong>分析判断：</strong>{_e(innovation)}</p>' if innovation else ""
+        link_html = f'<a href="{_e(item.url)}" target="_blank" rel="noopener" style="font-size:12px;color:#27ae60">→ 原始链接</a>' if item.url else ""
+        badge_label = "精选博客" if item.body_extraction_status == "web_transcript" else "转录摘要"
+
+        cards.append(f"""<div class="transcript-card">
+  <div class="tc-meta">
+    <span class="tc-badge">{badge_label}</span>
+    <span>{_e(item.source_name)}</span>
+    <span style="margin-left:8px;color:#aaa">{_e(date_str)}</span>
+  </div>
+  <div class="tc-title">{_e(item.title)}</div>
+  <div class="tc-summary">{_e(summary)}</div>
+  {kp_html}
+  {innovation_html}
+  {link_html}
+</div>""")
+
+    inner = "\n".join(cards)
+    return f'<p style="font-size:13px;color:#888;margin-bottom:12px">共 {len(transcript_items)} 条精选博客/播客内容</p>{inner}'
 
 
 # ──────────────────────────────────────────────

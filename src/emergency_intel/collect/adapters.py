@@ -1,15 +1,19 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 import re
 import urllib.request
+import urllib.error
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from email.utils import parsedate_to_datetime
 from html.parser import HTMLParser
 from typing import Dict, Iterable, List
 from urllib.parse import quote, urljoin, urlparse
+
+logger = logging.getLogger(__name__)
 
 from emergency_intel.models import RawItem
 from emergency_intel.utils import normalize_whitespace, slugify, utc_now_iso
@@ -50,10 +54,16 @@ class SourceAdapter:
             return self._fetch_api()
         if access_method == "github_json_feed":
             return self._fetch_github_json_feed()
+        if access_method == "playwright":
+            return self._fetch_playwright()
         return self._fetch_web()
 
+    def _preferred_client(self) -> str:
+        """Return the configured HTTP client for this source ('urllib' or 'curl_cffi')."""
+        return str(self.source.get("preferred_client", "urllib"))
+
     def _fetch_rss(self) -> List[RawItem]:
-        content = _download_text(str(self.source["url"]))
+        content = _download_text(str(self.source["url"]), preferred_client=self._preferred_client())
         root = ET.fromstring(content)
         items: List[RawItem] = []
         max_items = int(self.source.get("max_items", 20))
@@ -290,7 +300,8 @@ class SourceAdapter:
         return items
 
     def _fetch_web(self) -> List[RawItem]:
-        content = _download_text(str(self.source["url"]))
+        pc = self._preferred_client()
+        content = _download_text(str(self.source["url"]), preferred_client=pc)
         article_links = _discover_article_links(str(self.source["url"]), content)
         if not article_links:
             return [_build_landing_page_item(self.source, content)]
@@ -299,7 +310,7 @@ class SourceAdapter:
         source_name = str(self.source["name"])
         for link in article_links[:5]:
             try:
-                article_html = _download_text(link)
+                article_html = _download_text(link, preferred_client=pc)
             except Exception:
                 continue
             article = _extract_article(self.source, link, article_html)
@@ -309,6 +320,60 @@ class SourceAdapter:
         if items:
             return items
         return [_build_landing_page_item(self.source, content)]
+
+    def _fetch_playwright(self) -> List[RawItem]:
+        """Fetch JS-rendered pages using a headless Chromium browser."""
+        try:
+            from playwright.sync_api import sync_playwright, TimeoutError as PWTimeout
+        except ImportError:
+            logger.warning("playwright not installed — falling back to web fetch for %s", self.source["name"])
+            return self._fetch_web()
+
+        source_url = str(self.source["url"])
+        source_name = str(self.source["name"])
+        max_articles = int(self.source.get("max_items", 5))
+
+        _UA = (
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        )
+
+        def _pw_get(page, url: str) -> str:
+            page.goto(url, wait_until="domcontentloaded", timeout=18000)
+            return page.content()
+
+        try:
+            with sync_playwright() as pw:
+                browser = pw.chromium.launch(headless=True)
+                page = browser.new_page(user_agent=_UA)
+
+                # Load listing/index page
+                try:
+                    index_html = _pw_get(page, source_url)
+                except PWTimeout:
+                    browser.close()
+                    raise TimeoutError(f"playwright index page timeout: {source_url}")
+
+                article_links = _discover_article_links(source_url, index_html)
+                if not article_links:
+                    browser.close()
+                    return [_build_landing_page_item(self.source, index_html)]
+
+                items: List[RawItem] = []
+                for link in article_links[:max_articles]:
+                    try:
+                        article_html = _pw_get(page, link)
+                    except Exception:
+                        continue
+                    article = _extract_article(self.source, link, article_html)
+                    if article and not _is_navigation_page(article.title, source_name):
+                        items.append(article)
+
+                browser.close()
+                return items if items else [_build_landing_page_item(self.source, index_html)]
+
+        except Exception as exc:
+            raise RuntimeError(f"playwright fetch failed for {source_name}: {exc}") from exc
 
 
 _NAV_WORDS = frozenset({
@@ -336,26 +401,65 @@ def _is_navigation_page(title: str, source_name: str) -> bool:
     return False
 
 
-def _download_text(url: str) -> str:
-    return _download_response_text(url)
+def _download_text(url: str, preferred_client: str = "urllib") -> str:
+    return _download_response_text(url, preferred_client=preferred_client)
 
 
-def _download_json(url: str, headers: Dict[str, str] | None = None) -> Dict[str, object]:
-    return json.loads(_download_response_text(url, headers=headers))
+def _download_json(
+    url: str,
+    headers: Dict[str, str] | None = None,
+    preferred_client: str = "urllib",
+) -> Dict[str, object]:
+    return json.loads(_download_response_text(url, headers=headers, preferred_client=preferred_client))
 
 
-def _download_response_text(url: str, headers: Dict[str, str] | None = None) -> str:
-    request_headers = {
-        "User-Agent": "emergency-intel-system/0.1",
+def _download_response_text(
+    url: str,
+    headers: Dict[str, str] | None = None,
+    preferred_client: str = "urllib",
+) -> str:
+    """Download URL content with configurable client strategy.
+
+    Args:
+        preferred_client: "urllib" (default — try urllib, fallback to curl_cffi on 403/SSL)
+                          "curl_cffi"  — skip urllib entirely, use Chrome TLS fingerprint directly.
+                          Sources known to block urllib should set preferred_client="curl_cffi"
+                          in source_registry.json to save ~15s per fetch cycle.
+    """
+    browser_headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) "
+            "Chrome/120.0.0.0 Safari/537.36"
+        ),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.9",
     }
     if headers:
-        request_headers.update(headers)
-    request = urllib.request.Request(
-        url,
-        headers=request_headers,
-    )
-    with urllib.request.urlopen(request, timeout=20) as response:
-        return response.read().decode("utf-8", errors="ignore")
+        browser_headers.update(headers)
+
+    # --- attempt 1: urllib (always tried first unless preferred_client == "curl_cffi") ---
+    if preferred_client != "curl_cffi":
+        req = urllib.request.Request(url, headers=browser_headers)
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            return resp.read().decode("utf-8", errors="ignore")
+
+    # --- curl_cffi: only when source explicitly sets preferred_client="curl_cffi" ---
+    try:
+        from curl_cffi import requests as cffi_requests
+        resp = cffi_requests.get(
+            url,
+            headers=browser_headers,
+            impersonate="chrome120",
+            timeout=15,
+            verify=False,
+        )
+        resp.raise_for_status()
+        return resp.text
+    except ImportError:
+        raise RuntimeError(f"curl_cffi not installed for {url}")
+    except Exception as exc:
+        raise RuntimeError(f"curl_cffi failed for {url}: {exc}") from exc
 
 
 def build_adapters(source_registry: Iterable[Dict[str, object]]) -> List[SourceAdapter]:

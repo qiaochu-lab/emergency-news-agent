@@ -54,10 +54,12 @@ class ScoredItem(NormalizedItem):
 @dataclass
 class AnalyzedItem(ScoredItem):
     summary: str = ""
+    key_facts: List[str] = field(default_factory=list)
     key_points: List[str] = field(default_factory=list)
     innovation: str = ""
     takeaway: str = ""
     non_expert_explanation: str = ""
+    glossary_terms: List[Dict[str, str]] = field(default_factory=list)
 
 
 @dataclass
@@ -67,6 +69,7 @@ class WeeklyReport:
     section_summaries: Dict[str, str]
     weekly_insights: List[str]
     generated_at: str = field(default_factory=lambda: datetime.utcnow().isoformat())
+    source_stats: List[Dict[str, Any]] = field(default_factory=list)
 
     def to_dict(self) -> Dict[str, Any]:
         data = asdict(self)

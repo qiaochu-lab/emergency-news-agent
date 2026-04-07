@@ -11,13 +11,15 @@ from emergency_intel.collect.service import collect_items
 from emergency_intel.config import DATA_DIR, OUTPUTS_DIR, Settings
 from emergency_intel.dedup.service import deduplicate_items
 from emergency_intel.classify.service import classify_items
+from emergency_intel.collect.media_adapter import collect_media_items
+from emergency_intel.feedback.review_generator import generate_review_file
 from emergency_intel.normalize.service import normalize_items
 from emergency_intel.enrich.service import enrich_fulltext
-from emergency_intel.report.html_renderer import render_report_html
+from emergency_intel.report.html_renderer import render_index_html, render_report_html
 from emergency_intel.report.service import build_weekly_report, render_report_markdown
 from emergency_intel.run_log import append_weekly_run_log
 from emergency_intel.score.service import score_items
-from emergency_intel.utils import week_range_label, write_json
+from emergency_intel.utils import read_json, week_range_label, write_json
 
 
 def run_weekly_pipeline(
@@ -25,6 +27,8 @@ def run_weekly_pipeline(
     use_mock_data: bool = False,
     settings: Settings | None = None,
     source_registry_path: Path | None = None,
+    skip_collection: bool = False,
+    extra_analyzed_items: List | None = None,
 ) -> Dict[str, object]:
     settings = settings or Settings()
     if use_mock_data and settings.provider != "mock":
@@ -55,20 +59,58 @@ def run_weekly_pipeline(
     enriched_path = DATA_DIR / "enriched" / "items.json"
     analyzed_path = DATA_DIR / "scored" / "analyzed_items.json"
 
-    if use_mock_data:
+    if skip_collection:
+        from emergency_intel.collect.service import load_raw_items
+        raw_items = load_raw_items(raw_path)
+        collection_errors: List[str] = []
+        source_stats: List[dict] = []
+        print(f"[pipeline] skip_collection=True, loaded {len(raw_items)} items from cache", flush=True)
+    elif use_mock_data:
         items = _mock_raw_items()
         write_json(raw_path, items)
         from emergency_intel.collect.service import load_raw_items
 
         raw_items = load_raw_items(raw_path)
         collection_errors: List[str] = []
+        source_stats: List[dict] = []
     else:
-        raw_items, collection_errors = collect_items(
+        raw_items, collection_errors, source_stats = collect_items(
             source_registry,
             raw_path,
             per_source_timeout_seconds=settings.collect_timeout_seconds,
             manual_dir=DATA_DIR / "manual",
+            tavily_api_key=settings.tavily_api_key,
         )
+
+    # Media transcription (YouTube + podcast RSS + manual URLs)
+    # Runs after regular collect; needs provider for LLM summarization
+    if not use_mock_data and settings.groq_api_key:
+        provider_for_media = ProviderClient(
+            provider=settings.provider,
+            model=settings.model,
+            api_base=settings.api_base,
+            api_key=settings.api_key,
+            timeout_seconds=settings.llm_timeout_seconds,
+        )
+        registry_list = list(read_json(source_registry, default=[]))  # type: ignore[arg-type]
+        media_items = collect_media_items(
+            source_registry=registry_list,
+            groq_api_key=settings.groq_api_key,
+            youtube_api_key=settings.youtube_api_key,
+            provider=provider_for_media,
+            manual_dir=DATA_DIR,
+            reference_date=reference_date,
+        )
+        if media_items:
+            raw_items = list(raw_items) + media_items
+            write_json(raw_path, [item.to_dict() for item in raw_items])
+            source_stats.append({
+                "name": "[媒体转录]",
+                "source_type": "media",
+                "access_method": "transcription",
+                "count": len(media_items),
+                "status": "ok",
+            })
 
     normalized_items = normalize_items(raw_items, normalized_path)
     deduped_items, duplicates_removed = deduplicate_items(normalized_items, deduped_path)
@@ -86,8 +128,13 @@ def run_weekly_pipeline(
     screened_items = screen_items(enriched_items, screened_path, provider, reference_date)
     analyzed_items = analyze_items(screened_items, analyzed_path, provider, settings.analysis_min_score)
 
+    # Inject pre-analyzed items (e.g. transcripts) directly into report
+    if extra_analyzed_items:
+        analyzed_items = list(analyzed_items) + list(extra_analyzed_items)
+        print(f"[pipeline] 注入 {len(extra_analyzed_items)} 条外部分析项", flush=True)
+
     week_range = week_range_label(reference_date)
-    report = build_weekly_report(analyzed_items, week_range)
+    report = build_weekly_report(analyzed_items, week_range, source_stats=source_stats)
     output_path = OUTPUTS_DIR / _report_filename(
         week_range,
         source_registry_path=source_registry,
@@ -96,6 +143,7 @@ def run_weekly_pipeline(
     markdown = render_report_markdown(report, output_path)
     html_path = output_path.with_suffix(".html")
     render_report_html(report, html_path)
+    render_index_html(html_path.parent)
     items_screened_in = len([item for item in screened_items if item.include_in_top_report])
     append_weekly_run_log(
         DATA_DIR.parent / "docs" / "weekly_run_log.md",
@@ -108,6 +156,8 @@ def run_weekly_pipeline(
         collection_errors=collection_errors,
     )
 
+    review_path = generate_review_file(screened_items, reference_date=reference_date)
+
     return {
         "collection_errors": collection_errors,
         "duplicates_removed": duplicates_removed,
@@ -115,6 +165,7 @@ def run_weekly_pipeline(
         "items_screened_in": items_screened_in,
         "items_selected": len(report.selected_items),
         "report_path": str(output_path),
+        "review_path": str(review_path),
         "report_markdown": markdown,
         "report": asdict(report),
     }
@@ -157,7 +208,7 @@ def _mock_raw_items() -> List[Dict[str, object]]:
 
 def _report_filename(week_range: str, source_registry_path: Path, use_mock_data: bool) -> str:
     from datetime import datetime
-    ts = datetime.now().strftime("%Y%m%d-%H%M")
+    ts = datetime.now().strftime("%Y%m%d-%H%M%S")
     # Derive ISO week from week_range (e.g. "2026-03-23 to 2026-03-29" → 2026-W14)
     if " to " in week_range:
         start_str = week_range.split(" to ")[0].strip()

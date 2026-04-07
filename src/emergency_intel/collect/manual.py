@@ -62,6 +62,7 @@ def _parse_manual_file(path: Path) -> List[RawItem]:
         why = entry.get("why_notable", "").strip()
         url = entry.get("url", "").strip()
         author = entry.get("author", "").strip()
+        force = entry.get("force_include", "").strip().lower() in ("true", "yes", "1")
 
         # Skip incomplete entries
         if not title or title in ("标题（必填）",) or not summary:
@@ -69,6 +70,11 @@ def _parse_manual_file(path: Path) -> List[RawItem]:
 
         raw_text = normalize_whitespace(f"{summary} {why}")
         item_id = slugify(f"manual-{title[:40]}")
+
+        if force:
+            status = f"manual:force:{author}" if author else "manual:force"
+        else:
+            status = f"manual:{author}" if author else "manual"
 
         items.append(RawItem(
             id=item_id,
@@ -80,7 +86,7 @@ def _parse_manual_file(path: Path) -> List[RawItem]:
             language="zh",
             raw_text=raw_text,
             content_depth="summary",
-            body_extraction_status=f"manual:{author}" if author else "manual",
+            body_extraction_status=status,
         ))
 
     return items
@@ -117,7 +123,7 @@ def _split_entries(body: str) -> List[dict[str, str]]:
                 key, _, val = line.partition(":")
                 k = key.strip().lower()
                 v = val.strip()
-                if k in ("title", "author", "url", "summary", "why_notable") and v:
+                if k in ("title", "author", "url", "summary", "why_notable", "force_include") and v:
                     entry[k] = v
         if entry:
             entries.append(entry)
