@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 from typing import Iterable, List
@@ -17,7 +17,7 @@ from emergency_intel.analyze.prompts import (
 from emergency_intel.analyze.provider import ProviderClient, ProviderError, generate_structured_analysis
 from emergency_intel.feedback.agent import load_preferences
 from emergency_intel.models import AnalyzedItem, ScoredItem
-from emergency_intel.utils import normalize_whitespace, write_json
+from emergency_intel.utils import normalize_whitespace, week_window, write_json
 
 
 _LLM_WORKERS = 5
@@ -30,6 +30,8 @@ def screen_items(
     reference_date: date | None = None,
 ) -> List[ScoredItem]:
     item_list = list(items)
+    win_start, win_end = week_window(reference_date)
+    print(f"[筛选] 时间窗口：{win_start} → {win_end}（共 {len(item_list)} 条待筛选）", flush=True)
     heuristic_results = [_heuristic_screen(item, reference_date) for item in item_list]
 
     # Load preferences once for this screening run
@@ -265,10 +267,12 @@ def _is_this_week_signal(item: ScoredItem, reference_date: date | None) -> bool:
     published = _parse_date(item.published_at)
     if not published:
         return False
-    ref = reference_date or date.today()
-    # Accept anything published in the past 10 days (covers weekly runs with some slack)
-    start = ref.fromordinal(ref.toordinal() - 10)
-    return start <= published <= ref
+    # Use the same week window as week_range_label: Mon–Sun of the prior week
+    win_start, win_end = week_window(reference_date)
+    # Allow 1-day slack at the start only (timezone drift / late RSS publish)
+    # No end slack: articles from the run-day itself belong to the next week
+    slack_start = win_start - timedelta(days=1)
+    return slack_start <= published <= win_end
 
 
 def _parse_date(value: str) -> date | None:

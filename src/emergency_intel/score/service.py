@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from pathlib import Path
 from typing import Iterable, List
 
@@ -7,6 +8,19 @@ from emergency_intel.feedback.agent import apply_preference_boost, load_preferen
 from emergency_intel.models import NormalizedItem, ScoredItem
 from emergency_intel.score.rules import HEAT_TERMS, IMPORTANT_TERMS
 from emergency_intel.utils import normalize_whitespace, write_json
+
+# Technical abbreviations that indicate substantive content
+_TECH_TERMS_RE = re.compile(
+    r"\b(3gpp|mcptt|mcx|mcpd|tetra|p25|ntn|haps|bvlos|utm|lte|rel\.\d+|"
+    r"dbm|mhz|ghz|tbps|gbps|mbps|ipv6|ran|oran|sdr|gnss|leo|geo|meo|"
+    r"etsi|itu-r|itu-t|ieee 802|c-v2x|enb|gnb)\b",
+    re.IGNORECASE,
+)
+# Numbers with units or context (dollar amounts, percentages, coverage figures, etc.)
+_DATA_RE = re.compile(
+    r"(\$[\d,.]+[bmt]?|\d+[\d,.]*\s*%|\d+[\d,.]*\s*(billion|million|km|km²|states?|countries|sites?|users?|agencies?))",
+    re.IGNORECASE,
+)
 
 
 def score_items(items: Iterable[NormalizedItem], output_path: Path) -> List[ScoredItem]:
@@ -23,6 +37,8 @@ def score_items(items: Iterable[NormalizedItem], output_path: Path) -> List[Scor
         # Grok精选：人工筛选内容，加权 +1.0
         if item.source_name == "Grok精选":
             final_score = min(10.0, round(final_score + 1.0, 2))
+        # Boost articles with concrete data or technical depth
+        final_score = min(10.0, round(final_score + _content_quality_bonus(item.raw_text), 2))
         # Apply reader preference boost/penalize from preferences.json
         final_score = apply_preference_boost(f"{item.title} {item.raw_text}", final_score, preferences)
         scored.append(
@@ -59,6 +75,26 @@ def _evidence_bonus(level: str) -> float:
     if level == "Industry media":
         return 1.0
     return 0.5
+
+
+def _content_quality_bonus(raw_text: str) -> float:
+    """Small bonus for articles with concrete data or technical terms.
+
+    Signals that content has substance beyond a headline/landing page:
+    - Has specific numbers/amounts/coverage figures: +0.3
+    - Has technical standards abbreviations (3GPP, MCPTT, etc.): +0.2
+    - Both present: +0.5 total
+    - Text length > 800 chars (real article, not a snippet): +0.2
+    """
+    bonus = 0.0
+    text = raw_text or ""
+    if _DATA_RE.search(text):
+        bonus += 0.3
+    if _TECH_TERMS_RE.search(text):
+        bonus += 0.2
+    if len(text) > 800:
+        bonus += 0.2
+    return bonus
 
 
 def _source_heat(source_type: str) -> float:

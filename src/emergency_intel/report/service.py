@@ -249,22 +249,76 @@ _DOMAIN_CAPS = {
 }
 
 
+def _title_tokens(title: str) -> frozenset:
+    """Normalised token set from a title, preserving acronyms and compound terms."""
+    _STOP = {"the", "a", "an", "of", "in", "on", "for", "and", "to", "is",
+             "by", "with", "from", "new", "its", "via", "over", "how", "why"}
+    # Preserve acronyms like AT&T, 5G, C-V2X before lowercasing
+    tokens: set = set()
+    # Match word-boundary tokens including acronyms with & or -
+    for raw in re.findall(r"[A-Za-z0-9]+(?:[&\-][A-Za-z0-9]+)*", title):
+        w = raw.lower()
+        if len(w) >= 2 and w not in _STOP:
+            tokens.add(w)
+    return frozenset(tokens)
+
+
+def _topic_overlap(a: AnalyzedItem, b: AnalyzedItem) -> float:
+    """Jaccard similarity of title tokens. 0.0–1.0."""
+    ta, tb = _title_tokens(a.title), _title_tokens(b.title)
+    if not ta or not tb:
+        return 0.0
+    return len(ta & tb) / len(ta | tb)
+
+
+def _same_url_domain(a: AnalyzedItem, b: AnalyzedItem) -> bool:
+    """True if both items come from the same root URL domain."""
+    def _root(url: str) -> str:
+        m = re.search(r"https?://(?:www\.)?([^/]+)", url or "")
+        return m.group(1).lower() if m else ""
+    ra, rb = _root(a.url), _root(b.url)
+    return bool(ra) and ra == rb
+
+
+def _deduplicate_by_topic(
+    items: List[AnalyzedItem], threshold: float = 0.20
+) -> List[AnalyzedItem]:
+    """Remove lower-scoring items that are too similar to a higher-scoring one.
+
+    Two items are considered duplicates if:
+    - Title token Jaccard similarity >= threshold, OR
+    - They come from the same URL domain (same publisher on same sub-topic)
+    Items are assumed sorted by score desc; the first occurrence wins.
+    """
+    kept: List[AnalyzedItem] = []
+    for candidate in items:
+        is_dup = any(
+            _topic_overlap(candidate, k) >= threshold or _same_url_domain(candidate, k)
+            for k in kept
+        )
+        if not is_dup:
+            kept.append(candidate)
+    return kept
+
+
 def _select_balanced_featured(items: List[AnalyzedItem], max_count: int) -> List[AnalyzedItem]:
-    """Pick up to max_count items ensuring cross-domain coverage.
+    """Pick up to max_count items ensuring cross-domain coverage and topic diversity.
 
     Strategy:
-    1. Take the highest-scoring item from each domain (round-robin by score).
-    2. Fill remaining slots with globally highest-scoring items not yet chosen.
-    3. Never pick the same item twice. Never exceed domain caps.
+    1. Deduplicate by topic similarity within each domain bucket.
+    2. Take the highest-scoring item from each domain (round-robin by score).
+    3. Fill remaining slots with globally highest-scoring items not yet chosen.
+    4. Never pick the same item twice. Never exceed domain caps.
     """
     by_domain: Dict[str, List[AnalyzedItem]] = defaultdict(list)
     for item in items:
         for tag in item.domain_tags:
             if tag in DOMAINS:
                 by_domain[tag].append(item)
-    # Sort each domain bucket by score desc
+    # Sort each domain bucket by score desc, then deduplicate by topic
     for domain in by_domain:
         by_domain[domain].sort(key=lambda x: x.final_score, reverse=True)
+        by_domain[domain] = _deduplicate_by_topic(by_domain[domain])
 
     selected: List[AnalyzedItem] = []
     seen_ids: set = set()
@@ -284,13 +338,15 @@ def _select_balanced_featured(items: List[AnalyzedItem], max_count: int) -> List
                 break
 
     # Round 2: fill remaining slots from global pool, respecting caps
-    global_sorted = sorted(items, key=lambda x: x.final_score, reverse=True)
+    # Apply global topic dedup across domains before filling
+    global_sorted = _deduplicate_by_topic(
+        sorted(items, key=lambda x: x.final_score, reverse=True)
+    )
     for candidate in global_sorted:
         if len(selected) >= max_count:
             break
         if candidate.id in seen_ids:
             continue
-        # Check if any of its domains still has capacity
         candidate_domains = [t for t in candidate.domain_tags if t in DOMAINS]
         if not candidate_domains:
             continue

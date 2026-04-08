@@ -53,10 +53,15 @@ def fingerprint_text(text: str) -> str:
     return sha1(normalized[:2000].encode("utf-8")).hexdigest()
 
 
-def week_range_label(reference: date | None = None) -> str:
+def week_window(reference: date | None = None) -> tuple[date, date]:
+    """Return (start, end) of the report week: the ISO Mon–Sun prior to reference date."""
     today = reference or date.today()
     start = today - timedelta(days=today.weekday() + 7)
-    end = start + timedelta(days=6)
+    return start, start + timedelta(days=6)
+
+
+def week_range_label(reference: date | None = None) -> str:
+    start, end = week_window(reference)
     return f"{start.isoformat()} to {end.isoformat()}"
 
 
