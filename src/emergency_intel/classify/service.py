@@ -8,19 +8,44 @@ from emergency_intel.models import NormalizedItem
 from emergency_intel.utils import normalize_whitespace, write_json
 
 
-# Primary domain priority: Aviation (most specific) → AI (before Comms to prevent
-# "neural network" bleeding into Communications) → Communications → DisasterTech.
-# The first match becomes domain_tags[0] and determines which column an item appears in.
+# Primary domain priority: Aviation (most specific) → AI → Communications → DisasterTech.
+# Title-based overrides: if the title contains strong comms or aviation signals, that domain
+# is promoted to primary regardless of body text matches.
 _DOMAIN_PRIORITY = ["Aviation", "AI", "Communications", "DisasterTech"]
+
+# Title keywords that force Communications to primary (even if aviation body text matches)
+_COMMS_TITLE_KEYWORDS = [
+    "5g", "6g", "private 5g", "private network", "satellite", "leo satellite",
+    "leo network", "spectrum", "ran", "ntn", "satcom", "backhaul",
+    "firstnet", "esn", "direct-to-satellite", "ngso", "gso",
+    "deployable comms", "over-the-air computation", "connectivity solution",
+    "authentication scheme", "digital twin edge", "iot",
+]
+
+# Title keywords that keep Aviation as primary
+_AVIATION_TITLE_KEYWORDS = [
+    "drone", "uav", "uas", "bvlos", "unmanned", "autopilot", "px4",
+    "counter drone", "counter-uas", "counter uas",
+]
+
+
+def _priority_for_title(title: str) -> list:
+    t = title.lower()
+    if any(kw in t for kw in _AVIATION_TITLE_KEYWORDS):
+        return ["Aviation", "Communications", "AI", "DisasterTech"]
+    if any(kw in t for kw in _COMMS_TITLE_KEYWORDS):
+        return ["Communications", "Aviation", "AI", "DisasterTech"]
+    return _DOMAIN_PRIORITY
 
 
 def classify_items(items: Iterable[NormalizedItem], output_path: Path) -> List[NormalizedItem]:
     classified: List[NormalizedItem] = []
     for item in items:
         text = normalize_whitespace(f"{item.title} {item.raw_text}").lower()
+        priority = _priority_for_title(item.title)
         # Order by priority so domain_tags[0] is always the primary/column domain
         domain_tags = [
-            domain for domain in _DOMAIN_PRIORITY
+            domain for domain in priority
             if any(keyword in text for keyword in DOMAIN_KEYWORDS[domain])
         ]
         region_tags = [region for region, keywords in REGION_KEYWORDS.items() if any(keyword in text for keyword in keywords)]

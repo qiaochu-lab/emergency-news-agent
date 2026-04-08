@@ -14,7 +14,6 @@ from emergency_intel.report.service import (
     _get_clean_innovation,
     _get_clean_summary,
     _get_decision_relevance,
-    _get_follow_up_items,
     _report_rating,
     _risk_lines,
     _section_summary,
@@ -28,33 +27,56 @@ from emergency_intel.utils import ensure_dir
 # ──────────────────────────────────────────────
 
 _CSS = """
+/* ── Reset & Variables ── */
+:root {
+  --bg-color: #f5f6fa;
+  --text-color: #1a1a2e;
+  --card-bg: #fff;
+  --card-border: #e8ecf5;
+  --primary: #4a6fa5;
+  --nav-bg: #1a1a2e;
+  --nav-text: #fff;
+  --th-bg: #f5f6fa;
+  --border-color: #e8e8e8;
+  --muted-text: #555;
+}
+.dark-mode {
+  --bg-color: #0f172a;
+  --text-color: #e2e8f0;
+  --card-bg: #1e293b;
+  --card-border: #334155;
+  --primary: #60a5fa;
+  --nav-bg: #020617;
+  --nav-text: #e2e8f0;
+  --th-bg: #0f172a;
+  --border-color: #334155;
+  --muted-text: #94a3b8;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body {
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
-  background: #f5f6fa; color: #1a1a2e; font-size: 15px; line-height: 1.7;
+  background: var(--bg-color); color: var(--text-color); font-size: 15px; line-height: 1.7;
+  transition: background-color 0.3s, color 0.3s;
 }
-a { color: #4a6fa5; text-decoration: none; }
+a { color: var(--primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* ── Nav ── */
 nav {
   position: sticky; top: 0; z-index: 100;
-  background: #1a1a2e; color: #fff;
-  display: flex; align-items: center; gap: 0; padding: 0 20px;
+  background: var(--nav-bg); color: var(--nav-text);
+  display: flex; align-items: center; padding: 0 20px;
   box-shadow: 0 2px 8px rgba(0,0,0,.3);
+  flex-wrap: wrap; justify-content: space-between;
 }
+.nav-left { display: flex; align-items: center; }
 nav .brand { font-weight: 700; font-size: 16px; padding: 14px 20px 14px 0; white-space: nowrap; }
 nav .nav-links { display: flex; flex-wrap: wrap; gap: 4px; }
-nav .nav-links a {
-  color: #b0c4de; font-size: 13px; padding: 8px 12px; border-radius: 4px; white-space: nowrap;
-}
+nav .nav-links a { color: #b0c4de; font-size: 13px; padding: 8px 12px; border-radius: 4px; white-space: nowrap; }
 nav .nav-links a:hover { color: #fff; background: rgba(255,255,255,.1); text-decoration: none; }
-.edition-select {
-  background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.25);
-  border-radius: 4px; padding: 5px 10px; font-size: 13px; cursor: pointer;
-  margin-right: 12px; outline: none;
-}
-.edition-select option { background: #1a1a2e; color: #fff; }
+.nav-actions button { background: rgba(255,255,255,0.15); color: #fff; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; transition: 0.2s; margin-left: 8px;}
+.nav-actions button:hover { background: rgba(255,255,255,0.3); }
 
 /* ── Layout ── */
 .container { max-width: 960px; margin: 0 auto; padding: 24px 16px 60px; }
@@ -67,126 +89,84 @@ nav .nav-links a:hover { color: #fff; background: rgba(255,255,255,.1); text-dec
 .cover-card h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
 .cover-card .week { font-size: 15px; opacity: .8; margin-bottom: 20px; }
 .cover-meta { display: flex; flex-wrap: wrap; gap: 12px; }
-.cover-meta .badge {
-  background: rgba(255,255,255,.12); border-radius: 6px; padding: 6px 14px; font-size: 13px;
-}
+.cover-meta .badge { background: rgba(255,255,255,.12); border-radius: 6px; padding: 6px 14px; font-size: 13px; }
 .cover-meta .badge strong { display: block; font-size: 11px; opacity: .7; margin-bottom: 2px; }
 
 /* ── Section ── */
-.section { background: #fff; border-radius: 10px; margin-bottom: 20px; overflow: hidden;
-           box-shadow: 0 1px 4px rgba(0,0,0,.08); }
-.section-header {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 20px; cursor: pointer; user-select: none;
-  border-bottom: 1px solid #f0f0f0;
-}
-.section-header:hover { background: #fafbff; }
+.section { background: var(--card-bg); border-radius: 10px; margin-bottom: 20px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.08); border: 1px solid var(--border-color); }
+.section-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; cursor: pointer; user-select: none; border-bottom: 1px solid var(--border-color); }
+.section-header:hover { background: rgba(128,128,128,0.05); }
 .section-header h2 { font-size: 17px; font-weight: 600; }
 .section-header .toggle { font-size: 20px; color: #888; transition: transform .2s; }
 .section-header.open .toggle { transform: rotate(180deg); }
 .section-body { padding: 0 20px 20px; display: none; }
 .section-body.open { display: block; }
 
-/* ── Summary table ── */
-.summary-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
-.summary-table th, .summary-table td { padding: 9px 14px; border: 1px solid #e8e8e8; text-align: left; }
-.summary-table th { background: #f5f6fa; font-weight: 600; width: 30%; }
+/* ── Tables ── */
+table { width: 100%; border-collapse: collapse; font-size: 14px; color: var(--text-color); }
+th { background: var(--th-bg); padding: 9px 14px; border: 1px solid var(--border-color); text-align: left; }
+td { padding: 9px 14px; border: 1px solid var(--border-color); }
 
-/* ── Signal dist table ── */
-.dist-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
-.dist-table th { background: #f5f6fa; padding: 8px 12px; text-align: left; border-bottom: 2px solid #dde; font-size: 12px; }
-.dist-table td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; }
-.strength-strong { color: #27ae60; font-weight: 600; }
-.strength-mid { color: #e67e22; }
-.strength-weak { color: #bbb; }
-
-/* ── Featured card ── */
+/* ── Featured card splitting facts/analysis ── */
 .featured-card {
-  border: 1px solid #e8ecf5; border-radius: 8px; overflow: hidden; margin: 16px 0;
-  border-left: 4px solid #4a6fa5;
+  border: 1px solid var(--card-border); border-radius: 8px; overflow: hidden; margin: 16px 0;
+  border-left: 4px solid var(--primary); display: flex; flex-direction: column;
 }
-.featured-card .fc-thumbnail {
-  width: 100%; max-height: 200px; object-fit: cover; display: block;
-  border-bottom: 1px solid #e8ecf5;
+.featured-header { padding: 16px 20px; border-bottom: 1px solid var(--border-color); }
+.featured-header h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.fc-meta { font-size: 12px; color: var(--muted-text); display: flex; gap: 12px; flex-wrap: wrap; }
+.fc-meta span { background: rgba(128,128,128,0.1); padding: 3px 8px; border-radius: 12px; }
+
+.featured-content { display: flex; flex-direction: column; }
+.fc-left, .fc-right { padding: 20px 24px; }
+.fc-left { background: rgba(128,128,128,0.02); border-bottom: 1px solid var(--border-color); }
+
+.section-label { font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: .5px; margin: 14px 0 6px; }
+.key-facts { padding-left: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.key-facts li { font-size: 12px; border: 1px solid var(--border-color); border-radius: 4px; padding: 2px 8px; background: rgba(128,128,128,0.05); }
+
+/* Tooltip for Glossary */
+.glossary-tooltip { position: relative; border-bottom: 1px dashed var(--primary); cursor: help; color: var(--primary); }
+.glossary-tooltip .tooltip-text {
+  visibility: hidden; width: 220px; background-color: var(--nav-bg); color: var(--nav-text); text-align: center;
+  border-radius: 6px; padding: 8px; position: absolute; z-index: 10; bottom: 125%; left: 50%;
+  margin-left: -110px; opacity: 0; transition: opacity 0.3s; font-size: 12px; font-weight: normal; font-family: sans-serif;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3); pointer-events: none;
 }
-.featured-card .fc-body { padding: 20px; }
-.featured-card .fc-meta { font-size: 12px; color: #888; margin-bottom: 12px; display: flex; gap: 12px; flex-wrap: wrap; }
-.featured-card .fc-meta span { background: #f0f4ff; padding: 3px 8px; border-radius: 12px; }
-.featured-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 10px; line-height: 1.5; }
-.featured-card .section-label { font-size: 12px; font-weight: 700; color: #4a6fa5; text-transform: uppercase;
-  letter-spacing: .5px; margin: 14px 0 6px; }
-.featured-card p { font-size: 14px; color: #333; margin-bottom: 8px; }
-.key-facts { padding-left: 0; margin: 6px 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
-.key-facts li { font-size: 12px; font-weight: 500; color: #0f3460; background: #e8f0fb; border-radius: 4px; padding: 2px 10px; }
-.key-points { padding-left: 20px; margin: 6px 0; }
-.key-points li { font-size: 14px; color: #333; margin-bottom: 4px; }
-.follow-up-list { padding-left: 20px; }
-.follow-up-list li { font-size: 13px; color: #555; margin-bottom: 3px; }
-.glossary-block { margin-top: 12px; border-top: 1px dashed #ddd; padding-top: 8px; }
-.glossary-block summary { font-size: 12px; color: #888; cursor: pointer; user-select: none; }
-.glossary-block summary:hover { color: #555; }
-.glossary-list { padding-left: 0; margin: 6px 0 0; list-style: none; }
-.glossary-list li { font-size: 12px; color: #555; padding: 3px 0; border-bottom: 1px solid #f0f0f0; }
-.glossary-list li:last-child { border-bottom: none; }
-.glossary-term { font-weight: 600; color: #333; margin-right: 4px; }
-.source-link { display: inline-block; margin-top: 10px; font-size: 13px;
-  background: #f0f4ff; padding: 4px 12px; border-radius: 4px; }
+.glossary-tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
 
-/* ── Domain item list ── */
-.domain-item { border-bottom: 1px solid #f5f5f5; padding: 14px 0; }
-.domain-item:last-child { border-bottom: none; }
-.domain-item .di-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; line-height: 1.5; }
-.domain-item .di-summary { font-size: 13px; color: #555; margin-bottom: 6px; }
-.domain-item .di-meta { font-size: 12px; color: #999; }
-.domain-tag { display: inline-block; background: #eef3ff; color: #4a6fa5;
-  padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-right: 4px; }
+.action-bar { display: flex; gap: 10px; padding: 10px 20px; background: rgba(128,128,128,0.05); border-top: 1px solid var(--border-color); align-items: center; justify-content: flex-end;}
+.action-btn { background: none; border: 1px solid var(--border-color); color: var(--text-color); padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+.action-btn:hover { background: var(--bg-color); }
 
-/* ── Calendar table ── */
-.cal-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
-.cal-table th { background: #f5f6fa; padding: 8px 12px; text-align: left; border-bottom: 2px solid #dde; font-size: 12px; }
-.cal-table td { padding: 9px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+/* ── Domain items ── */
+.domain-item {
+  border: 1px solid var(--card-border); border-radius: 8px; padding: 16px 18px;
+  margin: 12px 0; background: var(--card-bg);
+  border-left: 3px solid var(--primary);
+}
+.di-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; line-height: 1.5; }
+.di-title a { color: var(--primary); }
+.di-summary { font-size: 14px; color: var(--text-color); line-height: 1.75; margin-bottom: 10px; }
+.di-meta { font-size: 12px; color: var(--muted-text); margin-bottom: 10px; }
+.di-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.di-actions .action-btn { font-size: 11px; padding: 3px 8px; }
 
-/* ── Risk / recommendation lists ── */
-.rec-list, .risk-list { padding-left: 20px; margin: 10px 0; }
-.rec-list li { color: #333; margin-bottom: 6px; font-size: 14px; }
-.risk-list li { color: #c0392b; margin-bottom: 6px; font-size: 14px; }
+/* ── Tables ── */
+.dist-table td, .cal-table td, .appendix-table td { vertical-align: top; }
+.cal-table td:last-child { font-size: 13px; line-height: 1.6; }
+.strength-strong { color: #27ae60; font-weight: 600; }
+.strength-mid    { color: #e67e22; font-weight: 600; }
+.strength-weak   { color: #95a5a6; }
+.rec-list, .risk-list { padding-left: 20px; font-size: 14px; line-height: 2; }
 
-/* ── Appendix table ── */
-.appendix-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-.appendix-table th { background: #f5f6fa; padding: 8px 12px; text-align: left;
-  border-bottom: 2px solid #dde; font-size: 12px; }
-.appendix-table td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; }
-
-/* ── Insights ── */
-.insight-item { background: #f8f9ff; border-left: 3px solid #4a6fa5;
-  padding: 10px 14px; margin: 8px 0; border-radius: 0 6px 6px 0; font-size: 14px; }
-
-/* ── X平台热议 ── */
-.x-feed-card { border: 1px solid #e8ecf5; border-radius: 8px; padding: 14px 16px; margin: 10px 0; background: #fafbff; }
-.x-feed-card.force-include { border-left: 3px solid #4a6fa5; }
-.x-feed-meta { font-size: 12px; color: #888; margin-bottom: 6px; }
-.x-feed-meta .x-author { font-weight: 600; color: #1da1f2; margin-right: 8px; }
-.x-feed-meta .x-force-badge { background: #4a6fa5; color: #fff; border-radius: 3px; padding: 1px 6px; font-size: 11px; }
-.x-feed-title { font-size: 14px; font-weight: 600; color: #222; margin-bottom: 6px; line-height: 1.5; }
-.x-feed-why { font-size: 13px; color: #555; margin-bottom: 8px; }
-.x-feed-link { font-size: 12px; color: #4a6fa5; }
-
-/* ── 转录摘要 ── */
-.transcript-card { border: 1px solid #e0efe0; border-radius: 8px; padding: 14px 16px; margin: 10px 0; background: #f9fff9; }
-.transcript-card .tc-meta { font-size: 12px; color: #888; margin-bottom: 6px; }
-.transcript-card .tc-title { font-size: 14px; font-weight: 600; color: #222; margin-bottom: 6px; }
-.transcript-card .tc-summary { font-size: 13px; color: #444; margin-bottom: 8px; }
-.transcript-card .tc-badge { background: #27ae60; color: #fff; border-radius: 3px; padding: 1px 6px; font-size: 11px; margin-right: 6px; }
-
-/* ── Responsive ── */
-@media (max-width: 600px) {
-  nav .nav-links a { font-size: 11px; padding: 6px 8px; }
-  .cover-card { padding: 24px 16px; }
-  .cover-card h1 { font-size: 20px; }
+@media (max-width: 768px) {
+  .fc-left, .fc-right { padding: 16px; }
 }
 """
 
 _JS = """
+// Auto section open/close
 document.querySelectorAll('.section-header').forEach(function(header) {
   header.addEventListener('click', function() {
     var body = header.nextElementSibling;
@@ -195,11 +175,73 @@ document.querySelectorAll('.section-header').forEach(function(header) {
     header.classList.toggle('open', !isOpen);
   });
 });
-// Open first section by default
+
+// Default open first section
 var first = document.querySelector('.section-body');
 if (first) {
   first.classList.add('open');
   first.previousElementSibling.classList.add('open');
+}
+
+// Dark Mode Toggle
+function toggleTheme() {
+  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+
+// Check saved theme
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark-mode');
+}
+
+// Global Filter for domains
+function filterByDomain(domain) {
+  document.querySelectorAll('.featured-card').forEach(function(card) {
+    if (domain === 'all' || card.dataset.domain === domain) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Copy Summary Action
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const originalText = btn.innerText;
+    btn.innerText = "已复制 ✓";
+    setTimeout(() => { btn.innerText = originalText; }, 2000);
+  });
+}
+
+// Send Feedback (Mock Webhook)
+function sendFeedback(itemId, feedbackType, btn) {
+  // 这里的 WEBHOOK_URL 需要替换为你自己的在线接收端 
+  // (比如飞书机器人 webhook、腾讯云函数、或者你服务器上的 API)
+  const WEBHOOK_URL = ''; 
+  
+  const originalText = btn.innerText;
+  btn.innerText = "发送中...";
+  btn.disabled = true;
+
+  if (!WEBHOOK_URL) {
+    alert("系统提示：当前是纯静态网页。要让你的电脑能收到数据，需要在这里配置一个服务器 Webhook 接口接收点击事件。\\n\\n[模拟记录] ID: " + itemId + " | 反馈: " + feedbackType);
+    btn.innerText = "记录已保存 ✓";
+    return;
+  }
+
+  fetch(WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ item_id: itemId, feedback: feedbackType, timestamp: new Date().toISOString() })
+  }).then(res => {
+    btn.innerText = "反馈成功 ✓";
+  }).catch(err => {
+    alert("发送失败，请检查网络或 Webhook URL: " + err);
+    btn.innerText = originalText;
+    btn.disabled = false;
+  });
 }
 """
 
@@ -412,10 +454,15 @@ def _render_nav(report: WeeklyReport, output_path: Path) -> str:
     links_html = "".join(f'<a href="{href}">{_e(label)}</a>' for href, label in links)
 
     return f"""<nav>
-  <a class="brand" href="index.html" style="color:inherit;text-decoration:none">← 期次列表</a>
-  <span class="brand" style="opacity:.4;padding:0 4px">|</span>
-  <span class="brand">泛应急周报</span>
-  <div class="nav-links">{links_html}</div>
+  <div class="nav-left">
+    <a class="brand" href="index.html" style="color:inherit;text-decoration:none">← 期次列表</a>
+    <span class="brand" style="opacity:.4;padding:0 4px">|</span>
+    <span class="brand">泛应急周报</span>
+    <div class="nav-links">{links_html}</div>
+  </div>
+  <div class="nav-actions">
+    <button onclick="toggleTheme()">🌓 切换主题</button>
+  </div>
 </nav>"""
 
 
@@ -499,18 +546,7 @@ def _render_overview(report: WeeklyReport, domain_groups: Dict[str, List[Analyze
   {dist_rows}
 </table>""")
 
-    # 1.3 重点主体动态
-    items_5 = report.selected_items[:5]
-    items_html = ""
-    for item in items_5:
-        judgment = _simple_judgment(item)
-        items_html += f"""<div class="domain-item">
-  <div class="di-title">{_e(item.title)} <span style="font-size:12px;color:#888">（{_e(item.source_name)}）</span></div>
-  <div class="di-summary">{_e(judgment)}</div>
-</div>"""
-
-    parts.append(f"""<h3 style="margin:20px 0 8px;font-size:15px">1.3 重点主体动态</h3>
-{items_html if items_html else '<p style="color:#888;font-size:14px">暂无代表性主体进入重点观察名单。</p>'}""")
+    # 1.3 重点主体动态已移除
 
     return "\n".join(parts)
 
@@ -522,77 +558,75 @@ def _render_featured(report: WeeklyReport) -> str:
         return '<p style="color:#888;font-size:14px;padding:16px 0">本周进入主体报告的高信号事件数量有限。</p>'
 
     cards: List[str] = []
+    
+    # Process text tooltips for glossary logic
+    def _apply_tooltips(text: str, glossary: list) -> str:
+        for it in glossary:
+            term = it.get("term")
+            exp = it.get("explanation")
+            if term and exp and term in text:
+                tooltip_html = f'<span class="glossary-tooltip">{_e(term)}<span class="tooltip-text">{_e(exp)}</span></span>'
+                text = text.replace(term, tooltip_html)
+        return text
+
     for idx, item in enumerate(featured, 1):
         date_str = _short_date(item.published_at)
         domain_str = _format_domains(item.domain_tags)
+        
+        # for filtering classes logic:
+        primary_domain = next((tag for tag in item.domain_tags if tag in DOMAINS), "all")
+        
         summary_text = _get_clean_summary(item)
         innovation_text = _get_clean_innovation(item)
         decision_text = _get_decision_relevance(item)
-        follow_up_items = _get_follow_up_items(item)
+
+        glossary_terms = getattr(item, "glossary_terms", []) or []
+        innovation_text = _apply_tooltips(innovation_text, glossary_terms)
 
         kf_html = ""
         key_facts = getattr(item, "key_facts", []) or []
         if key_facts:
             kf_items = "".join(f"<li>{_e(str(f))}</li>" for f in key_facts[:5] if f)
-            kf_html = f'<div class="section-label">关键事实</div><ul class="key-facts">{kf_items}</ul>'
+            kf_html = f'<div class="section-label">关键事实溯源</div><ul class="key-facts">{kf_items}</ul>'
 
         kp_html = ""
         if item.key_points:
-            kp_items = "".join(f"<li>{_e(str(kp))}</li>" for kp in item.key_points[:4] if kp)
-            kp_html = f'<div class="section-label">核心要点</div><ul class="key-points">{kp_items}</ul>'
+            kp_items = "".join(f"<li>{_apply_tooltips(str(kp), glossary_terms)}</li>" for kp in item.key_points[:4] if kp)
+            kp_html = f'<div class="section-label">核心要点</div><ul style="padding-left: 20px;">{kp_items}</ul>'
 
-        innovation_html = f'<div class="section-label">分析判断</div><p>{_e(innovation_text)}</p>' if innovation_text else ""
-        decision_html = f'<div class="section-label">决策启示</div><p>{_e(decision_text)}</p>' if decision_text else ""
-
-        fu_html = ""
-        if follow_up_items:
-            fu_items = "".join(f"<li>{_e(tip)}</li>" for tip in follow_up_items)
-            fu_html = f'<div class="section-label">跟踪建议</div><ul class="follow-up-list">{fu_items}</ul>'
-
-        glossary_html = ""
-        glossary_terms = getattr(item, "glossary_terms", []) or []
-        if glossary_terms:
-            gl_items = "".join(
-                f'<li><span class="glossary-term">{_e(str(g.get("term", "")))}</span>{_e(str(g.get("explanation", "")))}</li>'
-                for g in glossary_terms if g.get("term") and g.get("explanation")
-            )
-            if gl_items:
-                glossary_html = (
-                    f'<details class="glossary-block">'
-                    f'<summary>术语注释 ({len(glossary_terms)})</summary>'
-                    f'<ul class="glossary-list">{gl_items}</ul>'
-                    f'</details>'
-                )
+        innovation_html = f'<div class="section-label">意图与产业影响（分析判断）</div><p>{innovation_text}</p>' if innovation_text else ""
+        decision_html = f'<div class="section-label">场景与核心应用（决策启示）</div><p>{_apply_tooltips(decision_text, glossary_terms)}</p>' if decision_text else ""
 
         link_html = ""
         if item.url:
-            link_html = f'<a class="source-link" href="{_e(item.url)}" target="_blank" rel="noopener">→ 原文链接</a>'
+            link_html = f'<a class="action-btn" href="{_e(item.url)}" target="_blank" rel="noopener">🔗 原始信息源</a>'
 
-        thumbnail_url = getattr(item, "thumbnail_url", "") or ""
-        thumb_html = (
-            f'<img class="fc-thumbnail" src="{_e(thumbnail_url)}" alt="" loading="lazy" '
-            f'onerror="this.style.display=\'none\'">'
-            if thumbnail_url else ""
-        )
-
-        cards.append(f"""<div class="featured-card">
-  {thumb_html}
-  <div class="fc-body">
-  <div class="fc-meta">
-    <span>来源：{_e(item.source_name)}</span>
-    <span>日期：{_e(date_str)}</span>
-    <span>领域：{_e(domain_str)}</span>
+        cards.append(f"""<div class="featured-card" data-domain="{_e(primary_domain)}">
+  <div class="featured-header">
+    <div class="fc-meta">
+      <span>来源：{_e(item.source_name)}</span>
+      <span>日期：{_e(date_str)}</span>
+      <span>领域：{_e(domain_str)}</span>
+    </div>
+    <h3>{idx}. {_e(item.title)}</h3>
   </div>
-  <h3>{idx}. {_e(item.title)}</h3>
-  <div class="section-label">事件概述</div>
-  <p>{_e(summary_text)}</p>
-  {kf_html}
-  {kp_html}
-  {innovation_html}
-  {decision_html}
-  {fu_html}
-  {glossary_html}
-  {link_html}
+  <div class="featured-content">
+    <div class="fc-left">
+      <div class="section-label">事件摘要</div>
+      <p>{_e(summary_text)}</p>
+      {kf_html}
+      {kp_html}
+    </div>
+    <div class="fc-right">
+      {innovation_html}
+      {decision_html}
+    </div>
+  </div>
+  <div class="action-bar">
+    <button class="action-btn" onclick="copyText(this, '{_e(summary_text)}')">📋 复制摘要</button>
+    <button class="action-btn" onclick="sendFeedback('{item.id}', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('{item.id}', 'not_interested', this)">🥱 不太感冒</button>
+    {link_html}
   </div>
 </div>""")
 
@@ -621,13 +655,18 @@ def _render_domains(domain_groups: Dict[str, List[AnalyzedItem]], seen_ids: set)
         items_html = ""
         for item in domain_items:
             summary = _get_clean_summary(item)
-            short_summary = (summary[:150] + "...") if len(summary) > 150 else summary
             date_str = _short_date(item.published_at)
             title_html = f'<a href="{_e(item.url)}" target="_blank" rel="noopener">{_e(item.title)}</a>' if item.url else _e(item.title)
+            link_btn = f'<a class="action-btn" href="{_e(item.url)}" target="_blank" rel="noopener">🔗 原文</a>' if item.url else ""
             items_html += f"""<div class="domain-item">
   <div class="di-title">{title_html}</div>
-  <div class="di-summary">{_e(short_summary)}</div>
+  <div class="di-summary">{_e(summary)}</div>
   <div class="di-meta">{_e(item.source_name)} | {_e(date_str)}</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('{_e(item.id)}', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('{_e(item.id)}', 'not_interested', this)">🥱 不太感冒</button>
+    {link_btn}
+  </div>
 </div>"""
         parts.append(items_html)
 
@@ -639,17 +678,14 @@ def _render_calendar(report: WeeklyReport) -> str:
         return '<p style="color:#888;font-size:14px;padding:16px 0">本周重要事件相对有限。</p>'
 
     rows = ""
-    for item in report.selected_items[:8]:
+    for item in report.selected_items:
         date_str = _short_date(item.published_at)
-        short_title = (item.title[:32] + "...") if len(item.title) > 32 else item.title
-        judgment = _simple_judgment(item)
-        short_j = (judgment[:45] + "...") if len(judgment) > 45 else judgment
-        title_html = f'<a href="{_e(item.url)}" target="_blank" rel="noopener">{_e(short_title)}</a>' if item.url else _e(short_title)
-        rows += f"<tr><td>{_e(date_str)}</td><td>{title_html}</td><td>{_e(item.source_name)}</td><td>{_e(short_j)}</td></tr>"
+        title_html = f'<a href="{_e(item.url)}" target="_blank" rel="noopener">{_e(item.title)}</a>' if item.url else _e(item.title)
+        rows += f"<tr><td style='white-space:nowrap;width:90px'>{_e(date_str)}</td><td>{title_html}</td></tr>"
 
-    return f"""<h3 style="margin:16px 0 8px;font-size:15px">本周重要事件</h3>
+    return f"""<h3 style="margin:16px 0 8px;font-size:15px">本周重要事件（共 {len(report.selected_items)} 条）</h3>
 <table class="cal-table">
-  <tr><th>日期</th><th>事件标题</th><th>来源</th><th>要点</th></tr>
+  <tr><th style="width:90px">日期</th><th>事件标题</th></tr>
   {rows}
 </table>"""
 

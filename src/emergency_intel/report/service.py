@@ -49,6 +49,23 @@ _KV_PREFIX_RE = re.compile(
     re.IGNORECASE,
 )
 
+# Strip LLM preambles like "基于摘要信息：" / "基于摘要信息，" / "基于原文信息："
+_SUMMARY_PREAMBLE_RE = re.compile(
+    r"^基于[摘要信息内容文本原文]{0,8}[：:，,。.\s]+"
+)
+
+# Detect raw HTML / navigation content that leaked into summary fields
+_RAW_CONTENT_RE = re.compile(
+    r"<[a-zA-Z/]"           # HTML tags
+    r"|\[Skip\s+to"         # [Skip to content]
+    r"|\* \["               # markdown nav bullet: * [Link](url)
+    r"|\[Home\]\("          # [Home](url)
+    r"|Copyright\s+\d{4}"   # Copyright 2021
+    r"|<div\s|<img\s|<span\s"
+    r"|^\s*#\s+\S",         # markdown heading: # Title
+    re.MULTILINE,
+)
+
 
 # ──────────────────────────────────────────────
 # Text cleaning helpers
@@ -59,6 +76,7 @@ def _clean_labeled_text(text: str) -> str:
     if not text:
         return ""
     cleaned = _KV_PREFIX_RE.sub("", text)
+    cleaned = _SUMMARY_PREAMBLE_RE.sub("", cleaned)
     cleaned = re.sub(r"；+", "；", cleaned)
     cleaned = re.sub(r"[；;]\s*$", "", cleaned.strip())
     return " ".join(cleaned.split())
@@ -99,8 +117,39 @@ def _ensure_complete_sentence(text: str) -> str:
     return text
 
 
+def _strip_html_for_fallback(text: str) -> str:
+    """Strip HTML/navigation noise and return the first substantive paragraph."""
+    import re as _re
+    # Remove HTML tags
+    t = _re.sub(r"<[^>]+>", " ", text)
+    # Remove markdown links [text](url) → keep link text
+    t = _re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", t)
+    # Remove orphan markdown brackets
+    t = _re.sub(r"\[([^\]]+)\]", r"\1", t)
+    # Remove markdown heading markers
+    t = _re.sub(r"^#+\s*", "", t, flags=_re.MULTILINE)
+    # Split into lines / chunks
+    chunks = [c.strip() for c in _re.split(r"[\n\r\*•]+", t) if c.strip()]
+    # Find first "meaty" chunk: ≥ 40 chars, not pure navigation (not all short words)
+    for chunk in chunks:
+        words = chunk.split()
+        if len(chunk) >= 40 and len(words) >= 6:
+            # Skip if looks like author/date line or nav list
+            if _re.match(r"^(Mon|Tue|Wed|Thu|Fri|Sat|Sun|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|\d{4})", chunk):
+                continue
+            result = " ".join(chunk.split())
+            return (result[:280] + "...") if len(result) > 280 else result
+    # Fallback: collapse all text, skip first 80 chars of nav noise
+    flat = " ".join(chunks)
+    flat = flat[80:] if len(flat) > 100 else flat
+    return (flat[:200] + "...") if len(flat) > 200 else flat
+
+
 def _fallback_summary(item: AnalyzedItem) -> str:
-    return (item.raw_text[:220] + "...") if len(item.raw_text) > 220 else item.raw_text
+    raw = item.raw_text or ""
+    if _is_raw_content(raw):
+        return _strip_html_for_fallback(raw)
+    return (raw[:220] + "...") if len(raw) > 220 else raw
 
 
 def _format_domains(domains: List[str]) -> str:
@@ -128,15 +177,50 @@ def _short_date(published_at: str) -> str:
 # Field extraction helpers
 # ──────────────────────────────────────────────
 
+def _is_raw_content(text: str) -> bool:
+    """Return True if text looks like raw HTML / page navigation rather than a clean summary."""
+    return bool(_RAW_CONTENT_RE.search(text[:400]))
+
+
+_NAV_NOISE_RE = re.compile(
+    r"^(skip\s+to\s+content|sign\s+in|home\s*/|law\s*&\s*regulations|waning\s+gibbous)",
+    re.IGNORECASE,
+)
+
+
 def _get_clean_summary(item: AnalyzedItem) -> str:
-    text = item.summary or item.raw_text[:300]
-    return _clean_labeled_text(text) or _fallback_summary(item)
+    summary = item.summary or ""
+    if summary and not _is_raw_content(summary):
+        cleaned = _clean_labeled_text(summary)
+        if cleaned and len(cleaned) >= 20 and not _NAV_NOISE_RE.match(cleaned):
+            return cleaned
+    # Fallback: first non-empty key_point
+    for kp in (item.key_points or []):
+        if kp and isinstance(kp, str) and len(kp) > 10:
+            return kp
+    result = _fallback_summary(item)
+    # Final check: if fallback still nav noise, use title-based description
+    if len(result) < 25 or _NAV_NOISE_RE.match(result):
+        domain_str = _format_domains(item.domain_tags) or "本领域"
+        return f"{item.title}。详情参见原文链接。"
+    return result
+
+
+# Boilerplate opener sentences in the innovation/analysis field to strip
+_BOILERPLATE_OPENER_RE = re.compile(
+    r"^(本文未涉及[^。！？.!?\n]{0,60}[。！？.!?]\s*"
+    r"|本[文篇](?:未提及|没有涉及|不涉及)[^。！？.!?\n]{0,60}[。！？.!?]\s*"
+    r"|(?:该文章|这篇文章|本文)[^。！？.!?\n]{0,40}(?:未涉及|仅|只是|主要是)[^。！？.!?\n]{0,60}[。！？.!?]\s*)+",
+    re.DOTALL,
+)
 
 
 def _get_clean_innovation(item: AnalyzedItem) -> str:
     if not item.innovation:
         return ""
-    return _clean_labeled_text(item.innovation)
+    text = _clean_labeled_text(item.innovation)
+    text = _BOILERPLATE_OPENER_RE.sub("", text).strip()
+    return text
 
 
 def _get_decision_relevance(item: AnalyzedItem) -> str:
@@ -144,8 +228,10 @@ def _get_decision_relevance(item: AnalyzedItem) -> str:
         return ""
     extracted = _extract_kv_segment(item.takeaway, "decision_relevance")
     if extracted:
-        return _ensure_complete_sentence(_clean_labeled_text(extracted))
+        text = _BOILERPLATE_OPENER_RE.sub("", _clean_labeled_text(extracted)).strip()
+        return _ensure_complete_sentence(text)
     cleaned = _clean_labeled_text(item.takeaway)
+    cleaned = _BOILERPLATE_OPENER_RE.sub("", cleaned).strip()
     parts = [p.strip() for p in re.split(r"[；;]", cleaned) if len(p.strip()) > 20]
     return _ensure_complete_sentence(parts[0]) if parts else _ensure_complete_sentence(cleaned[:300])
 
@@ -176,12 +262,20 @@ def _simple_judgment(item: AnalyzedItem) -> str:
         extracted = _extract_kv_segment(item.takeaway, "decision_relevance")
         if extracted:
             text = _clean_labeled_text(extracted)
-            text = _ensure_complete_sentence(text[:120])
+            text = _ensure_complete_sentence(text[:150])
             return text
-    if item.summary:
+        # takeaway itself may be a clean paragraph
+        cleaned = _clean_labeled_text(item.takeaway)
+        if cleaned and not _is_raw_content(cleaned):
+            return _ensure_complete_sentence(cleaned[:150])
+    # Try key_points first (usually cleaner than summary)
+    for kp in (item.key_points or []):
+        if kp and isinstance(kp, str) and len(kp) > 10 and not _is_raw_content(kp):
+            return _ensure_complete_sentence(kp[:150])
+    if item.summary and not _is_raw_content(item.summary):
         text = _clean_labeled_text(item.summary)
-        text = _ensure_complete_sentence(text[:120])
-        return text
+        if text:
+            return _ensure_complete_sentence(text[:150])
     return f"{_format_domains(item.domain_tags)}方向值得继续跟踪。"
 
 

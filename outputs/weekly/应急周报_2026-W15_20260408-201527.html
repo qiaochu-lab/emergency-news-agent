@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>泛应急技术行业周报 2026-03-30 to 2026-04-05</title>
+<style>
+/* ── Reset & Variables ── */
+:root {
+  --bg-color: #f5f6fa;
+  --text-color: #1a1a2e;
+  --card-bg: #fff;
+  --card-border: #e8ecf5;
+  --primary: #4a6fa5;
+  --nav-bg: #1a1a2e;
+  --nav-text: #fff;
+  --th-bg: #f5f6fa;
+  --border-color: #e8e8e8;
+  --muted-text: #555;
+}
+.dark-mode {
+  --bg-color: #0f172a;
+  --text-color: #e2e8f0;
+  --card-bg: #1e293b;
+  --card-border: #334155;
+  --primary: #60a5fa;
+  --nav-bg: #020617;
+  --nav-text: #e2e8f0;
+  --th-bg: #0f172a;
+  --border-color: #334155;
+  --muted-text: #94a3b8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: var(--bg-color); color: var(--text-color); font-size: 15px; line-height: 1.7;
+  transition: background-color 0.3s, color 0.3s;
+}
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Nav ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--nav-bg); color: var(--nav-text);
+  display: flex; align-items: center; padding: 0 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+  flex-wrap: wrap; justify-content: space-between;
+}
+.nav-left { display: flex; align-items: center; }
+nav .brand { font-weight: 700; font-size: 16px; padding: 14px 20px 14px 0; white-space: nowrap; }
+nav .nav-links { display: flex; flex-wrap: wrap; gap: 4px; }
+nav .nav-links a { color: #b0c4de; font-size: 13px; padding: 8px 12px; border-radius: 4px; white-space: nowrap; }
+nav .nav-links a:hover { color: #fff; background: rgba(255,255,255,.1); text-decoration: none; }
+.nav-actions button { background: rgba(255,255,255,0.15); color: #fff; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 12px; transition: 0.2s; margin-left: 8px;}
+.nav-actions button:hover { background: rgba(255,255,255,0.3); }
+
+/* ── Layout ── */
+.container { max-width: 960px; margin: 0 auto; padding: 24px 16px 60px; }
+
+/* ── Cover card ── */
+.cover-card {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+  color: #fff; border-radius: 12px; padding: 36px 32px; margin-bottom: 28px;
+}
+.cover-card h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+.cover-card .week { font-size: 15px; opacity: .8; margin-bottom: 20px; }
+.cover-meta { display: flex; flex-wrap: wrap; gap: 12px; }
+.cover-meta .badge { background: rgba(255,255,255,.12); border-radius: 6px; padding: 6px 14px; font-size: 13px; }
+.cover-meta .badge strong { display: block; font-size: 11px; opacity: .7; margin-bottom: 2px; }
+
+/* ── Section ── */
+.section { background: var(--card-bg); border-radius: 10px; margin-bottom: 20px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.08); border: 1px solid var(--border-color); }
+.section-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; cursor: pointer; user-select: none; border-bottom: 1px solid var(--border-color); }
+.section-header:hover { background: rgba(128,128,128,0.05); }
+.section-header h2 { font-size: 17px; font-weight: 600; }
+.section-header .toggle { font-size: 20px; color: #888; transition: transform .2s; }
+.section-header.open .toggle { transform: rotate(180deg); }
+.section-body { padding: 0 20px 20px; display: none; }
+.section-body.open { display: block; }
+
+/* ── Tables ── */
+table { width: 100%; border-collapse: collapse; font-size: 14px; color: var(--text-color); }
+th { background: var(--th-bg); padding: 9px 14px; border: 1px solid var(--border-color); text-align: left; }
+td { padding: 9px 14px; border: 1px solid var(--border-color); }
+
+/* ── Featured card splitting facts/analysis ── */
+.featured-card {
+  border: 1px solid var(--card-border); border-radius: 8px; overflow: hidden; margin: 16px 0;
+  border-left: 4px solid var(--primary); display: flex; flex-direction: column;
+}
+.featured-header { padding: 16px 20px; border-bottom: 1px solid var(--border-color); }
+.featured-header h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+.fc-meta { font-size: 12px; color: var(--muted-text); display: flex; gap: 12px; flex-wrap: wrap; }
+.fc-meta span { background: rgba(128,128,128,0.1); padding: 3px 8px; border-radius: 12px; }
+
+.featured-content { display: flex; flex-direction: column; }
+.fc-left, .fc-right { padding: 20px 24px; }
+.fc-left { background: rgba(128,128,128,0.02); border-bottom: 1px solid var(--border-color); }
+
+.section-label { font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: .5px; margin: 14px 0 6px; }
+.key-facts { padding-left: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.key-facts li { font-size: 12px; border: 1px solid var(--border-color); border-radius: 4px; padding: 2px 8px; background: rgba(128,128,128,0.05); }
+
+/* Tooltip for Glossary */
+.glossary-tooltip { position: relative; border-bottom: 1px dashed var(--primary); cursor: help; color: var(--primary); }
+.glossary-tooltip .tooltip-text {
+  visibility: hidden; width: 220px; background-color: var(--nav-bg); color: var(--nav-text); text-align: center;
+  border-radius: 6px; padding: 8px; position: absolute; z-index: 10; bottom: 125%; left: 50%;
+  margin-left: -110px; opacity: 0; transition: opacity 0.3s; font-size: 12px; font-weight: normal; font-family: sans-serif;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3); pointer-events: none;
+}
+.glossary-tooltip:hover .tooltip-text { visibility: visible; opacity: 1; }
+
+.action-bar { display: flex; gap: 10px; padding: 10px 20px; background: rgba(128,128,128,0.05); border-top: 1px solid var(--border-color); align-items: center; justify-content: flex-end;}
+.action-btn { background: none; border: 1px solid var(--border-color); color: var(--text-color); padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
+.action-btn:hover { background: var(--bg-color); }
+
+/* ── Domain items ── */
+.domain-item {
+  border: 1px solid var(--card-border); border-radius: 8px; padding: 16px 18px;
+  margin: 12px 0; background: var(--card-bg);
+  border-left: 3px solid var(--primary);
+}
+.di-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; line-height: 1.5; }
+.di-title a { color: var(--primary); }
+.di-summary { font-size: 14px; color: var(--text-color); line-height: 1.75; margin-bottom: 10px; }
+.di-meta { font-size: 12px; color: var(--muted-text); margin-bottom: 10px; }
+.di-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.di-actions .action-btn { font-size: 11px; padding: 3px 8px; }
+
+/* ── Tables ── */
+.dist-table td, .cal-table td, .appendix-table td { vertical-align: top; }
+.cal-table td:last-child { font-size: 13px; line-height: 1.6; }
+.strength-strong { color: #27ae60; font-weight: 600; }
+.strength-mid    { color: #e67e22; font-weight: 600; }
+.strength-weak   { color: #95a5a6; }
+.rec-list, .risk-list { padding-left: 20px; font-size: 14px; line-height: 2; }
+
+@media (max-width: 768px) {
+  .fc-left, .fc-right { padding: 16px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-left">
+    <a class="brand" href="index.html" style="color:inherit;text-decoration:none">← 期次列表</a>
+    <span class="brand" style="opacity:.4;padding:0 4px">|</span>
+    <span class="brand">泛应急周报</span>
+    <div class="nav-links"><a href="#exec-summary">执行摘要</a><a href="#overview">本周概览</a><a href="#featured">重点事件</a><a href="#domains">各领域动态</a><a href="#calendar">事件日历</a><a href="#recs">建议与风险</a><a href="#appendix">信源附录</a></div>
+  </div>
+  <div class="nav-actions">
+    <button onclick="toggleTheme()">🌓 切换主题</button>
+  </div>
+</nav>
+<div class="container">
+<div class="cover-card">
+  <h1>泛应急技术行业周报</h1>
+  <div class="week">2026.03.30 — 2026.04.05</div>
+  <div class="cover-meta">
+    <div class="badge"><strong>研报评级</strong>中性</div>
+    <div class="badge"><strong>覆盖领域</strong>AI · 无人机 · 通信网络 · 泛应急</div>
+    <div class="badge"><strong>本期信号数</strong>32 条</div>
+    <div class="badge"><strong>生成时间</strong>2026-04-08 12:15</div>
+  </div>
+</div><div class="section" id="exec-summary">
+  <div class="section-header open">
+    <h2>执行摘要</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body open"><table class="summary-table"><tr><th>景气度</th><td>整体活跃，跨领域融合驱动</td></tr><tr><th>核心主线</th><td>跨领域信号仍在增加，AI、通信、无人系统与应急体系开始出现更明显的耦合。</td></tr><tr><th>重点事件</th><td>LEO Satellite Networks: Supporting Marit...</td></tr><tr><th>风险提示</th><td>政策推进节奏不及预期风险</td></tr></table>
+<p style="margin-top:12px;font-size:14px;color:#555">本周泛应急技术相关主题整体维持活跃，跨领域融合方向仍是景气度相对较高的主线。</p></div>
+</div><div class="section" id="overview">
+  <div class="section-header">
+    <h2>一、本周概览</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><h3 style="margin:16px 0 8px;font-size:15px">1.1 行业整体表现</h3>
+<p style="font-size:14px;color:#333;margin-bottom:8px">本周泛应急技术相关主题整体维持活跃，跨领域融合方向仍是景气度相对较高的主线。</p>
+<ul style="padding-left:20px;font-size:14px;color:#555"><li>本周共筛出 32 条重点事件，覆盖 🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统、💡 应急视角思考 — 本周可借鉴内容 等方向。</li><li>高价值来源主要来自 arXiv Networking &amp; Communications、Frontiers in Communications and Networks、Urgent Communications。</li><li>官方公告和机构动向仍是最值得优先跟踪的线索来源。</li><li>学术论文信号本周有一定贡献，前沿研究向场景落地路径值得观察。</li></ul>
+<h3 style="margin:20px 0 8px;font-size:15px">1.2 各领域信号分布</h3>
+<table class="dist-table">
+  <tr><th>领域</th><th>信号数</th><th>强弱</th><th>代表性事件</th></tr>
+  <tr><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</td><td>1</td><td class='strength-mid'>中</td><td>As aircraft losses mount, Pe...</td></tr><tr><td>📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>22</td><td class='strength-strong'>强</td><td>LEO Satellite Networks: Supp...</td></tr><tr><td>✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>7</td><td class='strength-strong'>强</td><td>Major PX4 drone software vul...</td></tr><tr><td>💡 应急视角思考 — 本周可借鉴内容</td><td>2</td><td class='strength-mid'>中</td><td>Army operations center is tr...</td></tr>
+</table></div>
+</div><div class="section" id="featured">
+  <div class="section-header">
+    <h2>二、重点事件深度分析</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><div class="featured-card" data-domain="Communications">
+  <div class="featured-header">
+    <div class="fc-meta">
+      <span>来源：govtech.com</span>
+      <span>日期：2026.04.01</span>
+      <span>领域：📡 通信专栏 — 卫星通信 / 5G·6G / 专网、🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、💡 应急视角思考 — 本周可借鉴内容</span>
+    </div>
+    <h3>1. Feds and AT&amp;T Reach $2B Deal for FirstNet Upgrades - govtech.com</h3>
+  </div>
+  <div class="featured-content">
+    <div class="fc-left">
+      <div class="section-label">事件摘要</div>
+      <p>美国联邦政府与AT&amp;T达成20亿美元协议，其中AT&amp;T将投资10亿美元升级FirstNet应急通信网络，同时为政府节省10亿美元维护费用。该协议正值国会考虑对FirstNet进行10年重新授权之际，标志着对公共安全通信基础设施的持续投入，对应急通信行业具有重要政策信号意义。</p>
+      
+      <div class="section-label">核心要点</div><ul style="padding-left: 20px;"><li>AT&T将投资10亿美元升级FirstNet网络基础设施</li><li>协议为联邦政府节省10亿美元网络维护费用</li><li>协议时机与国会考虑FirstNet 10年重新授权同步</li></ul>
+    </div>
+    <div class="fc-right">
+      <div class="section-label">意图与产业影响（分析判断）</div><p>FirstNet作为美国公共安全专用移动网络，其升级可能涉及5G、任务关键型一键通（MCPTT，基于LTE的专网语音通信标准）等现有技术增强，但文中未提供具体技术细节。协议本身是商业模式的创新，通过公私合作（PPP）模式确保应急通信网络的持续投资和运营效率。</p>
+      <div class="section-label">场景与核心应用（决策启示）</div><p>该协议直接支持FirstNet网络的升级和维护，将提升灾后通信恢复和重大场合通信保障能力。FirstNet作为专用网络，在灾害期间可提供优先级通信服务，确保应急人员通信畅通。</p>
+    </div>
+  </div>
+  <div class="action-bar">
+    <button class="action-btn" onclick="copyText(this, '美国联邦政府与AT&amp;T达成20亿美元协议，其中AT&amp;T将投资10亿美元升级FirstNet应急通信网络，同时为政府节省10亿美元维护费用。该协议正值国会考虑对FirstNet进行10年重新授权之际，标志着对公共安全通信基础设施的持续投入，对应急通信行业具有重要政策信号意义。')">📋 复制摘要</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-govtech-com-biz-feds-and-at-t-reach-2b-deal-for-firstnet-upgrades', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-govtech-com-biz-feds-and-at-t-reach-2b-deal-for-firstnet-upgrades', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://www.govtech.com/biz/feds-and-at-t-reach-2b-deal-for-firstnet-upgrades" target="_blank" rel="noopener">🔗 原始信息源</a>
+  </div>
+</div>
+<div class="featured-card" data-domain="Communications">
+  <div class="featured-header">
+    <div class="fc-meta">
+      <span>来源：rcrwireless.com</span>
+      <span>日期：2026.04.01</span>
+      <span>领域：📡 通信专栏 — 卫星通信 / 5G·6G / 专网、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统、🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</span>
+    </div>
+    <h3>2. Private 5G: Siemens goes global, Nokia still at the races, open RAN in the UK - RCR Wireless News</h3>
+  </div>
+  <div class="featured-content">
+    <div class="fc-left">
+      <div class="section-label">事件摘要</div>
+      <p>工业巨头和电信供应商正加速布局专用5G网络，西门子将专用5G业务扩展至北美，诺基亚在关键任务企业部署中保持竞争力，英国开放无线接入网计划吸引欧洲专家，凸显专用网络成为工业战略和供应链多元化的核心。</p>
+      
+      <div class="section-label">核心要点</div><ul style="padding-left: 20px;"><li>西门子专用5G业务扩展至北美，强调AI驱动工业自动化</li><li>诺基亚在加拿大采矿部署中保持关键任务企业需求</li><li>英国开放无线接入网计划聚焦企业专用5G，推动供应链多元化</li></ul>
+    </div>
+    <div class="fc-right">
+      <div class="section-label">意图与产业影响（分析判断）</div><p>专用5G网络通过企业自有无线基础设施提供确定性性能，不受通用办公通信干扰，支持低延迟、高可靠连接。核心机制包括使用专用频谱（如3.8-4.2 GHz和CBRS频段）、边缘计算能力升级（5G路由器集成边缘运行时，实现AI就绪数据处理），以及工业级端到端解决方案设计。与上一代相比，专用5G更注重工业用例、操作技术网络安全和用户需求，替代易在密集工业环境中过载的未授权Wi-Fi。技术成熟度处于产品可用阶段，证据包括西门子在15个国家的销售部署和诺基亚的企业级应用。</p>
+      <div class="section-label">场景与核心应用（决策启示）</div><p>对灾后通信恢复或重大场合通信保障业务，专用5G网络提供独立、可靠的无线基础设施，可在灾害场景中快速部署，支持关键通信需求，如无人机调度或指挥决策，避免依赖公共网络中断风险。</p>
+    </div>
+  </div>
+  <div class="action-bar">
+    <button class="action-btn" onclick="copyText(this, '工业巨头和电信供应商正加速布局专用5G网络，西门子将专用5G业务扩展至北美，诺基亚在关键任务企业部署中保持竞争力，英国开放无线接入网计划吸引欧洲专家，凸显专用网络成为工业战略和供应链多元化的核心。')">📋 复制摘要</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-rcrwireless-com-20260401-uncategorized-siemens-nokia-open-ran-privat', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-rcrwireless-com-20260401-uncategorized-siemens-nokia-open-ran-privat', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://www.rcrwireless.com/20260401/uncategorized/siemens-nokia-open-ran-private-5g" target="_blank" rel="noopener">🔗 原始信息源</a>
+  </div>
+</div>
+<div class="featured-card" data-domain="Communications">
+  <div class="featured-header">
+    <div class="fc-meta">
+      <span>来源：spacenews.com</span>
+      <span>日期：2026.03.30</span>
+      <span>领域：📡 通信专栏 — 卫星通信 / 5G·6G / 专网、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统、🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</span>
+    </div>
+    <h3>3. ESA launches first Celeste satellites to test complementary LEO navigation layer - SpaceNews</h3>
+  </div>
+  <div class="featured-content">
+    <div class="fc-left">
+      <div class="section-label">事件摘要</div>
+      <p>欧洲航天局（ESA）于2026年3月28日发射了首批两颗Celeste卫星，用于测试低地球轨道（LEO）导航增强层，旨在验证在GPS等现有系统不可用时提供备用定位、导航与授时（PNT）服务的能力。这对应急通信行业至关重要，因为灾害常导致地面导航基础设施受损，而可靠的PNT是无人机应急响应、通信中继和灾区勘察等任务的基础。</p>
+      
+      <div class="section-label">核心要点</div><ul style="padding-left: 20px;"><li>Celeste是LEO导航增强层的在轨演示任务，旨在补充GPS等现有系统。</li><li>应急场景下，LEO导航层可提供备用PNT，支持无人机精准作业。</li><li>ESA因频率使用期限和发射档期选择Rocket Lab而非欧洲火箭。</li><li>任务验证成功后，可能推动更广泛的LEO导航星座部署。</li></ul>
+    </div>
+    <div class="fc-right">
+      <div class="section-label">意图与产业影响（分析判断）</div><p>Celeste任务的核心创新在于测试低地球轨道（LEO）导航增强层，这是一种通过部署在约510公里轨道的卫星群来提供定位、导航与授时（PNT）服务的技术。与依赖地面基站或中高轨卫星的传统系统（如GPS）不同，LEO卫星因轨道更低，可发射更强信号并减少延迟，从而在城区、峡谷或灾后等信号遮挡环境中提高定位精度和可用性。该技术通过卫星播发导航信号，用户设备接收并解算以实现定位，原理类似GPS但更侧重增强和备份。若验证成功，可集成到应急通信系统中，为无人机基站部署、物资投送和人员追踪提供可靠导航，尤其在GPS失效时保障关键任务执行。</p>
+      <div class="section-label">场景与核心应用（决策启示）</div><p>对灾后通信恢复和重大场合通信保障业务，Celeste演示的LEO导航层提供了间接但关键的价值：当灾害破坏地面导航基础设施时，它可作为备用PNT源，确保应急无人机（如eVTOL或固定翼无人机）能精准飞行以执行通信中继、灾区勘察或物资运输任务，避免因导航失效导致的行动延误。例如，无人机搭载临时基站需精确悬停或航路点飞行，可靠PNT是前提。</p>
+    </div>
+  </div>
+  <div class="action-bar">
+    <button class="action-btn" onclick="copyText(this, '欧洲航天局（ESA）于2026年3月28日发射了首批两颗Celeste卫星，用于测试低地球轨道（LEO）导航增强层，旨在验证在GPS等现有系统不可用时提供备用定位、导航与授时（PNT）服务的能力。这对应急通信行业至关重要，因为灾害常导致地面导航基础设施受损，而可靠的PNT是无人机应急响应、通信中继和灾区勘察等任务的基础。')">📋 复制摘要</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-spacenews-com-esa-launches-first-celeste-satellites-to-test-complementar', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-spacenews-com-esa-launches-first-celeste-satellites-to-test-complementar', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://spacenews.com/esa-launches-first-celeste-satellites-to-test-complementary-leo-navigation-layer/" target="_blank" rel="noopener">🔗 原始信息源</a>
+  </div>
+</div>
+<div class="featured-card" data-domain="DisasterTech">
+  <div class="featured-header">
+    <div class="fc-meta">
+      <span>来源：Defense One Technology</span>
+      <span>日期：Tue, 07 Ap</span>
+      <span>领域：💡 应急视角思考 — 本周可借鉴内容</span>
+    </div>
+    <h3>4. Army operations center is trying to solve battlefield data problems in real time</h3>
+  </div>
+  <div class="featured-content">
+    <div class="fc-left">
+      <div class="section-label">事件摘要</div>
+      <p>美国陆军作战中心正通过为期180天的特遣队测试，探索解决战场实时数据问题的方案。这直接关系到应急通信中快速、可靠的数据处理需求，对灾后通信恢复和重大场合保障具有参考价值。</p>
+      
+      <div class="section-label">核心要点</div><ul style="padding-left: 20px;"><li>陆军作战中心正测试实时数据处理方案，以应对战场数据挑战。</li><li>测试为期180天，聚焦实时性，可能涉及数据融合或AI技术。</li><li>方案若成功，可借鉴于应急场景下的快速决策支持。</li></ul>
+    </div>
+    <div class="fc-right">
+      <div class="section-label">意图与产业影响（分析判断）</div><p>本次事件的核心创新在于通过特遣队测试，探索实时数据处理机制在战场环境中的应用。虽然摘要未提供具体技术细节，但通常此类方案可能涉及数据融合、人工智能（AI）或边缘计算等技术，旨在快速整合多源信息，支持实时决策。例如，AI可用于自动分析传感器数据，提升响应速度；边缘计算则能在网络受限时本地处理数据，减少延迟。这种机制强调在高压、动态场景下确保数据可靠性和及时性，与应急通信中灾后网络恢复或重大活动保障时快速获取和处理关键信息的需求高度契合。</p>
+      <div class="section-label">场景与核心应用（决策启示）</div><p>本事件对灾后通信恢复和重大场合通信保障业务的直接参考价值在于，战场实时数据处理测试强调了在紧急或高负载场景下快速、可靠处理数据的重要性。应急通信可借鉴其机制，如通过类似特遣队模式验证数据融合方案，以提升灾后网络重建效率或保障大型活动通信质量。</p>
+    </div>
+  </div>
+  <div class="action-bar">
+    <button class="action-btn" onclick="copyText(this, '美国陆军作战中心正通过为期180天的特遣队测试，探索解决战场实时数据问题的方案。这直接关系到应急通信中快速、可靠的数据处理需求，对灾后通信恢复和重大场合保障具有参考价值。')">📋 复制摘要</button>
+    <button class="action-btn" onclick="sendFeedback('defense-one-technology-army-operations-center-is-trying-to-solv', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('defense-one-technology-army-operations-center-is-trying-to-solv', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://www.defenseone.com/technology/2026/04/army-operations-center-trying-solve-battlefield-data-problems-real-time/412693/" target="_blank" rel="noopener">🔗 原始信息源</a>
+  </div>
+</div>
+<div class="featured-card" data-domain="Communications">
+  <div class="featured-header">
+    <div class="fc-meta">
+      <span>来源：marinelink.com</span>
+      <span>日期：Tue, 07 Ap</span>
+      <span>领域：📡 通信专栏 — 卫星通信 / 5G·6G / 专网、🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</span>
+    </div>
+    <h3>5. LEO Satellite Networks: Supporting Maritime Safety, Efficiency and Innovation - Marine News Magazine</h3>
+  </div>
+  <div class="featured-content">
+    <div class="fc-left">
+      <div class="section-label">事件摘要</div>
+      <p>背景是海事通信长期受限于传统卫星的延迟和不可靠性，阻碍了数据驱动洞察转化为实际效益。本周，文章指出低地球轨道（LEO）卫星网络正受到关注，以提升船舶连接性，支持海事安全、效率和创新。这很重要，因为LEO网络能提供更低延迟、更高带宽的通信，直接应对海事行业的关键瓶颈，可能加速智能航运和实时监控应用。</p>
+      
+      <div class="section-label">核心要点</div><ul style="padding-left: 20px;"><li>海事通信面临延迟和不可靠问题，阻碍数据应用和创新。</li><li>LEO卫星网络因其低成本、高速度而受关注，可提升船舶连接性。</li><li>国际海道测量组织（IHO）正在开发S-100数据框架，支持下一代导航技术。</li></ul>
+    </div>
+    <div class="fc-right">
+      <div class="section-label">意图与产业影响（分析判断）</div><p>本文强调了低地球轨道（LEO）卫星网络作为海事通信突破点的价值。LEO卫星轨道高度约500-2000公里，比传统地球静止轨道（GEO）卫星近约50倍，这降低了部署成本并显著提升数据传输速度，减少延迟。LEO卫星覆盖范围较小，因此需组成由数百或数千颗卫星互联的星座，以实现连续全球覆盖，并可灵活扩展以增强性能和覆盖。结合智能传感器和高级分析，LEO网络能提供实时数据访问，支持船舶设备监控、环境感知和导航，例如通过S-100数据框架（国际海道测量组织开发的新一代数据标准）优化航海图和信息服务，从而提升海事安全和运营效率。</p>
+      <div class="section-label">场景与核心应用（决策启示）</div><p>对灾后通信恢复或重大场合通信保障业务，LEO卫星网络的低延迟、高带宽特性提供了间接参考价值：在陆地应急场景中，如灾区或偏远地区，传统通信基础设施受损时，LEO网络可作为快速部署的备用或补充通信手段，支持实时数据传输和指挥协调，类似于其在海事中克服连接障碍的作用。</p>
+    </div>
+  </div>
+  <div class="action-bar">
+    <button class="action-btn" onclick="copyText(this, '背景是海事通信长期受限于传统卫星的延迟和不可靠性，阻碍了数据驱动洞察转化为实际效益。本周，文章指出低地球轨道（LEO）卫星网络正受到关注，以提升船舶连接性，支持海事安全、效率和创新。这很重要，因为LEO网络能提供更低延迟、更高带宽的通信，直接应对海事行业的关键瓶颈，可能加速智能航运和实时监控应用。')">📋 复制摘要</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-marinelink-com-amp-news-leo-satellite-networks-supporting-537779', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-marinelink-com-amp-news-leo-satellite-networks-supporting-537779', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://www.marinelink.com/amp/news/leo-satellite-networks-supporting-537779" target="_blank" rel="noopener">🔗 原始信息源</a>
+  </div>
+</div></div>
+</div><div class="section" id="domains">
+  <div class="section-header">
+    <h2>三、各领域精选动态</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><h3 style="margin:20px 0 10px;font-size:15px;border-left:3px solid #4a6fa5;padding-left:10px">1. 🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</h3>
+<p style="font-size:13px;color:#888;margin-bottom:10px">精选本周高信号事件（共 1 条）</p>
+<div class="domain-item">
+  <div class="di-title"><a href="https://www.defenseone.com/technology/2026/04/aircraft-losses-mount-pentagon-wants-software-fix-see-through-fog-war/412667/" target="_blank" rel="noopener">As aircraft losses mount, Pentagon wants a software fix to see through the fog of war</a></div>
+  <div class="di-summary">美国国防部正寻求软件升级，以解决老旧飞机在战场环境下感知与数据融合能力不足的问题。此举旨在应对近期飞机战损增加的现实挑战，通过技术手段提升战场透明度和生存能力。</div>
+  <div class="di-meta">Defense One Technology | Tue, 07 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('defense-one-technology-as-aircraft-losses-mount-pentagon-wants-', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('defense-one-technology-as-aircraft-losses-mount-pentagon-wants-', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://www.defenseone.com/technology/2026/04/aircraft-losses-mount-pentagon-wants-software-fix-see-through-fog-war/412667/" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div>
+<h3 style="margin:20px 0 10px;font-size:15px;border-left:3px solid #4a6fa5;padding-left:10px">2. 📡 通信专栏 — 卫星通信 / 5G·6G / 专网</h3>
+<p style="font-size:13px;color:#888;margin-bottom:10px">精选本周高信号事件（共 10 条）</p>
+<div class="domain-item">
+  <div class="di-title"><a href="https://www.marinelink.com/amp/news/leo-satellite-networks-supporting-537779" target="_blank" rel="noopener">LEO Satellite Networks: Supporting Maritime Safety, Efficiency and Innovation - Marine News Magazine</a></div>
+  <div class="di-summary">背景是海事通信长期受限于传统卫星的延迟和不可靠性，阻碍了数据驱动洞察转化为实际效益。本周，文章指出低地球轨道（LEO）卫星网络正受到关注，以提升船舶连接性，支持海事安全、效率和创新。这很重要，因为LEO网络能提供更低延迟、更高带宽的通信，直接应对海事行业的关键瓶颈，可能加速智能航运和实时监控应用。</div>
+  <div class="di-meta">marinelink.com | Tue, 07 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-marinelink-com-amp-news-leo-satellite-networks-supporting-537779', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-marinelink-com-amp-news-leo-satellite-networks-supporting-537779', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://www.marinelink.com/amp/news/leo-satellite-networks-supporting-537779" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.marinelink.com/news/leo-satellite-networks-supporting-537779" target="_blank" rel="noopener">LEO Satellite Networks: Supporting Maritime Safety, Efficiency and Innovation - marinelink.com</a></div>
+  <div class="di-summary">背景是海事领域数据可用性提升，但海上通信仍依赖传统卫星网络。本周，英国水文办公室高级产品经理Michelle Tarr在2026年4月7日发表文章，指出低地球轨道卫星网络（LEO Satellite Networks）正支持海事安全、效率和创新，通过提供低延迟、高带宽连接，结合S-100数据框架和智能传感器，增强实时监测和导航能力。这之所以重要，是因为LEO网络能显著改善海上应急通信和运营效率，对海事应急响应和全球航运数字化具有直接推动作用。</div>
+  <div class="di-meta">marinelink.com | Tue, 07 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-marinelink-com-news-leo-satellite-networks-supporting-537779', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-marinelink-com-news-leo-satellite-networks-supporting-537779', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://www.marinelink.com/news/leo-satellite-networks-supporting-537779" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://payloadspace.com/the-state-of-satcom-2026/" target="_blank" rel="noopener">The State of Satcom 2026 - Payload Space</a></div>
+  <div class="di-summary">背景是卫星通信（Satcom）在2026年持续发展，本周发布了《The State of Satcom 2026》报告，概述行业现状。这重要因为它为应急通信行业提供了卫星技术进展的参考，但原文仅为摘要，缺乏具体动态。</div>
+  <div class="di-meta">payloadspace.com | Mon, 06 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('tavily-https-payloadspace-com-the-state-of-satcom-2026', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-payloadspace-com-the-state-of-satcom-2026', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://payloadspace.com/the-state-of-satcom-2026/" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.telecoms.com/5g-6g/globalstar-launches-xcom-ran-private-5g-for-physical-ai" target="_blank" rel="noopener">Globalstar launches XCOM RAN private 5G for physical AI - Telecoms</a></div>
+  <div class="di-summary">Globalstar（全球星）于2026年4月8日推出了XCOM RAN端到端专用5G解决方案，旨在为工业自动化中的物理AI提供支持。其核心突破在于通过Supercell架构和灵活的频谱支持，将容量提升至现有专用5G方案的4倍，并简化部署流程。这对应急通信行业至关重要，因为它展示了专用5G在恶劣或偏远环境下快速部署、高带宽通信的潜力，可直接应用于灾后现场指挥或关键基础设施监控。</div>
+  <div class="di-meta">telecoms.com | Wed, 08 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-telecoms-com-5g-6g-globalstar-launches-xcom-ran-private-5g-for-physi', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-telecoms-com-5g-6g-globalstar-launches-xcom-ran-private-5g-for-physi', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://www.telecoms.com/5g-6g/globalstar-launches-xcom-ran-private-5g-for-physical-ai" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.telecoms.com/wifi/ntt-tries-out-wigig-for-industrial-private-networks" target="_blank" rel="noopener">NTT tries out WiGig for industrial private networks - Telecoms</a></div>
+  <div class="di-summary">背景：工业场景对高带宽、低延迟无线通信需求增长，传统Wi-Fi和蜂窝网络各有局限。本周发生了什么：NTT联合1Finity和三菱化学在工厂部署了基于60GHz频谱的WiGig（无线千兆）户外专用WLAN，并连接至东京的远程应用，展示了远程巡检能力。为何重要：这验证了WiGig在工业专网中支持移动设备高吞吐量的潜力，为应急通信中快速部署临时高带宽网络提供了新选项。</div>
+  <div class="di-meta">telecoms.com | Tue, 07 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-telecoms-com-wifi-ntt-tries-out-wigig-for-industrial-private-network', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-telecoms-com-wifi-ntt-tries-out-wigig-for-industrial-private-network', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://www.telecoms.com/wifi/ntt-tries-out-wigig-for-industrial-private-networks" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.rcrwireless.com/20260407/5g/china-5g-monetization" target="_blank" rel="noopener">China shifts 5G focus to monetization and enterprise growth - RCR Wireless News</a></div>
+  <div class="di-summary">背景：中国5G市场接近饱和，运营商正从用户增长转向收入变现。本周发生了什么：运营商将重点转向企业服务、工业应用、物联网和优质体验，以推动更高价值、更长期的增长，并得到政府政策和网络共享的支持。为何重要：这标志着5G发展进入新阶段，对应急通信行业而言，企业级5G和专网技术的成熟可能加速网络韧性提升和灾后恢复能力建设。</div>
+  <div class="di-meta">rcrwireless.com | Tue, 07 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-rcrwireless-com-20260407-5g-china-5g-monetization', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-rcrwireless-com-20260407-5g-china-5g-monetization', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://www.rcrwireless.com/20260407/5g/china-5g-monetization" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://spacenews.com/earth-observation-operators-push-to-deliver-satellite-images-within-minutes/" target="_blank" rel="noopener">Earth observation operators push to deliver satellite images within minutes - spacenews.com</a></div>
+  <div class="di-summary">背景是应急响应依赖快速获取灾情卫星图像，本周多家地球观测运营商（如Vantor）正推动将图像交付时间缩短至分钟级，例如演示中从拍摄到交付仅13分钟。这很重要，因为分钟级延迟能极大提升灾害评估和救援决策效率，直接影响应急通信的灾情感知能力。</div>
+  <div class="di-meta">spacenews.com | Tue, 07 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('tavily-https-spacenews-com-earth-observation-operators-push-to-deliver-satellite-imag', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-spacenews-com-earth-observation-operators-push-to-deliver-satellite-imag', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://spacenews.com/earth-observation-operators-push-to-deliver-satellite-images-within-minutes/" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://spacenews.com/capella-space-wins-49-million-contract-for-military-communications-satellite-demo/" target="_blank" rel="noopener">Capella Space wins $49 million contract for military communications satellite demo</a></div>
+  <div class="di-summary">Capella Space获得美国太空发展局（SDA）4900万美元合同，用于2027年军事通信卫星演示。这标志着低地球轨道（LEO）合成孔径雷达（SAR）卫星运营商正拓展至通信领域，为应急通信提供潜在的天基备份能力。</div>
+  <div class="di-meta">SpaceNews | Wed, 08 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('spacenews-capella-space-wins-49-million-contract-f', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('spacenews-capella-space-wins-49-million-contract-f', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://spacenews.com/capella-space-wins-49-million-contract-for-military-communications-satellite-demo/" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://arxiv.org/abs/2604.05937" target="_blank" rel="noopener">Edge Intelligence for Satellite-based Earth Observation: Scheduling Image Acquisition and Processing</a></div>
+  <div class="di-summary">本文研究了低地球轨道卫星星座如何利用边缘计算资源，对地球观测数据进行实时语义处理，以应对海量影像数据对下行链路和地面处理能力的挑战。本周arXiv发布的新论文提出了一个能量感知框架，优化数据采集、计算和通信资源的使用，特别针对海上船只检测任务进行了评估。这项工作对应急通信行业至关重要，因为它展示了卫星星座与边缘智能结合，能显著提升对时间敏感应用（如灾害监测、海上搜救）的响应速度和自主性，为未来应急通信系统提供了新的技术路径。</div>
+  <div class="di-meta">arXiv Networking &amp; Communications | Wed, 08 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('arxiv-networking-communications-edge-intelligence-for-satellite-based-ea', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('arxiv-networking-communications-edge-intelligence-for-satellite-based-ea', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://arxiv.org/abs/2604.05937" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://arxiv.org/abs/2511.16259" target="_blank" rel="noopener">Multi-Band Wireless Access-and-Backhaul (WAB) for 5G: Implementation and Experiments</a></div>
+  <div class="di-summary">背景是车联网等移动应用需要稳定连接，传统方案架构僵化。本周arXiv发布论文，首次实验验证了结合FR2回传和FR1接入的多频段无线接入回传（WAB）测试平台，在车载和室外到室内场景中有效缓解了FR2上行和非视距限制。这很重要，因为WAB作为新标准化的架构，为5G网络提供了灵活、模块化的无线中继方案，能低成本扩展毫米波覆盖，对应急通信中快速部署移动基站、增强网络韧性具有直接参考价值。</div>
+  <div class="di-meta">arXiv Networking &amp; Communications | Wed, 08 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('arxiv-networking-communications-multi-band-wireless-access-and-backhaul-', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('arxiv-networking-communications-multi-band-wireless-access-and-backhaul-', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://arxiv.org/abs/2511.16259" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div>
+<h3 style="margin:20px 0 10px;font-size:15px;border-left:3px solid #4a6fa5;padding-left:10px">3. ✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</h3>
+<p style="font-size:13px;color:#888;margin-bottom:10px">精选本周高信号事件（共 7 条）</p>
+<div class="domain-item">
+  <div class="di-title"><a href="https://dronedj.com/2026/04/07/px4-autopilot-drone-software-cybersecurity/" target="_blank" rel="noopener">Major PX4 drone software vulnerability raises hijacking concerns</a></div>
+  <div class="di-summary">本周，广泛使用的PX4无人机自动驾驶软件被曝存在严重安全漏洞，可能允许攻击者远程劫持无人机。此事对依赖PX4的应急通信无人机机队构成直接威胁，凸显了软件供应链安全在关键任务应用中的重要性。</div>
+  <div class="di-meta">DroneDJ | Wed, 08 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('dronedj-major-px4-drone-software-vulnerability-r', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('dronedj-major-px4-drone-software-vulnerability-r', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://dronedj.com/2026/04/07/px4-autopilot-drone-software-cybersecurity/" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://dronelife.com/2026/04/06/counter-uas-delays-world-cup-security/" target="_blank" rel="noopener">Will States Be Ready with Counter Drone Tech for the FIFA World Cup?</a></div>
+  <div class="di-summary">背景是美国正建立反无人机协议以保护大型体育赛事和关键基础设施。本周，马里兰州等地因资金问题和其他问题延迟了反无人机系统的部署。这很重要，因为它直接关系到2026年FIFA世界杯等重大活动的安全保障准备，可能影响应急通信中的无人机干扰应对。</div>
+  <div class="di-meta">DroneLife | Mon, 06 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('dronelife-will-states-be-ready-with-counter-drone-', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('dronelife-will-states-be-ready-with-counter-drone-', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://dronelife.com/2026/04/06/counter-uas-delays-world-cup-security/" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://arxiv.org/abs/2511.07366" target="_blank" rel="noopener">UAV-Assisted Resilience in 6G and Beyond Network Energy Saving: A Multi-Agent DRL Approach</a></div>
+  <div class="di-summary">本文研究了在6G网络节能场景下，无人机辅助的韧性通信方案。本周arXiv发布了一篇论文，提出了一种基于多智能体深度确定性策略梯度（MADDPG）的框架，通过联合优化无人机轨迹、传输功率和用户关联，在部分地面基站休眠时，利用无人机临时恢复用户服务。这为应急通信提供了新的技术思路，因为无人机可快速部署以应对基站故障或灾害导致的通信中断，提升网络韧性。</div>
+  <div class="di-meta">arXiv Networking &amp; Communications | Wed, 08 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('arxiv-networking-communications-uav-assisted-resilience-in-6g-and-beyond', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('arxiv-networking-communications-uav-assisted-resilience-in-6g-and-beyond', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://arxiv.org/abs/2511.07366" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://arxiv.org/abs/2601.21861" target="_blank" rel="noopener">Spatiotemporal Continual Learning for Mobile Edge UAV Networks: Mitigating Catastrophic Forgetting</a></div>
+  <div class="di-summary">本文针对动态时空环境中移动边缘无人机网络的灾难性遗忘问题，提出了一种时空持续学习框架，通过算法创新提升了无人机集群在应急通信场景下的自适应能力。该研究通过模拟验证，在极端用户密度变化下仍能保持服务可靠性，对应急通信中无人机集群的自主协同部署具有重要参考价值。</div>
+  <div class="di-meta">arXiv Networking &amp; Communications | Wed, 08 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('arxiv-networking-communications-spatiotemporal-continual-learning-for-mo', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('arxiv-networking-communications-spatiotemporal-continual-learning-for-mo', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://arxiv.org/abs/2601.21861" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.unmannedsystemstechnology.com/feature/lowental-hybrid-highlights-key-tactical-uas-trends-from-uav-technology-usa-2026/" target="_blank" rel="noopener">Lowental Hybrid Highlights Key Tactical UAS Trends from UAV Technology USA 2026 - Unmanned Systems Technology</a></div>
+  <div class="di-summary">在UAV Technology USA 2026会议上，Lowental Hybrid指出战术无人机系统正从快速开发转向快速采用，成为军事行动的核心要素，这为应急通信中无人机平台的技术集成和部署提供了加速信号。</div>
+  <div class="di-meta">unmannedsystemstechnology.com | 2026.04.01</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-unmannedsystemstechnology-com-feature-lowental-hybrid-highlights-key', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-unmannedsystemstechnology-com-feature-lowental-hybrid-highlights-key', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://www.unmannedsystemstechnology.com/feature/lowental-hybrid-highlights-key-tactical-uas-trends-from-uav-technology-usa-2026/" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.unmannedsystemstechnology.com/2026/04/embention-presents-veronte-autopilot-ecosystem-at-xponential-europe-2026/" target="_blank" rel="noopener">Embention Presents Veronte Autopilot Ecosystem at XPONENTIAL Europe 2026 - Unmanned Systems Technology</a></div>
+  <div class="di-summary">西班牙Embention公司在XPONENTIAL Europe 2026展会上展示了其Veronte自动驾驶仪生态系统，包括用于实时飞行仿真的铁鸟系统，旨在满足无人机和eVTOL平台的安全关键航空电子标准。这一进展对应急通信行业至关重要，因为可靠的自动驾驶系统是实现无人机自主飞行、执行空中通信中继和灾区勘察等任务的基础技术。</div>
+  <div class="di-meta">unmannedsystemstechnology.com | 2026.04.01</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-unmannedsystemstechnology-com-2026-04-embention-presents-veronte-aut', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('tavily-https-www-unmannedsystemstechnology-com-2026-04-embention-presents-veronte-aut', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://www.unmannedsystemstechnology.com/2026/04/embention-presents-veronte-autopilot-ecosystem-at-xponential-europe-2026/" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://blog.dronesense.com/scaling-your-public-safety-drone-program-with-purpose-and-confidence" target="_blank" rel="noopener">Scaling Your Public Safety Drone Program With Purpose and Confidence</a></div>
+  <div class="di-summary">背景是美国公共安全无人机项目已广泛部署，市场增长迅速。本周DroneSense博客讨论了项目规模化时如何保持控制的核心挑战。这很重要，因为规模化是项目从试点走向成熟运营的关键转折点，直接影响应急通信中无人机作为空中通信中继和勘察平台的大规模应用可行性。</div>
+  <div class="di-meta">DroneSense Blog | 2026.03.30</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('dronesense-blog-scaling-your-public-safety-drone-program', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('dronesense-blog-scaling-your-public-safety-drone-program', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://blog.dronesense.com/scaling-your-public-safety-drone-program-with-purpose-and-confidence" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div>
+<h3 style="margin:20px 0 10px;font-size:15px;border-left:3px solid #4a6fa5;padding-left:10px">4. 💡 应急视角思考 — 本周可借鉴内容</h3>
+<p style="font-size:13px;color:#888;margin-bottom:10px">精选本周高信号事件（共 2 条）</p>
+<div class="domain-item">
+  <div class="di-title"><a href="https://www.defenseone.com/technology/2026/04/army-operations-center-trying-solve-battlefield-data-problems-real-time/412693/" target="_blank" rel="noopener">Army operations center is trying to solve battlefield data problems in real time</a></div>
+  <div class="di-summary">美国陆军作战中心正通过为期180天的特遣队测试，探索解决战场实时数据问题的方案。这直接关系到应急通信中快速、可靠的数据处理需求，对灾后通信恢复和重大场合保障具有参考价值。</div>
+  <div class="di-meta">Defense One Technology | Tue, 07 Ap</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('defense-one-technology-army-operations-center-is-trying-to-solv', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('defense-one-technology-army-operations-center-is-trying-to-solv', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://www.defenseone.com/technology/2026/04/army-operations-center-trying-solve-battlefield-data-problems-real-time/412693/" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://urgentcomm.com/public-safety/esn-on-track-for-2030-completion-uk-official-tells-bapco" target="_blank" rel="noopener">ESN ‘on track’ for 2030 completion, UK official tells BAPCO</a></div>
+  <div class="di-summary">英国公共安全网络ESN项目虽多次延期，但官方称仍有望在2030年中期完成，今年可能启用数据服务。这对应急通信领域具有参考价值，因为ESN作为国家级关键任务网络，其部署进展直接影响灾后通信恢复和重大活动保障能力。</div>
+  <div class="di-meta">Urgent Communications | 2026.04.01</div>
+  <div class="di-actions">
+    <button class="action-btn" onclick="sendFeedback('urgent-communications-esn-on-track-for-2030-completion-uk-offi', 'interested', this)">⭐ 感兴趣</button>
+    <button class="action-btn" onclick="sendFeedback('urgent-communications-esn-on-track-for-2030-completion-uk-offi', 'not_interested', this)">🥱 不太感冒</button>
+    <a class="action-btn" href="https://urgentcomm.com/public-safety/esn-on-track-for-2030-completion-uk-official-tells-bapco" target="_blank" rel="noopener">🔗 原文</a>
+  </div>
+</div></div>
+</div><div class="section" id="calendar">
+  <div class="section-header">
+    <h2>四、事件日历</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><h3 style="margin:16px 0 8px;font-size:15px">本周重要事件（共 32 条）</h3>
+<table class="cal-table">
+  <tr><th style="width:90px">日期</th><th>事件标题</th></tr>
+  <tr><td style='white-space:nowrap;width:90px'>Tue, 07 Ap</td><td><a href="https://www.marinelink.com/amp/news/leo-satellite-networks-supporting-537779" target="_blank" rel="noopener">LEO Satellite Networks: Supporting Maritime Safety, Efficiency and Innovation - Marine News Magazine</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Tue, 07 Ap</td><td><a href="https://www.marinelink.com/news/leo-satellite-networks-supporting-537779" target="_blank" rel="noopener">LEO Satellite Networks: Supporting Maritime Safety, Efficiency and Innovation - marinelink.com</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Mon, 06 Ap</td><td><a href="https://payloadspace.com/the-state-of-satcom-2026/" target="_blank" rel="noopener">The State of Satcom 2026 - Payload Space</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Wed, 08 Ap</td><td><a href="https://www.telecoms.com/5g-6g/globalstar-launches-xcom-ran-private-5g-for-physical-ai" target="_blank" rel="noopener">Globalstar launches XCOM RAN private 5G for physical AI - Telecoms</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Tue, 07 Ap</td><td><a href="https://www.telecoms.com/wifi/ntt-tries-out-wigig-for-industrial-private-networks" target="_blank" rel="noopener">NTT tries out WiGig for industrial private networks - Telecoms</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Tue, 07 Ap</td><td><a href="https://www.rcrwireless.com/20260407/5g/china-5g-monetization" target="_blank" rel="noopener">China shifts 5G focus to monetization and enterprise growth - RCR Wireless News</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Tue, 07 Ap</td><td><a href="https://spacenews.com/earth-observation-operators-push-to-deliver-satellite-images-within-minutes/" target="_blank" rel="noopener">Earth observation operators push to deliver satellite images within minutes - spacenews.com</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Wed, 08 Ap</td><td><a href="https://dronedj.com/2026/04/07/px4-autopilot-drone-software-cybersecurity/" target="_blank" rel="noopener">Major PX4 drone software vulnerability raises hijacking concerns</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Mon, 06 Ap</td><td><a href="https://dronelife.com/2026/04/06/counter-uas-delays-world-cup-security/" target="_blank" rel="noopener">Will States Be Ready with Counter Drone Tech for the FIFA World Cup?</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Wed, 08 Ap</td><td><a href="https://spacenews.com/capella-space-wins-49-million-contract-for-military-communications-satellite-demo/" target="_blank" rel="noopener">Capella Space wins $49 million contract for military communications satellite demo</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Wed, 08 Ap</td><td><a href="https://arxiv.org/abs/2604.05937" target="_blank" rel="noopener">Edge Intelligence for Satellite-based Earth Observation: Scheduling Image Acquisition and Processing</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Wed, 08 Ap</td><td><a href="https://arxiv.org/abs/2511.07366" target="_blank" rel="noopener">UAV-Assisted Resilience in 6G and Beyond Network Energy Saving: A Multi-Agent DRL Approach</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Wed, 08 Ap</td><td><a href="https://arxiv.org/abs/2511.16259" target="_blank" rel="noopener">Multi-Band Wireless Access-and-Backhaul (WAB) for 5G: Implementation and Experiments</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Wed, 08 Ap</td><td><a href="https://arxiv.org/abs/2601.21861" target="_blank" rel="noopener">Spatiotemporal Continual Learning for Mobile Edge UAV Networks: Mitigating Catastrophic Forgetting</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Wed, 08 Ap</td><td><a href="https://arxiv.org/abs/2604.04368" target="_blank" rel="noopener">OrbitTransit: Traffic Delivery and Diffusion for Earth Observation via Satellite Mobility</a></td></tr><tr><td style='white-space:nowrap;width:90px'>2026.04.08</td><td><a href="https://www.frontiersin.org/articles/10.3389/frcmn.2026.1750955" target="_blank" rel="noopener">Direct-to-satellite internet of things (DtS-IoT): a tutorial review on architectures, protocols, and future directions</a></td></tr><tr><td style='white-space:nowrap;width:90px'>2026.04.08</td><td><a href="https://www.frontiersin.org/articles/10.3389/frcmn.2026.1730921" target="_blank" rel="noopener">Emerging NGSO constellations: spectral coexistence with GSO satellite communication systems</a></td></tr><tr><td style='white-space:nowrap;width:90px'>2026.04.08</td><td><a href="https://www.frontiersin.org/articles/10.3389/frcmn.2025.1719501" target="_blank" rel="noopener">TinyTwinGuard: a lightweight authentication scheme for digital twin edge networks using TinyJAMBU</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Tue, 07 Ap</td><td><a href="https://www.defenseone.com/technology/2026/04/army-operations-center-trying-solve-battlefield-data-problems-real-time/412693/" target="_blank" rel="noopener">Army operations center is trying to solve battlefield data problems in real time</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Tue, 07 Ap</td><td><a href="https://www.defenseone.com/technology/2026/04/aircraft-losses-mount-pentagon-wants-software-fix-see-through-fog-war/412667/" target="_blank" rel="noopener">As aircraft losses mount, Pentagon wants a software fix to see through the fog of war</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Tue, 07 Ap</td><td><a href="https://www.rcrwireless.com/20260407/5g/china-5g-monetization" target="_blank" rel="noopener">China shifts 5G focus to monetization and enterprise growth</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Tue, 07 Ap</td><td><a href="https://spectrum.ieee.org/wireless-network-over-air-computation" target="_blank" rel="noopener">Over-the-Air Computation Uses Radio Interference to Crunch Data</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Tue, 07 Ap</td><td><a href="https://urgentcomm.com/satellite-direct-to-device/msi-t-mobile-bring-satellite-direct-to-device-service-to-devices" target="_blank" rel="noopener">MSI, T-Mobile bring satellite-direct-to-device service to devices</a></td></tr><tr><td style='white-space:nowrap;width:90px'>Thu, 02 Ap</td><td><a href="https://urgentcomm.com/tower-site/cinetcomm-tom-soumas-leads-tour-of-demo-deployable-comms-vehicle" target="_blank" rel="noopener">Cinetcomm: Tom Soumas leads tour of demo deployable comms vehicle</a></td></tr><tr><td style='white-space:nowrap;width:90px'>2026.04.01</td><td><a href="https://www.govtech.com/biz/feds-and-at-t-reach-2b-deal-for-firstnet-upgrades" target="_blank" rel="noopener">Feds and AT&amp;T Reach $2B Deal for FirstNet Upgrades - govtech.com</a></td></tr><tr><td style='white-space:nowrap;width:90px'>2026.04.01</td><td><a href="https://www.rcrwireless.com/20260401/uncategorized/siemens-nokia-open-ran-private-5g" target="_blank" rel="noopener">Private 5G: Siemens goes global, Nokia still at the races, open RAN in the UK - RCR Wireless News</a></td></tr><tr><td style='white-space:nowrap;width:90px'>2026.03.30</td><td><a href="https://spacenews.com/esa-launches-first-celeste-satellites-to-test-complementary-leo-navigation-layer/" target="_blank" rel="noopener">ESA launches first Celeste satellites to test complementary LEO navigation layer - SpaceNews</a></td></tr><tr><td style='white-space:nowrap;width:90px'>2026.04.01</td><td><a href="https://www.unmannedsystemstechnology.com/feature/lowental-hybrid-highlights-key-tactical-uas-trends-from-uav-technology-usa-2026/" target="_blank" rel="noopener">Lowental Hybrid Highlights Key Tactical UAS Trends from UAV Technology USA 2026 - Unmanned Systems Technology</a></td></tr><tr><td style='white-space:nowrap;width:90px'>2026.04.01</td><td><a href="https://www.unmannedsystemstechnology.com/2026/04/embention-presents-veronte-autopilot-ecosystem-at-xponential-europe-2026/" target="_blank" rel="noopener">Embention Presents Veronte Autopilot Ecosystem at XPONENTIAL Europe 2026 - Unmanned Systems Technology</a></td></tr><tr><td style='white-space:nowrap;width:90px'>2026.03.30</td><td><a href="https://blog.dronesense.com/scaling-your-public-safety-drone-program-with-purpose-and-confidence" target="_blank" rel="noopener">Scaling Your Public Safety Drone Program With Purpose and Confidence</a></td></tr><tr><td style='white-space:nowrap;width:90px'>2026.04.01</td><td><a href="https://www.developingtelecoms.com/telecom-technology/satellite-communications-networks/20058-paratus-group-launches-connectivity-solution-for-africas-essential-service-organisations.html" target="_blank" rel="noopener">Paratus Group launches connectivity solution for Africa’s essential service organisations - Developing Telecoms</a></td></tr><tr><td style='white-space:nowrap;width:90px'>2026.04.01</td><td><a href="https://urgentcomm.com/public-safety/esn-on-track-for-2030-completion-uk-official-tells-bapco" target="_blank" rel="noopener">ESN ‘on track’ for 2030 completion, UK official tells BAPCO</a></td></tr>
+</table></div>
+</div><div class="section" id="recs">
+  <div class="section-header">
+    <h2>五、建议与风险</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><h3 style="margin:16px 0 8px;font-size:15px">建议关注方向</h3>
+<ul class="rec-list"><li>技术主线：建议持续关注 🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统、💡 应急视角思考 — 本周可借鉴内容 相关链条，重点看能力组合是否继续增强。</li><li>场景主线：围绕「LEO Satellite Networks: Suppor」所代表的应用场景，跟踪是否出现规模化部署或跨部门协同验证。</li><li>验证点：优先观察政策升级、重点项目、预算投入、产业合作和应用落地信号。</li></ul>
+<h3 style="margin:20px 0 8px;font-size:15px">风险提示</h3>
+<ul class="risk-list"><li>政策推进节奏不及预期风险</li><li>产业落地节奏不及预期风险</li><li>市场需求或项目预算不及预期风险</li><li>技术成熟度与工程化转化不及预期风险</li></ul></div>
+</div><div class="section" id="appendix">
+  <div class="section-header">
+    <h2>附录：信源与采集统计</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><h3 style="margin:16px 0 10px;font-size:15px">A. 入报信源列表</h3>
+<table class="appendix-table">
+  <tr><th>#</th><th>来源名称</th><th>类型</th><th>领域</th><th>本期条目数</th><th>代表链接</th></tr>
+  <tr><td>1</td><td>marinelink.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>2</td><td><a href="https://www.marinelink.com/amp/news/leo-satellite-networks-supporting-537779" target="_blank" rel="noopener">链接</a></td></tr><tr><td>2</td><td>payloadspace.com</td><td>行业媒体</td><td>📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://payloadspace.com/the-state-of-satcom-2026/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>3</td><td>telecoms.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>2</td><td><a href="https://www.telecoms.com/5g-6g/globalstar-launches-xcom-ran-private-5g-for-physical-ai" target="_blank" rel="noopener">链接</a></td></tr><tr><td>4</td><td>rcrwireless.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>2</td><td><a href="https://www.rcrwireless.com/20260407/5g/china-5g-monetization" target="_blank" rel="noopener">链接</a></td></tr><tr><td>5</td><td>spacenews.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>2</td><td><a href="https://spacenews.com/earth-observation-operators-push-to-deliver-satellite-images-within-minutes/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>6</td><td>DroneDJ</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>1</td><td><a href="https://dronedj.com/2026/04/07/px4-autopilot-drone-software-cybersecurity/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>7</td><td>DroneLife</td><td>行业媒体</td><td>✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>1</td><td><a href="https://dronelife.com/2026/04/06/counter-uas-delays-world-cup-security/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>8</td><td>SpaceNews</td><td>行业媒体</td><td>📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://spacenews.com/capella-space-wins-49-million-contract-for-military-communications-satellite-demo/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>9</td><td>arXiv Networking &amp; Communications</td><td>学术论文</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>5</td><td><a href="https://arxiv.org/abs/2604.05937" target="_blank" rel="noopener">链接</a></td></tr><tr><td>10</td><td>Frontiers in Communications and Networks</td><td>学术论文</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>3</td><td><a href="https://www.frontiersin.org/articles/10.3389/frcmn.2026.1750955" target="_blank" rel="noopener">链接</a></td></tr><tr><td>11</td><td>Defense One Technology</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、💡 应急视角思考 — 本周可借鉴内容</td><td>2</td><td><a href="https://www.defenseone.com/technology/2026/04/army-operations-center-trying-solve-battlefield-data-problems-real-time/412693/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>12</td><td>RCR Wireless News</td><td>行业媒体</td><td>📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://www.rcrwireless.com/20260407/5g/china-5g-monetization" target="_blank" rel="noopener">链接</a></td></tr><tr><td>13</td><td>IEEE Spectrum</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://spectrum.ieee.org/wireless-network-over-air-computation" target="_blank" rel="noopener">链接</a></td></tr><tr><td>14</td><td>Urgent Communications</td><td>行业媒体</td><td>📡 通信专栏 — 卫星通信 / 5G·6G / 专网、💡 应急视角思考 — 本周可借鉴内容</td><td>3</td><td><a href="https://urgentcomm.com/satellite-direct-to-device/msi-t-mobile-bring-satellite-direct-to-device-service-to-devices" target="_blank" rel="noopener">链接</a></td></tr><tr><td>15</td><td>govtech.com</td><td>官方机构</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://www.govtech.com/biz/feds-and-at-t-reach-2b-deal-for-firstnet-upgrades" target="_blank" rel="noopener">链接</a></td></tr><tr><td>16</td><td>unmannedsystemstechnology.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>2</td><td><a href="https://www.unmannedsystemstechnology.com/feature/lowental-hybrid-highlights-key-tactical-uas-trends-from-uav-technology-usa-2026/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>17</td><td>DroneSense Blog</td><td>industry</td><td>✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统、💡 应急视角思考 — 本周可借鉴内容</td><td>1</td><td><a href="https://blog.dronesense.com/scaling-your-public-safety-drone-program-with-purpose-and-confidence" target="_blank" rel="noopener">链接</a></td></tr><tr><td>18</td><td>developingtelecoms.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://www.developingtelecoms.com/telecom-technology/satellite-communications-networks/20058-paratus-group-launches-connectivity-solution-for-africas-essential-service-organisations.html" target="_blank" rel="noopener">链接</a></td></tr>
+</table></div>
+</div>
+</div>
+<script>
+// Auto section open/close
+document.querySelectorAll('.section-header').forEach(function(header) {
+  header.addEventListener('click', function() {
+    var body = header.nextElementSibling;
+    var isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    header.classList.toggle('open', !isOpen);
+  });
+});
+
+// Default open first section
+var first = document.querySelector('.section-body');
+if (first) {
+  first.classList.add('open');
+  first.previousElementSibling.classList.add('open');
+}
+
+// Dark Mode Toggle
+function toggleTheme() {
+  document.body.classList.toggle('dark-mode');
+  const isDark = document.body.classList.contains('dark-mode');
+  localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+
+// Check saved theme
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark-mode');
+}
+
+// Global Filter for domains
+function filterByDomain(domain) {
+  document.querySelectorAll('.featured-card').forEach(function(card) {
+    if (domain === 'all' || card.dataset.domain === domain) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+
+// Copy Summary Action
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const originalText = btn.innerText;
+    btn.innerText = "已复制 ✓";
+    setTimeout(() => { btn.innerText = originalText; }, 2000);
+  });
+}
+
+// Send Feedback (Mock Webhook)
+function sendFeedback(itemId, feedbackType, btn) {
+  // 这里的 WEBHOOK_URL 需要替换为你自己的在线接收端 
+  // (比如飞书机器人 webhook、腾讯云函数、或者你服务器上的 API)
+  const WEBHOOK_URL = ''; 
+  
+  const originalText = btn.innerText;
+  btn.innerText = "发送中...";
+  btn.disabled = true;
+
+  if (!WEBHOOK_URL) {
+    alert("系统提示：当前是纯静态网页。要让你的电脑能收到数据，需要在这里配置一个服务器 Webhook 接口接收点击事件。\n\n[模拟记录] ID: " + itemId + " | 反馈: " + feedbackType);
+    btn.innerText = "记录已保存 ✓";
+    return;
+  }
+
+  fetch(WEBHOOK_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ item_id: itemId, feedback: feedbackType, timestamp: new Date().toISOString() })
+  }).then(res => {
+    btn.innerText = "反馈成功 ✓";
+  }).catch(err => {
+    alert("发送失败，请检查网络或 Webhook URL: " + err);
+    btn.innerText = originalText;
+    btn.disabled = false;
+  });
+}
+</script>
+</body>
+</html>
