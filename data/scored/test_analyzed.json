@@ -1,0 +1,103 @@
+[
+  {
+    "id": "tavily-https-www-cisa-gov-safecom-field-operations-guides",
+    "source_type": "official",
+    "source_name": "cisa.gov",
+    "title": "Field Operations Guides (FOGs)",
+    "url": "https://www.cisa.gov/safecom/field-operations-guides",
+    "published_at": "2026-04-06T13:52:37Z",
+    "language": "en",
+    "raw_text": "Home About Resources NCSWIC Updates Field Operations Guides (FOGs) Related topics: Emergency Communications , Emergency Communications Planning Field Operations Guides (FOGs) are technical references for emergency communications planning and for radio technicians responsible for radios that will be used in emergency responses. National Interoperability Field Operations Guide (NIFOG) National Interoperability Field Operations Guide Version 2.02 &nbsp;(.pdf, 4.17&nbsp;MB) (2025) The NIFOG is a technical reference for emergency communications planning and for radio technicians responsible for radios that will be used in disaster response. The NIFOG includes rules and regulations for use of nationwide and other interoperability channels, tables of frequencies and standard channel names, and other reference material, formatted as a pocket-sized guide for radio technicians to carry with them. New content in 2.02 includes updated contact information. National Interoperability Field Operations Guide Fact Sheet &nbsp;(.pdf, 410 KB) (2025) Public Safety Library Mobile App For more information on how to download the app, please visit the Public Safety Library Mobile App page . Programming Guides Programming Guide for Interoperability Radio Channels &nbsp;(.pdf, 97.91&nbsp;KB) (2021) (*) This guide is intended for radio system managers and technicians responsible for designing and programming interoperability channels for public safety radios in their community. Programming Template for Interoperability Radio Channels &nbsp;(.pdf, 259.36&nbsp;KB) (2021) (*) The template is a series Communications Resource Availability Worksheets to assist the user in effectively managing the Nationwide Interoperability Channels. (*) Denotes Archived Material: In an effort to keep CISA.gov current, the archive contains information that may not reflect current policy or programs. Didn't find what you're looking for? &nbsp; Check out the SAFECOM Resource Library . An alphabetized list of hyperlinks to all SAFECOM, NCSWIC, FPIC, and Project 25 (P25) resources.",
+    "content_depth": "fulltext",
+    "body_extraction_status": "enriched",
+    "domain_tags": [
+      "AI",
+      "DisasterTech"
+    ],
+    "entity_tags": [],
+    "region_tags": [
+      "Global"
+    ],
+    "content_type": "article",
+    "evidence_level": "Official",
+    "normalized_title": "field operations guides fogs",
+    "canonical_url": "https://www.cisa.gov/safecom/field-operations-guides",
+    "content_fingerprint": "9acf5553f978b44e5a42749028da0d93ecfa6228",
+    "importance_score": 6.5,
+    "heat_score": 2.0,
+    "final_score": 7.0,
+    "report_content_type": "article",
+    "is_this_week_signal": true,
+    "why_this_week": "",
+    "emergency_relevance_score": 8.0,
+    "communication_relevance_score": 8.0,
+    "include_in_top_report": true,
+    "inclusion_reason": "",
+    "analyst_note": "",
+    "week_relevance": "high",
+    "thumbnail_url": "https://www.cisa.gov/sites/default/files/2023-03/23_0330_webpages_safecom-resources_cta-700x394_fogs.png",
+    "summary": "基于摘要信息。美国网络安全与基础设施安全局（CISA）发布了新版《国家互操作性现场操作指南》（NIFOG）2.02版，这是应急通信规划和无线电技术人员的关键技术参考手册。该更新主要包含联系信息的修订，旨在为灾害响应中的无线电操作提供标准化指导。",
+    "key_facts": [],
+    "key_points": [
+      "NIFOG 2.02版是2025年发布的技术参考手册，用于应急通信规划和无线电操作。",
+      "指南包含全国互操作性频道的规则、频率表和标准频道名称，便于现场技术人员使用。",
+      "更新内容主要为联系信息修订，核心技术部分可能沿用旧版。",
+      "CISA同时提供编程指南和模板，但部分材料（如2021年指南）已归档，可能未反映最新政策。"
+    ],
+    "innovation": "本次更新未涉及显著的技术或机制突破，主要是对现有《国家互操作性现场操作指南》（NIFOG）的维护性修订。NIFOG本身是一个标准化的技术参考工具，其核心价值在于整合了应急通信中的互操作性规则和频率资源，例如定义了全国互操作性频道（如VHF/UHF频段的特定频率），确保不同机构（如消防、警察）的无线电设备在灾害响应中能够互联互通。这种标准化通过统一的频道命名和编程规范，减少了现场协调的复杂性，但本次2.02版的更新仅聚焦于联系信息的更新，未引入新技术或改变原有框架。",
+    "takeaway": "对灾后通信恢复业务的直接参考价值在于，NIFOG提供了标准化的无线电互操作性指南，可帮助技术人员快速配置设备，确保跨机构通信畅通，减少灾害响应中的通信障碍。间接地，它支持应急通信规划，通过预定义的频率和规则，提升整体响应效率。 近期（6个月）影响：应急通信团队可基于此指南更新培训材料和设备配置；中期（1-2年）影响：可能促进更广泛的互操作性标准采纳，但需结合其他技术如5G或卫星通信；长期（3年以上）影响：作为基础参考，持续支持传统无线电系统在应急场景中的使用，但可能需与新兴技术（如AI驱动的网络优化）融合。 建议跟踪：1. 监测CISA是否发布更全面的技术更新，如集成NTN（非地面网络）或MCPTT（任务关键型一键通）标准；2. 评估本地应急通信计划是否需要基于NIFOG 2.02调整无线电资源配置；3. 关注SAFECOM资源库中的其他材料，以获取更广泛的互操作性最佳实践。",
+    "non_expert_explanation": "这件事意味着应急响应人员现在有了更新版的手册，帮助他们在灾害中快速设置无线电进行通信，确保不同团队（如警察和消防员）能顺畅对话，但更新内容较小，主要是联系信息调整。",
+    "glossary_terms": []
+  },
+  {
+    "id": "tavily-https-www-police1-com-911-and-dispatch-smarter-faster-safer-how-ai-is-reinvent",
+    "source_type": "news",
+    "source_name": "police1.com",
+    "title": "Smarter, faster, safer: How AI is reinventing the emergency ...",
+    "url": "https://www.police1.com/911-and-dispatch/smarter-faster-safer-how-ai-is-reinventing-the-emergency-call",
+    "published_at": "2026-04-06T13:52:01Z",
+    "language": "en",
+    "raw_text": "## Assisting from call to closure An automobile accident, personal injury at home or missing child scenario doesn’t end once a unit is dispatched. In most instances, telecommunicators remain on the line as situations evolve, and Prepared continues to assist by capturing additional information in real time. “We have the ability to get live video from the caller themselves, which can help with situational awareness and catch things that maybe they’re not verbally reporting,” said Madeline Mariuzza, vice president of customer experience at Prepared. “That can help a lot with officer safety and also as the incident progresses. [...] “One of the big things is awareness of what’s going on in the room,” he said. “The system is smart enough to alert us to keywords, so if one of our call takers is providing CPR instructions to a child, that’s a very traumatic call. We want to make sure they’re providing the proper instructions, so the supervisor can click on that call and make sure the proper protocols are being followed without standing over their shoulder. But for our own mental health and our own employees, we can also go over to them after the call and make sure they’re OK, see if they need a break and provide them with some guidance as well.” ## Connecting beyond the telephone [...] ## From confusion to clarity A difficult situation that many emergency call takers have experienced might sound like this: “911, where’s your emergency?” Instead of a clear response, there’s wind in the background, panicked breathing and a few unclear words – maybe “road,” maybe “home.” You ask the caller to slow down and repeat themselves. More muffled words follow. “Alley.” Or was it “valley”? After several attempts, the caller finally communicates a clear location – the alley behind Market Street Grocery.",
+    "content_depth": "summary",
+    "body_extraction_status": "fallback_summary",
+    "domain_tags": [
+      "AI",
+      "Communications"
+    ],
+    "entity_tags": [
+      "ITU"
+    ],
+    "region_tags": [
+      "Global"
+    ],
+    "content_type": "article",
+    "evidence_level": "Industry media",
+    "normalized_title": "smarter faster safer how ai is reinventing the emergency ",
+    "canonical_url": "https://www.police1.com/911-and-dispatch/smarter-faster-safer-how-ai-is-reinventing-the-emergency-call",
+    "content_fingerprint": "3592583d285853967ea4e622d6029199f2f78c0e",
+    "importance_score": 5.5,
+    "heat_score": 4.0,
+    "final_score": 7.0,
+    "report_content_type": "article",
+    "is_this_week_signal": true,
+    "why_this_week": "",
+    "emergency_relevance_score": 8.0,
+    "communication_relevance_score": 8.0,
+    "include_in_top_report": true,
+    "inclusion_reason": "",
+    "analyst_note": "",
+    "week_relevance": "high",
+    "thumbnail_url": "",
+    "summary": "基于摘要信息。AI正通过实时视频分析和语音识别技术，重塑从接警到处置的应急响应全流程。本周，Prepared公司展示了其AI系统在911呼叫中心的应用，能实时分析现场视频、识别关键词以提升调度员安全与指导质量。这标志着AI从辅助工具向核心决策支持演进，对应急通信的效率和准确性有直接提升价值。",
+    "key_facts": [],
+    "key_points": [
+      "AI系统可实时分析呼叫者视频，增强现场态势感知能力。",
+      "关键词识别功能帮助监督员监控关键呼叫（如CPR指导），确保协议遵循。",
+      "技术旨在减少调度员压力，提升应急响应准确性和效率。"
+    ],
+    "innovation": "该AI系统的核心突破在于集成多模态分析能力，结合计算机视觉和自然语言处理技术。具体而言，它通过实时视频流分析现场环境，识别潜在危险或关键细节（如伤者位置），同时利用语音识别技术提取关键词（如“CPR”或地点名称），自动触发警报或辅助决策。与上一代基于纯语音的系统相比，这实现了从被动接收信息到主动感知和预警的转变，技术成熟度处于产品可用阶段，证据是Prepared公司已在客户中部署，并提及了实际应用案例（如监督员点击监控呼叫）。在应急通信场景中，这能优化网络资源分配（例如，根据视频分析优先调度资源）、辅助无人机精准部署（通过视频定位），并提升灾害感知的实时性和指挥决策的准确性。",
+    "takeaway": "对灾后通信恢复和重大场合通信保障业务，本进展提供了间接参考价值：通过AI增强的呼叫处理，可更快识别灾害位置和需求，优化应急通信网络中的资源调度，减少人为错误，从而间接支持灾后恢复效率。例如，在重大活动保障中，类似技术可用于监控人群动态，提前预警潜在风险。 近期（6个月），更多911中心可能试点类似AI工具，以提升接警效率；中期（1-2年），技术或扩展至消防、医疗等应急领域，形成标准化解决方案；长期（3年以上），可能推动应急通信系统向全AI辅助决策演进，减少人力依赖。 建议跟踪：1. 关注Prepared公司及其竞争对手的产品部署进展和客户反馈。2. 评估将类似AI技术集成到现有应急通信平台（如MCPTT系统）的可行性。3. 与政策制定者沟通，推动相关AI标准（如数据隐私和准确性要求）在应急行业的应用。",
+    "non_expert_explanation": "这件事意味着，当您拨打911时，AI能帮助接线员更快理解现场情况，比如通过视频看到发生了什么，或自动识别关键词语，让救援更准确、更安全，减少混乱和延误。",
+    "glossary_terms": []
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "_comment": "筛选偏好配置。每次 pipeline 运行时自动读取。修改后立即生效，无需重启。",
+  "boost": [
+    "灾后通信",
+    "网络恢复",
+    "应急专网",
+    "卫星直连",
+    "低轨道",
+    "MCPTT",
+    "FirstNet",
+    "deployable network",
+    "disaster communication",
+    "network resilience",
+    "communication recovery",
+    "post-disaster",
+    "mission-critical communication",
+    "public safety network"
+  ],
+  "penalize": [
+    "商业推广",
+    "产品发布会",
+    "招聘",
+    "市场营销",
+    "促销",
+    "press release only"
+  ],
+  "preferred_sources": [
+    "工信部",
+    "应急管理部",
+    "FEMA",
+    "FCC",
+    "ITU",
+    "CISA",
+    "FirstNet"
+  ],
+  "few_shot_good": [],
+  "few_shot_bad": [],
+  "reader_notes": "更关注技术标准、政策、部署进展，少要纯市场动态；核心业务是灾后通信恢复和重大场合通信保障"
+}

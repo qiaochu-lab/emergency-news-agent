@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>泛应急技术行业周报 2026-03-30 to 2026-04-05</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f5f6fa; color: #1a1a2e; font-size: 15px; line-height: 1.7;
+}
+a { color: #4a6fa5; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Nav ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: #1a1a2e; color: #fff;
+  display: flex; align-items: center; gap: 0; padding: 0 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.3);
+}
+nav .brand { font-weight: 700; font-size: 16px; padding: 14px 20px 14px 0; white-space: nowrap; }
+nav .nav-links { display: flex; flex-wrap: wrap; gap: 4px; }
+nav .nav-links a {
+  color: #b0c4de; font-size: 13px; padding: 8px 12px; border-radius: 4px; white-space: nowrap;
+}
+nav .nav-links a:hover { color: #fff; background: rgba(255,255,255,.1); text-decoration: none; }
+.edition-select {
+  background: rgba(255,255,255,.12); color: #fff; border: 1px solid rgba(255,255,255,.25);
+  border-radius: 4px; padding: 5px 10px; font-size: 13px; cursor: pointer;
+  margin-right: 12px; outline: none;
+}
+.edition-select option { background: #1a1a2e; color: #fff; }
+
+/* ── Layout ── */
+.container { max-width: 960px; margin: 0 auto; padding: 24px 16px 60px; }
+
+/* ── Cover card ── */
+.cover-card {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+  color: #fff; border-radius: 12px; padding: 36px 32px; margin-bottom: 28px;
+}
+.cover-card h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+.cover-card .week { font-size: 15px; opacity: .8; margin-bottom: 20px; }
+.cover-meta { display: flex; flex-wrap: wrap; gap: 12px; }
+.cover-meta .badge {
+  background: rgba(255,255,255,.12); border-radius: 6px; padding: 6px 14px; font-size: 13px;
+}
+.cover-meta .badge strong { display: block; font-size: 11px; opacity: .7; margin-bottom: 2px; }
+
+/* ── Section ── */
+.section { background: #fff; border-radius: 10px; margin-bottom: 20px; overflow: hidden;
+           box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px; cursor: pointer; user-select: none;
+  border-bottom: 1px solid #f0f0f0;
+}
+.section-header:hover { background: #fafbff; }
+.section-header h2 { font-size: 17px; font-weight: 600; }
+.section-header .toggle { font-size: 20px; color: #888; transition: transform .2s; }
+.section-header.open .toggle { transform: rotate(180deg); }
+.section-body { padding: 0 20px 20px; display: none; }
+.section-body.open { display: block; }
+
+/* ── Summary table ── */
+.summary-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+.summary-table th, .summary-table td { padding: 9px 14px; border: 1px solid #e8e8e8; text-align: left; }
+.summary-table th { background: #f5f6fa; font-weight: 600; width: 30%; }
+
+/* ── Signal dist table ── */
+.dist-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+.dist-table th { background: #f5f6fa; padding: 8px 12px; text-align: left; border-bottom: 2px solid #dde; font-size: 12px; }
+.dist-table td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; }
+.strength-strong { color: #27ae60; font-weight: 600; }
+.strength-mid { color: #e67e22; }
+.strength-weak { color: #bbb; }
+
+/* ── Featured card ── */
+.featured-card {
+  border: 1px solid #e8ecf5; border-radius: 8px; overflow: hidden; margin: 16px 0;
+  border-left: 4px solid #4a6fa5;
+}
+.featured-card .fc-thumbnail {
+  width: 100%; max-height: 200px; object-fit: cover; display: block;
+  border-bottom: 1px solid #e8ecf5;
+}
+.featured-card .fc-body { padding: 20px; }
+.featured-card .fc-meta { font-size: 12px; color: #888; margin-bottom: 12px; display: flex; gap: 12px; flex-wrap: wrap; }
+.featured-card .fc-meta span { background: #f0f4ff; padding: 3px 8px; border-radius: 12px; }
+.featured-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 10px; line-height: 1.5; }
+.featured-card .section-label { font-size: 12px; font-weight: 700; color: #4a6fa5; text-transform: uppercase;
+  letter-spacing: .5px; margin: 14px 0 6px; }
+.featured-card p { font-size: 14px; color: #333; margin-bottom: 8px; }
+.key-facts { padding-left: 0; margin: 6px 0; list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
+.key-facts li { font-size: 12px; font-weight: 500; color: #0f3460; background: #e8f0fb; border-radius: 4px; padding: 2px 10px; }
+.key-points { padding-left: 20px; margin: 6px 0; }
+.key-points li { font-size: 14px; color: #333; margin-bottom: 4px; }
+.follow-up-list { padding-left: 20px; }
+.follow-up-list li { font-size: 13px; color: #555; margin-bottom: 3px; }
+.glossary-block { margin-top: 12px; border-top: 1px dashed #ddd; padding-top: 8px; }
+.glossary-block summary { font-size: 12px; color: #888; cursor: pointer; user-select: none; }
+.glossary-block summary:hover { color: #555; }
+.glossary-list { padding-left: 0; margin: 6px 0 0; list-style: none; }
+.glossary-list li { font-size: 12px; color: #555; padding: 3px 0; border-bottom: 1px solid #f0f0f0; }
+.glossary-list li:last-child { border-bottom: none; }
+.glossary-term { font-weight: 600; color: #333; margin-right: 4px; }
+.source-link { display: inline-block; margin-top: 10px; font-size: 13px;
+  background: #f0f4ff; padding: 4px 12px; border-radius: 4px; }
+
+/* ── Domain item list ── */
+.domain-item { border-bottom: 1px solid #f5f5f5; padding: 14px 0; }
+.domain-item:last-child { border-bottom: none; }
+.domain-item .di-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; line-height: 1.5; }
+.domain-item .di-summary { font-size: 13px; color: #555; margin-bottom: 6px; }
+.domain-item .di-meta { font-size: 12px; color: #999; }
+.domain-tag { display: inline-block; background: #eef3ff; color: #4a6fa5;
+  padding: 2px 8px; border-radius: 10px; font-size: 11px; margin-right: 4px; }
+
+/* ── Calendar table ── */
+.cal-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+.cal-table th { background: #f5f6fa; padding: 8px 12px; text-align: left; border-bottom: 2px solid #dde; font-size: 12px; }
+.cal-table td { padding: 9px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; }
+
+/* ── Risk / recommendation lists ── */
+.rec-list, .risk-list { padding-left: 20px; margin: 10px 0; }
+.rec-list li { color: #333; margin-bottom: 6px; font-size: 14px; }
+.risk-list li { color: #c0392b; margin-bottom: 6px; font-size: 14px; }
+
+/* ── Appendix table ── */
+.appendix-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.appendix-table th { background: #f5f6fa; padding: 8px 12px; text-align: left;
+  border-bottom: 2px solid #dde; font-size: 12px; }
+.appendix-table td { padding: 8px 12px; border-bottom: 1px solid #f0f0f0; }
+
+/* ── Insights ── */
+.insight-item { background: #f8f9ff; border-left: 3px solid #4a6fa5;
+  padding: 10px 14px; margin: 8px 0; border-radius: 0 6px 6px 0; font-size: 14px; }
+
+/* ── X平台热议 ── */
+.x-feed-card { border: 1px solid #e8ecf5; border-radius: 8px; padding: 14px 16px; margin: 10px 0; background: #fafbff; }
+.x-feed-card.force-include { border-left: 3px solid #4a6fa5; }
+.x-feed-meta { font-size: 12px; color: #888; margin-bottom: 6px; }
+.x-feed-meta .x-author { font-weight: 600; color: #1da1f2; margin-right: 8px; }
+.x-feed-meta .x-force-badge { background: #4a6fa5; color: #fff; border-radius: 3px; padding: 1px 6px; font-size: 11px; }
+.x-feed-title { font-size: 14px; font-weight: 600; color: #222; margin-bottom: 6px; line-height: 1.5; }
+.x-feed-why { font-size: 13px; color: #555; margin-bottom: 8px; }
+.x-feed-link { font-size: 12px; color: #4a6fa5; }
+
+/* ── 转录摘要 ── */
+.transcript-card { border: 1px solid #e0efe0; border-radius: 8px; padding: 14px 16px; margin: 10px 0; background: #f9fff9; }
+.transcript-card .tc-meta { font-size: 12px; color: #888; margin-bottom: 6px; }
+.transcript-card .tc-title { font-size: 14px; font-weight: 600; color: #222; margin-bottom: 6px; }
+.transcript-card .tc-summary { font-size: 13px; color: #444; margin-bottom: 8px; }
+.transcript-card .tc-badge { background: #27ae60; color: #fff; border-radius: 3px; padding: 1px 6px; font-size: 11px; margin-right: 6px; }
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  nav .nav-links a { font-size: 11px; padding: 6px 8px; }
+  .cover-card { padding: 24px 16px; }
+  .cover-card h1 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<nav>
+  <a class="brand" href="index.html" style="color:inherit;text-decoration:none">← 期次列表</a>
+  <span class="brand" style="opacity:.4;padding:0 4px">|</span>
+  <span class="brand">泛应急周报</span>
+  <div class="nav-links"><a href="#exec-summary">执行摘要</a><a href="#overview">本周概览</a><a href="#featured">重点事件</a><a href="#domains">各领域动态</a><a href="#calendar">事件日历</a><a href="#recs">建议与风险</a><a href="#appendix">信源附录</a></div>
+</nav>
+<div class="container">
+<div class="cover-card">
+  <h1>泛应急技术行业周报</h1>
+  <div class="week">2026.03.30 — 2026.04.05</div>
+  <div class="cover-meta">
+    <div class="badge"><strong>研报评级</strong>中性偏积极</div>
+    <div class="badge"><strong>覆盖领域</strong>AI · 无人机 · 通信网络 · 泛应急</div>
+    <div class="badge"><strong>本期信号数</strong>40 条</div>
+    <div class="badge"><strong>生成时间</strong>2026-04-06 14:30</div>
+  </div>
+</div><div class="section" id="exec-summary">
+  <div class="section-header open">
+    <h2>执行摘要</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body open"><table class="summary-table"><tr><th>景气度</th><td>整体活跃，跨领域融合驱动</td></tr><tr><th>核心主线</th><td>跨领域信号仍在增加，AI、通信、无人系统与应急体系开始出现更明显的耦合。</td></tr><tr><th>重点事件</th><td>MCPTT | First Responder Network Authorit...</td></tr><tr><th>风险提示</th><td>政策推进节奏不及预期风险</td></tr></table>
+<p style="margin-top:12px;font-size:14px;color:#555">本周泛应急技术相关主题整体维持活跃，跨领域融合方向仍是景气度相对较高的主线。</p></div>
+</div><div class="section" id="overview">
+  <div class="section-header">
+    <h2>一、本周概览</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><h3 style="margin:16px 0 8px;font-size:15px">1.1 行业整体表现</h3>
+<p style="font-size:14px;color:#333;margin-bottom:8px">本周泛应急技术相关主题整体维持活跃，跨领域融合方向仍是景气度相对较高的主线。</p>
+<ul style="padding-left:20px;font-size:14px;color:#555"><li>本周共筛出 40 条重点事件，覆盖 🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统、💡 应急视角思考 — 本周可借鉴内容 等方向。</li><li>高价值来源主要来自 arXiv Networking &amp; Communications、firstnet.gov、Frontiers in Communications and Networks。</li><li>官方公告和机构动向仍是最值得优先跟踪的线索来源。</li><li>学术论文信号本周有一定贡献，前沿研究向场景落地路径值得观察。</li></ul>
+<h3 style="margin:20px 0 8px;font-size:15px">1.2 各领域信号分布</h3>
+<table class="dist-table">
+  <tr><th>领域</th><th>信号数</th><th>强弱</th><th>代表性事件</th></tr>
+  <tr><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</td><td>10</td><td class='strength-strong'>强</td><td>Afghanistan Situation Update...</td></tr><tr><td>📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>19</td><td class='strength-strong'>强</td><td>MCPTT | First Responder Netw...</td></tr><tr><td>✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>8</td><td class='strength-strong'>强</td><td>Non-Terrestrial Networks (NT...</td></tr><tr><td>💡 应急视角思考 — 本周可借鉴内容</td><td>3</td><td class='strength-strong'>强</td><td>From roots to reach: Network...</td></tr>
+</table>
+<h3 style="margin:20px 0 8px;font-size:15px">1.3 重点主体动态</h3>
+<div class="domain-item">
+  <div class="di-title">MCPTT | First Responder Network Authority <span style="font-size:12px;color:#888">（firstnet.gov）</span></div>
+  <div class="di-summary">FirstNet Authority 本周发布《FirstNet 操作手册》更新，旨在为公共安全机构提供基于 FirstNet 宽带网络的标准化操作指南，重点覆盖 MCPTT 等任务关键应用。</div>
+</div><div class="domain-item">
+  <div class="di-title">Deployables | First Responder Network Authority <span style="font-size:12px;color:#888">（firstnet.gov）</span></div>
+  <div class="di-summary">FirstNet Authority重申其可部署通信资产计划的核心价值与运营机制，强调其为公共安全机构提供免费、全天候的应急通信覆盖能力。该计划通过卫星连接的移动基站，在灾害、大型活动或偏远地区提供关键网络支持，无需依赖商业电力。</div>
+</div><div class="domain-item">
+  <div class="di-title">The Importance of Mission Critical Push-to-Talk (MCPTT) <span style="font-size:12px;color:#888">（allthingsfirstnet.com）</span></div>
+  <div class="di-summary">FirstNet宣布投资63亿美元升级其无线宽带服务至5G，以支持任务关键型一键通（MCPTT）等关键应用，确保应急响应人员在网络拥堵时享有优先权和抢占权。此举旨在推动应急通信从语音协调转向实时指挥，提升公共安全通信的可靠性和功能性。</div>
+</div><div class="domain-item">
+  <div class="di-title">AT&amp;T tabs Streamwide to provide FirstNet MCX services <span style="font-size:12px;color:#888">（urgentcomm.com）</span></div>
+  <div class="di-summary">AT&amp;T选择法国公司Streamwide为其FirstNet网络提供MCX技术，标志着FirstNet任务关键通信服务进入新阶段。</div>
+</div><div class="domain-item">
+  <div class="di-title">Afghanistan Situation Update #2: Humanitarian Impact of Afghanistan-Pakistan Military Escalation (5 April 2026) <span style="font-size:12px;color:#888">（UN OCHA ReliefWeb）</span></div>
+  <div class="di-summary">阿富汗-巴基斯坦边境军事冲突升级导致严重人道主义危机，影响应急通信行业。冲突造成近10万人流离失所，关键基础设施受损，人道主义援助通道受阻，凸显在战区部署可靠通信网络的紧迫性。</div>
+</div></div>
+</div><div class="section" id="featured">
+  <div class="section-header">
+    <h2>二、重点事件深度分析</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><div class="featured-card">
+  <img class="fc-thumbnail" src="https://firstnet.gov/sites/default/files/x.svg" alt="" loading="lazy" onerror="this.style.display='none'">
+  <div class="fc-body">
+  <div class="fc-meta">
+    <span>来源：firstnet.gov</span>
+    <span>日期：2026.04.06</span>
+    <span>领域：📡 通信专栏 — 卫星通信 / 5G·6G / 专网、💡 应急视角思考 — 本周可借鉴内容、🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</span>
+  </div>
+  <h3>1. MCPTT | First Responder Network Authority</h3>
+  <div class="section-label">事件概述</div>
+  <p>FirstNet Authority 本周发布《FirstNet 操作手册》更新，旨在为公共安全机构提供基于 FirstNet 宽带网络的标准化操作指南，重点覆盖 MCPTT 等任务关键应用。该手册整合了南达科他州等地的部署经验，强调通过宽带增强传统无线电系统的覆盖与互操作性。</p>
+  
+  <div class="section-label">核心要点</div><ul class="key-points"><li>FirstNet 操作手册更新，为公共安全提供标准化操作框架</li><li>南达科他州案例显示 MCPTT 用于解决农村覆盖与互操作性问题</li><li>手册整合专家知识，旨在提升 FirstNet 网络在应急场景下的使用效率</li></ul>
+  <div class="section-label">分析判断</div><p>本次事件的核心创新在于通过《FirstNet 操作手册》的系统化整合，将 MCPTT 等宽带技术应用于公共安全通信的标准化操作流程中。手册不仅提供了技术指南，还结合了南达科他州等地的实际部署案例，展示了如何利用 MCPTT 增强传统陆地移动无线电的覆盖范围和互操作性，特别是在农村和偏远地区。这代表了应急通信从依赖单一无线电系统向宽带与无线电融合的演进，通过基于 LTE 的 MCPTT 实现即时、可靠的语音通信，支持实时协调和操作安全，提升了应急响应的整体效能。</p>
+  <div class="section-label">决策启示</div><p>对政策制定者和采购方而言，本事件意味着 FirstNet Authority 正推动公共安全通信向宽带化、标准化转型，手册的发布可作为部署决策的参考框架，引导机构投资于 MCPTT 等集成解决方案以优化应急通信体系。</p>
+  <div class="section-label">跟踪建议</div><ul class="follow-up-list"><li>持续关注相关政策文件和预算安排</li><li>跟踪后续采购或标准化进展</li><li>观察国际同类动向</li></ul>
+  
+  <a class="source-link" href="https://firstnet.gov/tags/key-technologyissue/mcptt" target="_blank" rel="noopener">→ 原文链接</a>
+  </div>
+</div>
+<div class="featured-card">
+  <img class="fc-thumbnail" src="https://firstnet.gov/sites/default/files/x.svg" alt="" loading="lazy" onerror="this.style.display='none'">
+  <div class="fc-body">
+  <div class="fc-meta">
+    <span>来源：firstnet.gov</span>
+    <span>日期：2026.04.06</span>
+    <span>领域：📡 通信专栏 — 卫星通信 / 5G·6G / 专网、💡 应急视角思考 — 本周可借鉴内容、🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</span>
+  </div>
+  <h3>2. Deployables | First Responder Network Authority</h3>
+  <div class="section-label">事件概述</div>
+  <p>FirstNet Authority重申其可部署通信资产计划的核心价值与运营机制，强调其为公共安全机构提供免费、全天候的应急通信覆盖能力。该计划通过卫星连接的移动基站，在灾害、大型活动或偏远地区提供关键网络支持，无需依赖商业电力。</p>
+  
+  <div class="section-label">核心要点</div><ul class="key-points"><li>可部署资产为公共安全机构提供免费、全天候的应急通信覆盖</li><li>通过卫星连接，不依赖商业电力，支持快速部署</li><li>订阅机构可通过在线工具或客服电话直接申请使用</li></ul>
+  <div class="section-label">分析判断</div><p>FirstNet的可部署通信资产计划在应急通信领域实现了机制层面的突破，其核心价值在于将临时性通信覆盖从成本中心转变为标准化、可预测的服务。通过卫星回传（SatCOLTs）和紧凑型快速部署（CRDs）技术组合，系统能够在数小时内建立不依赖地面基础设施的移动网络节点。更重要的是，该计划建立了“订阅即服务”的运营模式，公共安全机构无需为单次使用付费或进行复杂的预算审批，消除了应急响应中的财务障碍。这种将资产预置、标准化流程和成本内化于网络运营的机制，显著提高了应急通信的可靠性和响应速度。</p>
+  <div class="section-label">决策启示</div><p>对于政策制定者和采购方，本事件确认了FirstNet Authority持续投资可部署通信资产的战略方向，表明应急通信正从“设备采购”向“服务保障”模式转变。决策者应关注这种预置资产、免费使用的模式对传统应急通信采购预算的影响。</p>
+  <div class="section-label">跟踪建议</div><ul class="follow-up-list"><li>持续关注相关政策文件和预算安排</li><li>跟踪后续采购或标准化进展</li><li>观察国际同类动向</li></ul>
+  
+  <a class="source-link" href="https://firstnet.gov/network/TT/deployables" target="_blank" rel="noopener">→ 原文链接</a>
+  </div>
+</div>
+<div class="featured-card">
+  
+  <div class="fc-body">
+  <div class="fc-meta">
+    <span>来源：3gpp.org</span>
+    <span>日期：2026.04.06</span>
+    <span>领域：✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统、📡 通信专栏 — 卫星通信 / 5G·6G / 专网、🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、💡 应急视角思考 — 本周可借鉴内容</span>
+  </div>
+  <h3>3. Non-Terrestrial Networks (NTN)</h3>
+  <div class="section-label">事件概述</div>
+  <p>3GPP官方发布非地面网络（NTN）技术详解，明确了NTN的定义、轨道分类及有效载荷模式，为应急通信领域提供了标准化技术框架。该内容虽非本周新规，但作为官方权威解释，对行业部署具有指导意义。</p>
+  
+  <div class="section-label">核心要点</div><ul class="key-points"><li>官方明确NTN定义，涵盖UAS、HAPs及卫星，为技术选型提供依据</li><li>区分透明与再生有效载荷模式，影响系统复杂度和成本</li><li>轨道参数标准化，有助于设备兼容性和网络规划</li><li>作为3GPP权威发布，可视为行业技术基准</li></ul>
+  <div class="section-label">分析判断</div><p>本次3GPP对NTN的技术详解，在机制层面明确了非地面网络的标准化架构。核心突破在于系统性地定义了NTN的组成要素：从平台类型（如UAS、HAPs、卫星）到轨道分类（LEO、MEO、GEO、HEO），并清晰区分了透明模式（仅频率转换与放大）与再生模式（具备星上处理能力）两种有效载荷。这种标准化分类为设备制造商和网络运营商提供了统一的技术语言，降低了系统集成复杂度。在应用层面，再生模式支持星上基站功能，可减少地面网关依赖，提升偏远地区应急通信的部署灵活性和响应速度；而透明模式则简化了平台设计，可能降低初期部署成本。该框架的建立，为未来NTN与地面5G网络的融合奠定了基础，推动了天地一体化通信从概念走向工程实践。</p>
+  <div class="section-label">决策启示</div><p>对政策制定者和采购方而言，3GPP的NTN技术详解提供了权威的标准化参考，有助于在制定频谱分配、设备认证和网络部署政策时，依据统一的技术框架，减少市场碎片化风险。对于部署决策者，该内容明确了不同轨道和有效载荷模式的技术特点，可作为选型评估依据，例如在偏远地区应急场景中，再生模式可能更适合快速建立独立通信节点。</p>
+  <div class="section-label">跟踪建议</div><ul class="follow-up-list"><li>持续关注相关政策文件和预算安排</li><li>跟踪后续采购或标准化进展</li><li>观察国际同类动向</li></ul>
+  
+  <a class="source-link" href="https://www.3gpp.org/technologies/ntn-overview" target="_blank" rel="noopener">→ 原文链接</a>
+  </div>
+</div>
+<div class="featured-card">
+  
+  <div class="fc-body">
+  <div class="fc-meta">
+    <span>来源：allthingsfirstnet.com</span>
+    <span>日期：2026.04.06</span>
+    <span>领域：📡 通信专栏 — 卫星通信 / 5G·6G / 专网、💡 应急视角思考 — 本周可借鉴内容、🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</span>
+  </div>
+  <h3>4. The Importance of Mission Critical Push-to-Talk (MCPTT)</h3>
+  <div class="section-label">事件概述</div>
+  <p>FirstNet宣布投资63亿美元升级其无线宽带服务至5G，以支持任务关键型一键通（MCPTT）等关键应用，确保应急响应人员在网络拥堵时享有优先权和抢占权。此举旨在推动应急通信从语音协调转向实时指挥，提升公共安全通信的可靠性和功能性。</p>
+  
+  <div class="section-label">核心要点</div><ul class="key-points"><li>FirstNet投资63亿美元升级至5G，资金来自用户费用而非税收</li><li>MCPTT提供优先级和抢占权服务，确保应急响应通信畅通</li><li>升级将支持从语音协调到实时指挥的转变</li></ul>
+  <div class="section-label">分析判断</div><p>MCPTT作为3GPP国际标准，在技术层面实现了基于宽带蜂窝网络（如4G/LTE和5G）的任务关键型一键通功能，与传统陆地移动无线电（LMR）的即时通信特性兼容。其突破价值在于通过优先级和抢占权机制，在网络拥堵时优先保障应急响应人员的通信需求，例如在紧急事件或大型公共活动中，非应急响应流量可能被临时断开以腾出带宽。这提升了通信的可靠性和低延迟性，支持实时指挥和协同，推动了应急通信从传统语音中心向数据驱动的现代化转型，增强了公共安全机构的响应效率和安全性。</p>
+  <div class="section-label">决策启示</div><p>本事件对政策制定者和采购方意味着，FirstNet的投资升级强调了公共安全通信的优先级，可能引导更多预算和部署决策向5G和MCPTT标准倾斜，以提升应急响应能力。</p>
+  <div class="section-label">跟踪建议</div><ul class="follow-up-list"><li>关注后续报道和合作扩散</li><li>跟踪商业落地信号</li><li>观察权威来源是否印证</li></ul>
+  
+  <a class="source-link" href="https://allthingsfirstnet.com/the-importance-of-mission-critical-push-to-talk-mcptt/" target="_blank" rel="noopener">→ 原文链接</a>
+  </div>
+</div>
+<div class="featured-card">
+  
+  <div class="fc-body">
+  <div class="fc-meta">
+    <span>来源：urgentcomm.com</span>
+    <span>日期：2026.04.06</span>
+    <span>领域：📡 通信专栏 — 卫星通信 / 5G·6G / 专网、🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、💡 应急视角思考 — 本周可借鉴内容</span>
+  </div>
+  <h3>5. AT&amp;T tabs Streamwide to provide FirstNet MCX services</h3>
+  <div class="section-label">事件概述</div>
+  <p>AT&amp;T选择法国公司Streamwide为其FirstNet网络提供MCX技术，标志着FirstNet任务关键通信服务进入新阶段。此举旨在增强FirstNet的下一代关键通信能力，包括MCPTT、MCVideo和MCData服务，以提升应急响应效率。</p>
+  
+  <div class="section-label">核心要点</div><ul class="key-points"><li>AT&amp;T引入Streamwide MCX技术，增强FirstNet任务关键通信能力。</li><li>Motorola Solutions的Rapid Response仍是FirstNet的MCPTT备选方案。</li><li>此举可能加速FirstNet用户从传统LMR向基于LTE的MCX服务迁移。</li><li>部署细节和具体时间表待验证，需关注后续公告。</li></ul>
+  <div class="section-label">分析判断</div><p>本事件在技术层面体现了MCX（任务关键型通信体验）在应急通信领域的突破价值。MCX基于3GPP标准，整合了MCPTT（任务关键型一键通）、MCVideo（任务关键型视频）和MCData（任务关键型数据）服务，通过LTE网络提供高可靠、低延迟的通信体验。Streamwide的MCX技术已在2024年巴黎夏季奥运会等场景中验证，其应用将推动FirstNet从传统专网向基于公共宽带网络的下一代关键通信系统演进，提升互操作性和多媒体通信能力，为应急响应提供更高效的工具。</p>
+  <div class="section-label">决策启示</div><p>对政策制定者和采购方而言，AT&amp;T选择Streamwide提供MCX服务，意味着FirstNet网络的关键通信能力将得到显著增强，可能影响未来公共安全通信的采购决策和标准制定。这提示决策者需关注MCX技术的部署进展，以优化应急通信基础设施投资。</p>
+  <div class="section-label">跟踪建议</div><ul class="follow-up-list"><li>关注后续报道和合作扩散</li><li>跟踪商业落地信号</li><li>观察权威来源是否印证</li></ul>
+  
+  <a class="source-link" href="https://urgentcomm.com/push-to-x/at-t-tabs-streamwide-to-provide-firstnet-mcx-services" target="_blank" rel="noopener">→ 原文链接</a>
+  </div>
+</div></div>
+</div><div class="section" id="domains">
+  <div class="section-header">
+    <h2>三、各领域精选动态</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><h3 style="margin:20px 0 10px;font-size:15px;border-left:3px solid #4a6fa5;padding-left:10px">1. 🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</h3>
+<p style="font-size:13px;color:#888;margin-bottom:10px">精选本周高信号事件（共 10 条）</p>
+<div class="domain-item">
+  <div class="di-title"><a href="https://reliefweb.int/report/afghanistan/afghanistan-situation-update-2-humanitarian-impact-afghanistan-pakistan-military-escalation-5-april-2026" target="_blank" rel="noopener">Afghanistan Situation Update #2: Humanitarian Impact of Afghanistan-Pakistan Military Escalation (5 April 2026)</a></div>
+  <div class="di-summary">阿富汗-巴基斯坦边境军事冲突升级导致严重人道主义危机，影响应急通信行业。冲突造成近10万人流离失所，关键基础设施受损，人道主义援助通道受阻，凸显在战区部署可靠通信网络的紧迫性。</div>
+  <div class="di-meta">UN OCHA ReliefWeb | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://aclanthology.org/2025.findings-acl.750.pdf" target="_blank" rel="noopener">Harnessing Large Language Models for Disaster ...</a></div>
+  <div class="di-summary">一篇学术论文探讨了利用大语言模型（LLM）提升灾害响应通信效率的技术路径，为应急通信行业提供了AI赋能的创新思路。该研究发布于本周，契合灾害技术应用的前沿趋势，具有决策参考价值。</div>
+  <div class="di-meta">aclanthology.org | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://arxiv.org/abs/2604.02367" target="_blank" rel="noopener">Evaluating Small Language Models for Front-Door Routing: A Harmonized Benchmark and Synthetic-Traffic Experiment</a></div>
+  <div class="di-summary">研究表明，小型语言模型（SLMs）已具备在推理时进行低成本、低延迟任务分类的能力，可用于前端路由决策，但准确率尚存差距。该研究通过统一基准测试和合成流量实验验证了SLMs在路由优化中的潜力，为应急通信中的AI部署提供了技术储备。</div>
+  <div class="di-meta">arXiv Networking &amp; Communications | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.preventionweb.net/news/extreme-heat-climate-change-linked-smaller-babies" target="_blank" rel="noopener">Extreme heat from climate change linked to smaller babies</a></div>
+  <div class="di-summary">阿德莱德大学研究证实极端高温导致低出生体重婴儿增多，气候变化的健康影响已具量化证据，公共卫生政策需纳入热浪应对措施。</div>
+  <div class="di-meta">PreventionWeb | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://arxiv.org/abs/2604.02381" target="_blank" rel="noopener">Agentic AI-Empowered Wireless Agent Networks With Semantic-Aware Collaboration via ILAC</a></div>
+  <div class="di-summary">该研究提出了一种基于语义感知协作的无线智能体网络框架，通过集成学习与通信（ILAC）范式，将无线网络从被动数据管道转变为主动协作生态系统。核心贡献在于设计了一种渐进式知识聚合机制，联合优化语义压缩、传输功率和物理轨迹，以解决语义冗余和通信-计算-控制集成不足的挑战。</div>
+  <div class="di-meta">arXiv Networking &amp; Communications | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://blog.google/innovation-and-ai/technology/developers-tools/introducing-flex-and-priority-inference/" target="_blank" rel="noopener">New ways to balance cost and reliability in the Gemini API</a></div>
+  <div class="di-summary">Google在其Gemini API中新增Flex和Priority两个服务层级，为开发者提供成本与可靠性的精细控制。这一更新旨在简化AI应用架构，特别是针对从简单聊天向复杂自主代理演进的场景，通过统一接口优化资源分配。</div>
+  <div class="di-meta">Google AI Blog | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.strata.io/blog/agentic-identity/the-ai-agent-identity-crisis-new-research-reveals-a-governance-gap/" target="_blank" rel="noopener">The AI Agent Identity Crisis: A 2026 Guide - Strata.io</a></div>
+  <div class="di-summary">企业AI代理部署面临身份治理危机，阻碍从试点到生产的规模化应用。调查显示多数安全负责人不信任现有身份管理系统，且缺乏统一策略，但安全风险正推动预算增加。</div>
+  <div class="di-meta">strata.io | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.cisa.gov/safecom/field-operations-guides" target="_blank" rel="noopener">Field Operations Guides (FOGs)</a></div>
+  <div class="di-summary">美国网络安全和基础设施安全局（CISA）于2025年更新并发布了《国家互操作性现场操作指南》（NIFOG）2.02版，作为应急通信规划和技术人员的口袋式技术参考。该指南更新了联系信息，并继续提供全国互操作性频道的规则、频率表和编程模板，以支持灾害响应中的无线电操作。</div>
+  <div class="di-meta">cisa.gov | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.police1.com/911-and-dispatch/smarter-faster-safer-how-ai-is-reinventing-the-emergency-call" target="_blank" rel="noopener">Smarter, faster, safer: How AI is reinventing the emergency ...</a></div>
+  <div class="di-summary">AI技术正通过实时视频分析、关键词监测和位置识别等功能，重塑应急通信的响应流程，提升从接警到处置的全链路效率与安全。Prepared公司展示了其AI系统在增强现场感知、保障调度员心理健康和优化资源调配方面的应用价值。</div>
+  <div class="di-meta">police1.com | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://x.com/petergyang/status/2040943889822232790" target="_blank" rel="noopener">Why OpenAI doesn&#x27;t focus on roadmaps from @embirico (Codex product lead): &quot;At @OpenAI, you either plan near or long-term</a></div>
+  <div class="di-summary">OpenAI产品负责人阐述公司不制定中期路线图的战略，强调专注于短期（8周内）可交付成果和长期（1年以上）愿景。这反映了AI巨头在快速迭代环境中的敏捷开发模式，可能影响行业对产品规划和投资节奏的预期。</div>
+  <div class="di-meta">follow-builders X Feed | 2026.04.06</div>
+</div>
+<h3 style="margin:20px 0 10px;font-size:15px;border-left:3px solid #4a6fa5;padding-left:10px">2. 📡 通信专栏 — 卫星通信 / 5G·6G / 专网</h3>
+<p style="font-size:13px;color:#888;margin-bottom:10px">精选本周高信号事件（共 10 条）</p>
+<div class="domain-item">
+  <div class="di-title"><a href="https://firstnet.gov/tags/key-technologyissue/mcptt" target="_blank" rel="noopener">MCPTT | First Responder Network Authority</a></div>
+  <div class="di-summary">FirstNet Authority 本周发布《FirstNet 操作手册》更新，旨在为公共安全机构提供基于 FirstNet 宽带网络的标准化操作指南，重点覆盖 MCPTT 等任务关键应用。该手册整合了南达科他州等地的部署经验，强调通过宽带增强传统无线电系统的覆盖与互操作性。</div>
+  <div class="di-meta">firstnet.gov | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://firstnet.gov/network/TT/deployables" target="_blank" rel="noopener">Deployables | First Responder Network Authority</a></div>
+  <div class="di-summary">FirstNet Authority重申其可部署通信资产计划的核心价值与运营机制，强调其为公共安全机构提供免费、全天候的应急通信覆盖能力。该计划通过卫星连接的移动基站，在灾害、大型活动或偏远地区提供关键网络支持，无需依赖商业电力。</div>
+  <div class="di-meta">firstnet.gov | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://allthingsfirstnet.com/the-importance-of-mission-critical-push-to-talk-mcptt/" target="_blank" rel="noopener">The Importance of Mission Critical Push-to-Talk (MCPTT)</a></div>
+  <div class="di-summary">FirstNet宣布投资63亿美元升级其无线宽带服务至5G，以支持任务关键型一键通（MCPTT）等关键应用，确保应急响应人员在网络拥堵时享有优先权和抢占权。此举旨在推动应急通信从语音协调转向实时指挥，提升公共安全通信的可靠性和功能性。</div>
+  <div class="di-meta">allthingsfirstnet.com | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://urgentcomm.com/push-to-x/at-t-tabs-streamwide-to-provide-firstnet-mcx-services" target="_blank" rel="noopener">AT&amp;T tabs Streamwide to provide FirstNet MCX services</a></div>
+  <div class="di-summary">AT&amp;T选择法国公司Streamwide为其FirstNet网络提供MCX技术，标志着FirstNet任务关键通信服务进入新阶段。此举旨在增强FirstNet的下一代关键通信能力，包括MCPTT、MCVideo和MCData服务，以提升应急响应效率。</div>
+  <div class="di-meta">urgentcomm.com | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.ericsson.com/en/reports-and-papers/white-papers/private-5g-networks" target="_blank" rel="noopener">Critical capabilities for private 5G networks - Ericsson</a></div>
+  <div class="di-summary">爱立信发布白皮书，强调基于3GPP标准的私有5G网络在关键任务（如公共安全）和关键业务（如工业4.0）应用中的核心能力，旨在推动行业从传统LMR网络向现代化无线通信转型。白皮书聚焦MCPTT和URLLC等技术标准，为网络部署提供技术框架。</div>
+  <div class="di-meta">ericsson.com | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.iridium.com/discover/iridium-articles/providing-connectivity-during-disasters-satellite-communications" target="_blank" rel="noopener">Providing Connectivity During Disasters with Satellite Communications</a></div>
+  <div class="di-summary">铱星公司发布卫星通信在灾害响应中的应用白皮书，强调其低轨星座在陆基网络中断时提供全球覆盖和快速部署能力。报告通过多个真实案例展示其设备在应急指挥、救援协调中的关键作用，并给出具体备灾建议。</div>
+  <div class="di-meta">iridium.com | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://spacedaily.com/new-tactical-wireless-emergency-broadband-network-introduced/" target="_blank" rel="noopener">New Tactical Wireless Emergency Broadband Network Introduced</a></div>
+  <div class="di-summary">F4W公司发布了新一代战术无线应急宽带网络（TWEB IACC），该网络能在基础设施损毁后10分钟内建立卫星宽带连接，为应急响应提供即时通信支持。该系统已在美国海岸警卫队的飓风灾区实际部署中验证了有效性，标志着应急通信从依赖固定基础设施向快速自组网的重大转变。</div>
+  <div class="di-meta">spacedaily.com | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.frontiersin.org/articles/10.3389/frcmn.2026.1730921" target="_blank" rel="noopener">Emerging NGSO constellations: spectral coexistence with GSO satellite communication systems</a></div>
+  <div class="di-summary">NGSO与GSO卫星系统频谱共存面临干扰挑战，需通过AI增强的干扰检测与自适应监管工具实现可持续共享。该研究为应急通信中卫星频谱资源高效利用提供了技术路径参考。</div>
+  <div class="di-meta">Frontiers in Communications and Networks | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://eprints.whiterose.ac.uk/id/eprint/159534/1/ComputerComms_Arum_Apr2020.pdf" target="_blank" rel="noopener">[PDF] A review of wireless communication using high-altitude platforms for ...</a></div>
+  <div class="di-summary">这是一篇发表于2026年4月6日的学术综述论文，系统回顾了高海拔平台在无线通信中的应用，特别是其在应急通信领域的潜力。该研究为技术标准制定和未来部署提供了重要参考，属于本周新发布且直接关联核心技术的专业内容。</div>
+  <div class="di-meta">eprints.whiterose.ac.uk | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.satellitetoday.com/partner-content/four-ways-satellite-communications-accelerate-disaster-response-and-recovery-efforts/" target="_blank" rel="noopener">Four Ways Satellite Communications Accelerate Disaster Response ...</a></div>
+  <div class="di-summary">卫星通信通过提供灾后关键连接，加速应急响应与恢复进程。文章强调了其作为地面网络失效时首选方案的核心价值，并列举了四项具体应用方式。</div>
+  <div class="di-meta">satellitetoday.com | 2026.04.06</div>
+</div>
+<h3 style="margin:20px 0 10px;font-size:15px;border-left:3px solid #4a6fa5;padding-left:10px">3. ✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</h3>
+<p style="font-size:13px;color:#888;margin-bottom:10px">精选本周高信号事件（共 8 条）</p>
+<div class="domain-item">
+  <div class="di-title"><a href="https://www.3gpp.org/technologies/ntn-overview" target="_blank" rel="noopener">Non-Terrestrial Networks (NTN)</a></div>
+  <div class="di-summary">3GPP官方发布非地面网络（NTN）技术详解，明确了NTN的定义、轨道分类及有效载荷模式，为应急通信领域提供了标准化技术框架。该内容虽非本周新规，但作为官方权威解释，对行业部署具有指导意义。</div>
+  <div class="di-meta">3gpp.org | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://unmannedsas.com/tethered-drone-system/unleashing-connectivity-tethered-drones-for-emergency-communication/" target="_blank" rel="noopener">Tethered Drones for Emergency Communication</a></div>
+  <div class="di-summary">系留无人机作为应急通信空中基站，已在多次灾害中验证其快速部署能力，为灾后恢复关键通信提供了可靠技术路径。该系统通过系留供电和数据传输，能迅速升空建立临时网络，连接外部可用网络，有效解决地面基础设施损毁或拥塞导致的通信中断问题。</div>
+  <div class="di-meta">unmannedsas.com | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.sciencedirect.com/science/article/pii/S0360835226000458?dgcid=rss_sd_all" target="_blank" rel="noopener">A computerized intelligent system for UAV communication ...</a></div>
+  <div class="di-summary">本研究提出了一种集成智能感知与协同规划的无人机应急通信中继系统，通过多模态融合评估基站状态和双层路径规划算法，旨在提升灾后通信恢复的效率和可靠性。该系统针对基站状态不确定性和无人机资源约束进行优化，为应急通信部署提供了新的决策支持框架。</div>
+  <div class="di-meta">sciencedirect.com | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://arxiv.org/abs/2604.02358" target="_blank" rel="noopener">Dynamic Mask Enhanced Intelligent Multi-UAV Deployment for Urban Vehicular Networks</a></div>
+  <div class="di-summary">提出一种基于强化学习的多无人机动态部署算法Q-SDAM，通过动态动作掩码机制优化车联网连接性和无人机能耗，提升城市应急通信可靠性。该算法在真实数据集上验证，连接性提升18.2%，能耗降低66.6%。</div>
+  <div class="di-meta">arXiv Networking &amp; Communications | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.federalregister.gov/documents/2025/08/07/2025-14992/normalizing-unmanned-aircraft-systems-beyond-visual-line-of-sight-operations" target="_blank" rel="noopener">Normalizing Unmanned Aircraft Systems Beyond Visual Line of ...</a></div>
+  <div class="di-summary">联邦公报网站发布关于无人机系统超视距运行标准化的拟议规则，标志着美国在无人机监管框架上的重要进展。该规则旨在建立统一的技术标准，为应急通信等关键任务应用提供监管基础。</div>
+  <div class="di-meta">federalregister.gov | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://drones.princeton.edu/news/faa-proposes-normalizing-uas-operation-beyond-line-sight" target="_blank" rel="noopener">FAA Proposes Normalizing UAS Operation Beyond Line-of-Sight</a></div>
+  <div class="di-summary">美国联邦航空管理局（FAA）和运输安全管理局（TSA）联合提出新规，旨在为无人机在低空超视距（BVLOS）操作提供标准化路径，无需豁免即可进行商业和公共安全应用，这是落实2025年总统行政令的关键步骤。该提案将简化无人机在应急通信等领域的部署流程，预计将加速行业规模化发展。</div>
+  <div class="di-meta">drones.princeton.edu | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://dronelife.com/2026/04/02/fcc-drone-spectrum-policy-future-operations/" target="_blank" rel="noopener">The Real FCC Drone Debate: Who Controls the Airwaves?</a></div>
+  <div class="di-summary">FCC正通过频谱政策重塑美国无人机产业，其公开征求意见旨在解决大规模无人机通信的频谱瓶颈，特别是为超视距飞行提供可靠保障。此举标志着监管机构从单纯限制转向主动规划，将直接影响未来无人机技术路线和市场竞争格局。</div>
+  <div class="di-meta">DroneLife | 2026.04.02</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.nokia.com/asset/i/210115/" target="_blank" rel="noopener">[PDF] HAPS: Connect the unconnected - Nokia</a></div>
+  <div class="di-summary">诺基亚发布了一份关于高空平台站（HAPS）的白皮书，强调其在连接未联网地区方面的潜力，特别是在应急通信和灾难恢复场景中。该文件结合了航空、AI和通信技术，展示了诺基亚在非地面网络领域的战略布局，旨在推动HAPS的商业化和标准化进程。</div>
+  <div class="di-meta">nokia.com | 2026.04.06</div>
+</div>
+<h3 style="margin:20px 0 10px;font-size:15px;border-left:3px solid #4a6fa5;padding-left:10px">4. 💡 应急视角思考 — 本周可借鉴内容</h3>
+<p style="font-size:13px;color:#888;margin-bottom:10px">精选本周高信号事件（共 3 条）</p>
+<div class="domain-item">
+  <div class="di-title"><a href="https://blog.apnic.net/2026/02/06/from-roots-to-reach-network-resilience-in-natural-disasters/" target="_blank" rel="noopener">From roots to reach: Network resilience in natural disasters</a></div>
+  <div class="di-summary">APNIC博客探讨了自然灾害下的网络韧性研究，强调基于生物启发的分布式架构和AI动态路由是提升灾后通信恢复能力的关键方向。该研究为应急通信标准制定和网络设计提供了理论框架，但尚未涉及具体部署或采购计划。</div>
+  <div class="di-meta">blog.apnic.net | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://www.peakptt.com/blogs/news/rapid-deployment-communication-vendor?srsltid=AfmBOoq_0Ye1x0e8DURxEmX4Iy-oVhxOLaWthc5vTkkBDSU9DFhjyyQF" target="_blank" rel="noopener">12 Best Rapid Deployment Communication Vendors (2025)</a></div>
+  <div class="di-summary">本文是一份2025年快速部署通信供应商指南，为应急管理者、公共安全负责人等决策者提供采购参考，强调快速部署、可靠互操作和成本效益。指南基于速度、覆盖、互操作性等标准，筛选了12家供应商，涵盖一键通、便携蜂窝、卫星回传等技术。</div>
+  <div class="di-meta">peakptt.com | 2026.04.06</div>
+</div><div class="domain-item">
+  <div class="di-title"><a href="https://ng911interop.org/resources/interoperability-in-public-safety-emergency-response/" target="_blank" rel="noopener">Interoperability in Public Safety Emergency Response</a></div>
+  <div class="di-summary">本文强调了公共安全应急响应中多机构通信互操作性的重要性，指出标准化协议和数据格式是确保不同技术系统有效协同的关键。这直接关系到灾害救援的效率和效果，是应急通信行业的核心议题。</div>
+  <div class="di-meta">ng911interop.org | 2026.04.06</div>
+</div></div>
+</div><div class="section" id="calendar">
+  <div class="section-header">
+    <h2>七、事件日历</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><h3 style="margin:16px 0 8px;font-size:15px">本周重要事件</h3>
+<table class="cal-table">
+  <tr><th>日期</th><th>事件标题</th><th>来源</th><th>要点</th></tr>
+  <tr><td>2026.04.06</td><td><a href="https://firstnet.gov/tags/key-technologyissue/mcptt" target="_blank" rel="noopener">MCPTT | First Responder Network ...</a></td><td>firstnet.gov</td><td>FirstNet Authority 本周发布《FirstNet 操作手册》更新，旨在为公...</td></tr><tr><td>2026.04.06</td><td><a href="https://firstnet.gov/network/TT/deployables" target="_blank" rel="noopener">Deployables | First Responder Ne...</a></td><td>firstnet.gov</td><td>FirstNet Authority重申其可部署通信资产计划的核心价值与运营机制，强调其为...</td></tr><tr><td>2026.04.06</td><td><a href="https://allthingsfirstnet.com/the-importance-of-mission-critical-push-to-talk-mcptt/" target="_blank" rel="noopener">The Importance of Mission Critic...</a></td><td>allthingsfirstnet.com</td><td>FirstNet宣布投资63亿美元升级其无线宽带服务至5G，以支持任务关键型一键通（MCP...</td></tr><tr><td>2026.04.06</td><td><a href="https://urgentcomm.com/push-to-x/at-t-tabs-streamwide-to-provide-firstnet-mcx-services" target="_blank" rel="noopener">AT&amp;T tabs Streamwide to provide ...</a></td><td>urgentcomm.com</td><td>AT&amp;T选择法国公司Streamwide为其FirstNet网络提供MCX技术，标志着Fi...</td></tr><tr><td>2026.04.06</td><td><a href="https://reliefweb.int/report/afghanistan/afghanistan-situation-update-2-humanitarian-impact-afghanistan-pakistan-military-escalation-5-april-2026" target="_blank" rel="noopener">Afghanistan Situation Update #2:...</a></td><td>UN OCHA ReliefWeb</td><td>阿富汗-巴基斯坦边境军事冲突升级导致严重人道主义危机，影响应急通信行业。冲突造成近10万人...</td></tr><tr><td>2026.04.06</td><td><a href="https://www.3gpp.org/technologies/ntn-overview" target="_blank" rel="noopener">Non-Terrestrial Networks (NTN)</a></td><td>3gpp.org</td><td>3GPP官方发布非地面网络（NTN）技术详解，明确了NTN的定义、轨道分类及有效载荷模式，...</td></tr><tr><td>2026.04.06</td><td><a href="https://www.ericsson.com/en/reports-and-papers/white-papers/private-5g-networks" target="_blank" rel="noopener">Critical capabilities for privat...</a></td><td>ericsson.com</td><td>爱立信发布白皮书，强调基于3GPP标准的私有5G网络在关键任务（如公共安全）和关键业务（如...</td></tr><tr><td>2026.04.06</td><td><a href="https://blog.apnic.net/2026/02/06/from-roots-to-reach-network-resilience-in-natural-disasters/" target="_blank" rel="noopener">From roots to reach: Network res...</a></td><td>blog.apnic.net</td><td>APNIC博客探讨了自然灾害下的网络韧性研究，强调基于生物启发的分布式架构和AI动态路由是...</td></tr>
+</table></div>
+</div><div class="section" id="recs">
+  <div class="section-header">
+    <h2>八、建议与风险</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><h3 style="margin:16px 0 8px;font-size:15px">建议关注方向</h3>
+<ul class="rec-list"><li>技术主线：建议持续关注 🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统、💡 应急视角思考 — 本周可借鉴内容 相关链条，重点看能力组合是否继续增强。</li><li>场景主线：围绕「MCPTT | First Responder Networ」所代表的应用场景，跟踪是否出现规模化部署或跨部门协同验证。</li><li>验证点：优先观察政策升级、重点项目、预算投入、产业合作和应用落地信号。</li></ul>
+<h3 style="margin:20px 0 8px;font-size:15px">风险提示</h3>
+<ul class="risk-list"><li>政策推进节奏不及预期风险</li><li>产业落地节奏不及预期风险</li><li>市场需求或项目预算不及预期风险</li><li>技术成熟度与工程化转化不及预期风险</li></ul></div>
+</div><div class="section" id="appendix">
+  <div class="section-header">
+    <h2>附录：信源与采集统计</h2>
+    <span class="toggle">▾</span>
+  </div>
+  <div class="section-body"><h3 style="margin:16px 0 10px;font-size:15px">A. 入报信源列表</h3>
+<table class="appendix-table">
+  <tr><th>#</th><th>来源名称</th><th>类型</th><th>领域</th><th>本期条目数</th><th>代表链接</th></tr>
+  <tr><td>1</td><td>firstnet.gov</td><td>官方机构</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>2</td><td><a href="https://firstnet.gov/tags/key-technologyissue/mcptt" target="_blank" rel="noopener">链接</a></td></tr><tr><td>2</td><td>allthingsfirstnet.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://allthingsfirstnet.com/the-importance-of-mission-critical-push-to-talk-mcptt/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>3</td><td>urgentcomm.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://urgentcomm.com/push-to-x/at-t-tabs-streamwide-to-provide-firstnet-mcx-services" target="_blank" rel="noopener">链接</a></td></tr><tr><td>4</td><td>UN OCHA ReliefWeb</td><td>官方机构</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://reliefweb.int/report/afghanistan/afghanistan-situation-update-2-humanitarian-impact-afghanistan-pakistan-military-escalation-5-april-2026" target="_blank" rel="noopener">链接</a></td></tr><tr><td>5</td><td>3gpp.org</td><td>官方机构</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>1</td><td><a href="https://www.3gpp.org/technologies/ntn-overview" target="_blank" rel="noopener">链接</a></td></tr><tr><td>6</td><td>ericsson.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://www.ericsson.com/en/reports-and-papers/white-papers/private-5g-networks" target="_blank" rel="noopener">链接</a></td></tr><tr><td>7</td><td>blog.apnic.net</td><td>专家博客</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、💡 应急视角思考 — 本周可借鉴内容</td><td>1</td><td><a href="https://blog.apnic.net/2026/02/06/from-roots-to-reach-network-resilience-in-natural-disasters/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>8</td><td>unmannedsas.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>1</td><td><a href="https://unmannedsas.com/tethered-drone-system/unleashing-connectivity-tethered-drones-for-emergency-communication/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>9</td><td>iridium.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://www.iridium.com/discover/iridium-articles/providing-connectivity-during-disasters-satellite-communications" target="_blank" rel="noopener">链接</a></td></tr><tr><td>10</td><td>spacedaily.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://spacedaily.com/new-tactical-wireless-emergency-broadband-network-introduced/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>11</td><td>Frontiers in Communications and Networks</td><td>学术论文</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>2</td><td><a href="https://www.frontiersin.org/articles/10.3389/frcmn.2026.1730921" target="_blank" rel="noopener">链接</a></td></tr><tr><td>12</td><td>sciencedirect.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>1</td><td><a href="https://www.sciencedirect.com/science/article/pii/S0360835226000458?dgcid=rss_sd_all" target="_blank" rel="noopener">链接</a></td></tr><tr><td>13</td><td>arXiv Networking &amp; Communications</td><td>学术论文</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>4</td><td><a href="https://arxiv.org/abs/2604.02358" target="_blank" rel="noopener">链接</a></td></tr><tr><td>14</td><td>federalregister.gov</td><td>官方机构</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>1</td><td><a href="https://www.federalregister.gov/documents/2025/08/07/2025-14992/normalizing-unmanned-aircraft-systems-beyond-visual-line-of-sight-operations" target="_blank" rel="noopener">链接</a></td></tr><tr><td>15</td><td>aclanthology.org</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、💡 应急视角思考 — 本周可借鉴内容</td><td>1</td><td><a href="https://aclanthology.org/2025.findings-acl.750.pdf" target="_blank" rel="noopener">链接</a></td></tr><tr><td>16</td><td>eprints.whiterose.ac.uk</td><td>行业媒体</td><td>✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://eprints.whiterose.ac.uk/id/eprint/159534/1/ComputerComms_Arum_Apr2020.pdf" target="_blank" rel="noopener">链接</a></td></tr><tr><td>17</td><td>satellitetoday.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://www.satellitetoday.com/partner-content/four-ways-satellite-communications-accelerate-disaster-response-and-recovery-efforts/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>18</td><td>peakptt.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://www.peakptt.com/blogs/news/rapid-deployment-communication-vendor?srsltid=AfmBOoq_0Ye1x0e8DURxEmX4Iy-oVhxOLaWthc5vTkkBDSU9DFhjyyQF" target="_blank" rel="noopener">链接</a></td></tr><tr><td>19</td><td>ng911interop.org</td><td>行业媒体</td><td>💡 应急视角思考 — 本周可借鉴内容</td><td>1</td><td><a href="https://ng911interop.org/resources/interoperability-in-public-safety-emergency-response/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>20</td><td>drones.princeton.edu</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>1</td><td><a href="https://drones.princeton.edu/news/faa-proposes-normalizing-uas-operation-beyond-line-sight" target="_blank" rel="noopener">链接</a></td></tr><tr><td>21</td><td>scemd.org</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://www.scemd.org/media/1972/esf-2-annex.pdf" target="_blank" rel="noopener">链接</a></td></tr><tr><td>22</td><td>Via Satellite</td><td>行业媒体</td><td>📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://www.satellitetoday.com/connectivity/2026/04/03/live-in-the-booth-matt-desch-talks-iridium-ntn-direct-and-alt-pnt-advances/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>23</td><td>PreventionWeb</td><td>官方机构</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态</td><td>1</td><td><a href="https://www.preventionweb.net/news/extreme-heat-climate-change-linked-smaller-babies" target="_blank" rel="noopener">链接</a></td></tr><tr><td>24</td><td>DroneLife</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>1</td><td><a href="https://dronelife.com/2026/04/02/fcc-drone-spectrum-policy-future-operations/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>25</td><td>IEEE Spectrum</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>1</td><td><a href="https://spectrum.ieee.org/video-humanoid-dancing" target="_blank" rel="noopener">链接</a></td></tr><tr><td>26</td><td>arXiv Satellite &amp; NTN Communications</td><td>学术论文</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://arxiv.org/abs/2604.02498" target="_blank" rel="noopener">链接</a></td></tr><tr><td>27</td><td>Urgent Communications</td><td>行业媒体</td><td>📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://urgentcomm.com/funding/lutnick-at-t-agree-on-2-billion-deal-for-firstnet-authority" target="_blank" rel="noopener">链接</a></td></tr><tr><td>28</td><td>nokia.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、✈️ 航空专栏 — 无人机 / 飞艇 / 低空系统</td><td>1</td><td><a href="https://www.nokia.com/asset/i/210115/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>29</td><td>Google AI Blog</td><td>企业博客</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>2</td><td><a href="https://blog.google/innovation-and-ai/technology/developers-tools/introducing-flex-and-priority-inference/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>30</td><td>strata.io</td><td>专家博客</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://www.strata.io/blog/agentic-identity/the-ai-agent-identity-crisis-new-research-reveals-a-governance-gap/" target="_blank" rel="noopener">链接</a></td></tr><tr><td>31</td><td>cisa.gov</td><td>官方机构</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、💡 应急视角思考 — 本周可借鉴内容</td><td>1</td><td><a href="https://www.cisa.gov/safecom/field-operations-guides" target="_blank" rel="noopener">链接</a></td></tr><tr><td>32</td><td>police1.com</td><td>行业媒体</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>1</td><td><a href="https://www.police1.com/911-and-dispatch/smarter-faster-safer-how-ai-is-reinventing-the-emergency-call" target="_blank" rel="noopener">链接</a></td></tr><tr><td>33</td><td>follow-builders X Feed</td><td>social</td><td>🤖 AI 专栏 — 前沿模型 / 智能体 / 多模态、📡 通信专栏 — 卫星通信 / 5G·6G / 专网</td><td>2</td><td><a href="https://x.com/petergyang/status/2040943889822232790" target="_blank" rel="noopener">链接</a></td></tr>
+</table></div>
+</div>
+</div>
+<script>
+document.querySelectorAll('.section-header').forEach(function(header) {
+  header.addEventListener('click', function() {
+    var body = header.nextElementSibling;
+    var isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    header.classList.toggle('open', !isOpen);
+  });
+});
+// Open first section by default
+var first = document.querySelector('.section-body');
+if (first) {
+  first.classList.add('open');
+  first.previousElementSibling.classList.add('open');
+}
+</script>
+</body>
+</html>

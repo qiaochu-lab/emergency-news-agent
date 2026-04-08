@@ -1,31 +1,52 @@
 {
-  "_comment": "Tavily 搜索查询配置。enabled=false 可临时关闭。search_depth: basic(快) / advanced(慢但准)。days: 只返回最近N天内容。",
+  "_comment": "Tavily 搜索查询配置。enabled=false 可临时关闭。search_depth: basic(快) / advanced(慢但准)。days: 只返回最近N天内容。max_results 可在顶层设默认值，也可在各域名内覆盖。",
   "enabled": true,
   "search_depth": "advanced",
-  "max_results_per_query": 5,
+  "topic": "news",
+  "include_answer": true,
+  "max_results_per_query": 3,
   "days": 7,
   "domains": {
-    "AI": [
-      "AI agent framework public safety emergency 2026",
-      "large language model autonomous systems disaster response",
-      "AI situational awareness emergency communications"
-    ],
-    "Communications": [
-      "satellite communication disaster network recovery 2026",
-      "LEO NTN non-terrestrial network emergency deployment",
-      "MCPTT FirstNet public safety broadband 2026",
-      "5G private network mission critical communications deployment",
-      "deployable communications network disaster recovery"
-    ],
-    "Aviation": [
-      "drone UAV communication relay emergency disaster 2026",
-      "HAPS high altitude platform communication coverage",
-      "UAS beyond visual line of sight BVLOS public safety"
-    ],
-    "DisasterTech": [
-      "post-disaster communication network resilience 2026",
-      "emergency broadband rapid deployment field operations",
-      "disaster communication interoperability standard"
-    ]
+    "AI": {
+      "max_results": 3,
+      "queries": [
+        "AI agent framework public safety emergency response 2026",
+        "large language model autonomous systems disaster response 2026",
+        "emerging AI agent frameworks large language models advancements 2026"
+      ]
+    },
+    "Communications": {
+      "max_results": 5,
+      "queries": [
+        "satellite communication disaster network recovery 2026",
+        "LEO NTN non-terrestrial network emergency deployment 2026",
+        "MCPTT FirstNet public safety broadband 2026",
+        "5G private network mission critical communications latest deployment 2026",
+        "LEO satellite constellation advancements non-terrestrial network 2026"
+      ]
+    },
+    "Aviation": {
+      "max_results": 3,
+      "queries": [
+        "drone UAV communication relay emergency disaster 2026",
+        "HAPS high altitude platform communication coverage 2026",
+        "UAS BVLOS beyond visual line of sight advancements public safety 2026"
+      ]
+    },
+    "DisasterTech": {
+      "max_results": 3,
+      "queries": [
+        "post-disaster communication network resilience 2026",
+        "emergency broadband rapid deployment field operations 2026",
+        "disaster communication interoperability standard 2026"
+      ]
+    },
+    "HorizonScanning": {
+      "max_results": 3,
+      "queries": [
+        "emerging AI technologies frameworks advancements 2026",
+        "latest LEO satellite HAPS drone communication technology breakthroughs 2026"
+      ]
+    }
   }
 }

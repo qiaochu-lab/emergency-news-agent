@@ -6,7 +6,7 @@ from typing import Iterable, List
 
 from emergency_intel.feedback.agent import apply_preference_boost, load_preferences
 from emergency_intel.models import NormalizedItem, ScoredItem
-from emergency_intel.score.rules import HEAT_TERMS, IMPORTANT_TERMS
+from emergency_intel.score.rules import HEAT_TERMS, IMPORTANT_TERMS, SOURCE_CREDIBILITY
 from emergency_intel.utils import normalize_whitespace, write_json
 
 # Technical abbreviations that indicate substantive content
@@ -30,11 +30,10 @@ def score_items(items: Iterable[NormalizedItem], output_path: Path) -> List[Scor
         text = normalize_whitespace(f"{item.title} {item.raw_text}").lower()
         importance = min(10.0, _score_from_terms(text, IMPORTANT_TERMS) + _domain_bonus(item.domain_tags) + _evidence_bonus(item.evidence_level))
         heat = min(10.0, _score_from_terms(text, HEAT_TERMS) + _source_heat(item.source_type))
-        final_score = round(importance * 0.7 + heat * 0.3, 2)
-        # Boost curated feeds from known high-quality sources
-        if item.source_name in ("follow-builders X Feed",):
-            final_score = min(10.0, round(final_score + 1.5, 2))
-        # Grok精选：人工筛选内容，加权 +1.0
+        cred = _source_credibility(item.source_name)
+        # New formula: imp×0.60 + heat×0.25 + cred×0.15 (max 10 before bonuses)
+        final_score = round(importance * 0.60 + heat * 0.25 + cred * 0.15, 2)
+        # Grok精选：人工筛选内容，保留加权 +1.0
         if item.source_name == "Grok精选":
             final_score = min(10.0, round(final_score + 1.0, 2))
         # Boost articles with concrete data or technical depth
@@ -100,3 +99,16 @@ def _content_quality_bonus(raw_text: str) -> float:
 def _source_heat(source_type: str) -> float:
     # "social" = X/Twitter expert accounts: real-time signals, higher heat than paper/forum
     return {"news": 3.0, "official": 2.0, "social": 2.5, "company": 2.0, "paper": 1.5, "blog": 1.5}.get(source_type, 1.0)
+
+
+def _source_credibility(source_name: str) -> float:
+    """Return credibility score (0–10) for a source based on its domain name.
+
+    Matches SOURCE_CREDIBILITY keys as substrings against source_name (netloc).
+    Falls back to 5.0 for unknown sources.
+    """
+    name = (source_name or "").lower()
+    for domain, score in SOURCE_CREDIBILITY.items():
+        if domain in name:
+            return score
+    return 5.0

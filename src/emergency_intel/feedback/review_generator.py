@@ -6,6 +6,7 @@ from typing import List
 
 from emergency_intel.models import ScoredItem
 from emergency_intel.utils import ensure_dir
+from emergency_intel.feedback.html_renderer import render_review_html
 
 
 def generate_review_file(
@@ -102,4 +103,10 @@ def generate_review_file(
     ]
 
     out_path.write_text("\n".join(lines), encoding="utf-8")
+
+    # Generate interactive HTML review page alongside the markdown
+    html_path = out_path.with_suffix(".html")
+    render_review_html(included, excluded_this_week, week_label, html_path)
+    print(f"[反馈] 审阅页面已生成：{html_path}", flush=True)
+
     return out_path
