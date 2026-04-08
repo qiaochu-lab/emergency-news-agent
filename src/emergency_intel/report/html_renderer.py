@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import html
+import os
 from pathlib import Path
 from typing import Dict, List
 
@@ -215,30 +216,46 @@ function copyText(btn, text) {
   });
 }
 
-// Send Feedback (Mock Webhook)
+// ── GitHub Feedback ──────────────────────────────────────────
+// 反馈通过 GitHub Issues API 写入仓库，pipeline 下次读取后更新权重。
+const GITHUB_REPO  = "qiaochu-lab/emergency-news-agent";
+const GITHUB_TOKEN = "{github_token_placeholder}";
+
 function sendFeedback(itemId, feedbackType, btn) {
-  // 这里的 WEBHOOK_URL 需要替换为你自己的在线接收端 
-  // (比如飞书机器人 webhook、腾讯云函数、或者你服务器上的 API)
-  const WEBHOOK_URL = ''; 
-  
   const originalText = btn.innerText;
-  btn.innerText = "发送中...";
+  btn.innerText = "提交中...";
   btn.disabled = true;
 
-  if (!WEBHOOK_URL) {
-    alert("系统提示：当前是纯静态网页。要让你的电脑能收到数据，需要在这里配置一个服务器 Webhook 接口接收点击事件。\\n\\n[模拟记录] ID: " + itemId + " | 反馈: " + feedbackType);
-    btn.innerText = "记录已保存 ✓";
-    return;
-  }
+  const label    = feedbackType === 'interested' ? '⭐ 感兴趣' : '🥱 不感兴趣';
+  const emoji    = feedbackType === 'interested' ? '⭐' : '🥱';
+  const title    = `[feedback] ${emoji} ${itemId.slice(0,40)}`;
+  const body     = `**反馈类型**: ${label}\n**条目ID**: ${itemId}\n**时间**: ${new Date().toISOString()}\n**来自**: 周报页面`;
 
-  fetch(WEBHOOK_URL, {
+  fetch(`https://api.github.com/repos/${GITHUB_REPO}/issues`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ item_id: itemId, feedback: feedbackType, timestamp: new Date().toISOString() })
-  }).then(res => {
-    btn.innerText = "反馈成功 ✓";
-  }).catch(err => {
-    alert("发送失败，请检查网络或 Webhook URL: " + err);
+    headers: {
+      'Authorization': `token ${GITHUB_TOKEN}`,
+      'Content-Type': 'application/json',
+      'Accept': 'application/vnd.github.v3+json'
+    },
+    body: JSON.stringify({
+      title: title,
+      body: body,
+      labels: ['feedback', feedbackType]
+    })
+  })
+  .then(res => {
+    if (res.ok) {
+      btn.innerText = label + " ✓";
+      btn.style.borderColor = feedbackType === 'interested' ? '#27ae60' : '#e74c3c';
+    } else {
+      res.json().then(j => console.error('GitHub API error:', j));
+      btn.innerText = "失败，见控制台";
+      btn.disabled = false;
+    }
+  })
+  .catch(err => {
+    console.error('Feedback error:', err);
     btn.innerText = originalText;
     btn.disabled = false;
   });
@@ -347,6 +364,10 @@ def render_report_html(report: WeeklyReport, output_path: Path) -> str:
 <script>{_JS}</script>
 </body>
 </html>"""
+
+    # Inject GitHub token from env at generation time (keeps source code clean)
+    github_token = os.environ.get("GITHUB_TOKEN", "")
+    page_html = page_html.replace("{github_token_placeholder}", github_token)
 
     with output_path.open("w", encoding="utf-8") as fh:
         fh.write(page_html)
