@@ -133,15 +133,17 @@ def analyze_items(
 
 
 def _build_prompt_input(item: ScoredItem) -> str:
+    # Use more text for enriched full-text items; capped lower for summaries
+    text_limit = 4000 if item.content_depth == "fulltext" else 2500
     return (
         f"标题: {item.title}\n"
         f"来源: {item.source_name} ({item.source_type})\n"
         f"发布时间: {item.published_at}\n"
         f"领域: {', '.join(item.domain_tags)}\n"
+        f"内容质量: {item.content_depth}（{item.body_extraction_status}）\n"
         f"本周相关性: {item.why_this_week}\n"
         f"入选原因: {item.inclusion_reason}\n"
-        f"分析备注: {item.analyst_note}\n"
-        f"正文: {item.raw_text[:2200]}"
+        f"正文: {item.raw_text[:text_limit]}"
     )
 
 
@@ -366,11 +368,19 @@ def _analyst_note(item: ScoredItem, report_content_type: str, include: bool, wee
 
 
 def _prompt_for_item(item: ScoredItem) -> str:
+    from emergency_intel.analyze.prompts import DOMAIN_PROMPTS
+    # Domain-specific prompt takes priority — more targeted than source type
+    primary_domain = next(
+        (tag for tag in item.domain_tags if tag in DOMAIN_PROMPTS), None
+    )
+    if primary_domain:
+        return DOMAIN_PROMPTS[primary_domain]
+    # Fallback: source-type prompts for items with no recognized domain
     if item.source_type == "official":
         return OFFICIAL_ANALYSIS_PROMPT
     if item.source_type == "paper":
         return PAPER_ANALYSIS_PROMPT
-    if item.source_type in {"forum"}:
+    if item.source_type == "forum":
         return FORUM_ANALYSIS_PROMPT
     if item.source_type in {"news", "company", "blog"}:
         return NEWS_ANALYSIS_PROMPT
