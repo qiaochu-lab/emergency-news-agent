@@ -1,0 +1,270 @@
+1. [Wed, 01 Ap] Any Custom Frontend with Gradio's Backend | Hugging Face Blog
+2. [Tue, 31 Ma] Rakuten Symphony on redesigning OSS for the 4D reality of NTN - RCR Wireless New | rcrwireless.com
+3. [Tue, 07 Ap] Space Is the Best Offset Strategy | Via Satellite
+4. [Fri, 27 Fe] Upgrading biomass waste into strategic materials | DARPA News RSS
+5. [2026-04-07] Mythos Preview is currently available to our launch partners in Project Glasswin | follow-builders X Feed
+6. [2020-08-21] Achieving Disaster-Resilient Distribution Systems via Emergency Response Resourc | arXiv Emergency and Disaster Response
+7. [Mon, 06 Ap] Airspace Security at 2026 JUNO Awards | DroneLife
+8. [Wed, 08 Ap] GoPro’s new camera might be its biggest comeback move | DroneDJ
+9. [Fri, 03 Ap] OpenClaw gives users yet another reason to be freaked out about security | Ars Technica Technology Lab
+10. [Tue, 07 Ap] Will immersive content be the straw that breaks networks’ back? - Telecoms | telecoms.com
+11. [Tue, 07 Ap] EdgeBeam keeps its first acquisition in the family - Light Reading | lightreading.com
+12. [Tue, 07 Ap] Manna expands drone delivery network with $50M boost | DroneDJ
+13. [2026-04-08] done about 10 of these calls so far + looked at more transcripts many learnings | follow-builders X Feed
+14. [2026-04-07] no extra buttons just click, draw, chat fully in flow https://t.co/oUEZLgDpHO | follow-builders X Feed
+15. [Tue, 07 Ap] Thaicom announces agreement with Amazon Leo - Developing Telecoms | developingtelecoms.com
+16. [Wed, 08 Ap] Routing Attacks in Ethereum PoS: A Systematic Exploration | arXiv Networking & Communications
+17. [Tue, 07 Ap] Blue Marble Geographics and Avenza Systems Combine to Create Unified Geospatial | DroneLife
+18. [Tue, 07 Ap] As aircraft losses mount, Pentagon wants a software fix to see through the fog o | Defense One Technology
+19. [Wed, 25 Fe] Immediate Action Required: CISA Issues Emergency Directive to Secure Cisco SD-WA | CISA Alerts & Advisories
+20. [Tue, 31 Ma] The US Navy brought a ‘one-of-a-kind’ laser weapon back from the dead | C4ISRNET
+21. [Tue, 07 Ap] Is Europe Moving Fast Enough to Close its Space Defense Gaps? | Via Satellite
+22. [2026-04-08] Good initiative - I’m curious if Anthropic has been using mythos internally to s | follow-builders X Feed
+23. [Wed, 01 Ap] Falcon Perception | Hugging Face Blog
+24. [Tue, 31 Ma] Building better AI benchmarks: How many raters are enough? | Google Research Blog
+25. [Wed, 08 Ap] Optimisation of Resource Allocation in Heterogeneous Wireless Networks Using Dee | arXiv Networking & Communications
+26. [Fri, 03 Ap] Evaluating alignment of behavioral dispositions in LLMs | Google Research Blog
+27. [Tue, 07 Ap] The Download: AI’s impact on jobs, and data centres in space | MIT Technology Review
+28. [Tue, 07 Ap] The Artemis 2 space toilet is actually working fine. But there is another proble | Space.com News
+29. [Wed, 01 Ap] AI Is Becoming a Digital Employee. Why Are We Still Securing It Like Software? - | darkreading.com
+30. [Tue, 07 Ap] Calix brings agentic AI to small ISPs for easy service differentiation | RCR Wireless News
+31. [Tue, 07 Ap] Enabling agent-first process redesign | MIT Technology Review
+32. [Sat, 04 Ap] Ignore The Doom Talk; AI’s Real Value Only Arises When Humans Step Up - Forbes | forbes.com
+33. [Wed, 01 Ap] Ukraine claims near-90% air-defense success in March as attacks increase | C4ISRNET
+34. [2026-04-07] So nice that I had to run around the entire lake https://t.co/tTEbGSe9uG | follow-builders X Feed
+35. [Wed, 25 Ma] Protecting people from harmful manipulation | Google DeepMind Blog
+36. [Tue, 31 Ma] Wireless technologies to secure our homes | Nokia Public Safety Blog
+37. [Tue, 31 Ma] IEEE Proposes Standards For Data Center Grid - Let's Data Science | letsdatascience.com
+38. [Wed, 01 Ap] Holo3: Breaking the Computer Use Frontier | Hugging Face Blog
+39. [Tue, 07 Ap] China shifts 5G focus to monetization and enterprise growth | RCR Wireless News
+40. [Thu, 26 Ma] Gemini 3.1 Flash Live: Making audio AI more natural and reliable | Google DeepMind Blog
+41. [Fri, 03 Ap] AeroSentinel drone production facility damaged by Iranian missile attack - jpost | jpost.com
+42. [Mon, 30 Ma] ESA launches first Celeste satellites to test complementary LEO navigation layer | spacenews.com
+43. [Tue, 31 Ma] Build with Veo 3.1 Lite, our most cost-effective video generation model | Google AI Blog
+44. [Wed, 01 Ap] Lowental Hybrid Highlights Key Tactical UAS Trends from UAV Technology USA 2026 | unmannedsystemstechnology.com
+45. [Tue, 03 Ma] Gemini 3.1 Flash-Lite: Built for intelligence at scale | Google DeepMind Blog
+46. [Wed, 30 Ju] DroneSense Joins Versaterm to Advance Public Safety Drone Response | DroneSense Blog
+47. [Wed, 25 Ma] Lyria 3 Pro: Create longer tracks in more | Google DeepMind Blog
+48. [2026-04-08] Emerging NGSO constellations: spectral coexistence with GSO satellite communicat | Frontiers in Communications and Networks
+49. [Mon, 16 Ma] ImportAI 449: LLMs training other LLMs; 72B distributed training run; computer v | Import AI Newsletter
+50. [Sat, 04 Ap] Components of A Coding Agent | Ahead of AI (Sebastian Raschka)
+51. [Mon, 06 Ap] The State of Satcom 2026 - Payload Space | payloadspace.com
+52. [Wed, 01 Ap] Startup debuts agentic AI assistant for war | Defense One Technology
+53. [2026-04-08] Mythos from Anthropic is another clear reminder that there’s absolutely no wall | follow-builders X Feed
+54. [Tue, 07 Ap] Cybersecurity in Space is Hard; In Cislunar Space, it’s Really Hard | Via Satellite
+55. [Fri, 03 Ap] FAA eVTOL Integration Pilot Program Flips the Script on AAM Certification - Avia | ainonline.com
+56. [Wed, 01 Ap] The latest AI news we announced in March 2026 | Google AI Blog
+57. [Tue, 07 Ap] NTT tries out WiGig for industrial private networks - Telecoms | telecoms.com
+58. [Wed, 08 Ap] Edge Intelligence for Satellite-based Earth Observation: Scheduling Image Acquis | arXiv Networking & Communications
+59. [2022-05-07] Airport Digital Twins for Resilient Disaster Management Response | arXiv Emergency and Disaster Response
+60. [Wed, 08 Ap] Graph Signal Diffusion Models for Wireless Resource Allocation | arXiv Satellite & NTN Communications
+61. [2026-04-08] Data- and distance-aware clustering for scalable wireless federated learning | Frontiers in Communications and Networks
+62. [Thu, 26 Fe] Nano Banana 2: Combining Pro capabilities with lightning-fast speed | Google DeepMind Blog
+63. [Wed, 08 Ap] Spatiotemporal Continual Learning for Mobile Edge UAV Networks: Mitigating Catas | arXiv Networking & Communications
+64. [Tue, 07 Ap] Is U.S. Manufacturing the Answer? SKYROVER Signals a New Strategy as FCC Pressur | DroneLife
+65. [Mon, 30 Ma] The US Navy wants you ... to make ‘Drone Killer’ ammunition | C4ISRNET
+66. [Mon, 06 Ap] Peru’s MiFibra boosts fibre offering with XGS-PON tech from ZTE - Developing Tel | developingtelecoms.com
+67. [Wed, 25 Ma] Google bumps up Q Day deadline to 2029, far sooner than previously thought | Ars Technica Technology Lab
+68. [Tue, 31 Ma] Autoflight V5000 Matrix | Aviation Week Network
+69. [Tue, 31 Ma] Granite 4.0 3B Vision: Compact Multimodal Intelligence for Enterprise Documents | Hugging Face Blog
+70. [Tue, 07 Ap] Restoring trust in voice: The next generation of authenticated and branded commu | RCR Wireless News
+71. [2022-11-23] A Secure and Intelligent Data Sharing Scheme for UAV-Assisted Disaster Rescue | arXiv Emergency and Disaster Response
+72. [Tue, 07 Ap] Anthropic says its most powerful AI cyber model is too dangerous to release publ | VentureBeat AI
+73. [Tue, 31 Ma] Training mRNA Language Models Across 25 Species for $165 | Hugging Face Blog
+74. [Wed, 01 Ap] Embention Presents Veronte Autopilot Ecosystem at XPONENTIAL Europe 2026 - Unman | unmannedsystemstechnology.com
+75. [2026-04-07] Anthropic's Project Glasswing - restricting Claude Mythos to security researcher | Simon Willison's Blog
+76. [Fri, 22 Ma] Uruguay – Thousands Evacuate As River Reaches Record High in Florida Department | FloodList
+77. [2026-04-07] Glasswing is possibly the most consequential event in the AI industry I've seen | follow-builders X Feed
+78. [Tue, 07 Ap] United CEO is skeptical of eVTOL airport taxis, but FAA has a more nuanced take | The Air Current
+79. [Thu, 02 Ap] New ways to balance cost and reliability in the Gemini API | Google AI Blog
+80. [Wed, 01 Ap] WaterNSW Adopts Generative AI For Applications - letsdatascience.com | letsdatascience.com
+81. [Thu, 02 Ap] Create, edit and share videos at no cost in Google Vids | Google AI Blog
+82. [Mon, 09 Ma] From games to biology and beyond: 10 years of AlphaGo’s impact | Google DeepMind Blog
+83. [Mon, 06 Ap] Will States Be Ready with Counter Drone Tech for the FIFA World Cup? | DroneLife
+84. [Wed, 15 Ma] Selected U.S. Military Contracts for the Week of March 6 - March 10, 2017 | Aviation Week Network
+85. [Mon, 09 Ma] Import AI 448: AI R&D; Bytedance’s CUDA-writing agent; on-device satellite AI | Import AI Newsletter
+86. [Tue, 07 Ap] AT&amp;T averaged 200 copper theft cases per week in 2025 | Urgent Communications
+87. [Wed, 08 Ap] WFP Bangladesh Country Brief, March 2026 | UN OCHA ReliefWeb
+88. [Thu, 26 Fe] CISA Issues Updated RESURGE Malware Analysis Highlighting a Stealthy but Active | CISA Alerts & Advisories
+89. [Wed, 08 Ap] Globalstar launches XCOM RAN private 5G for physical AI - Telecoms | telecoms.com
+90. [2026-04-08] Fairness optimization in RIS-FAS NOMA networks under practical impairments | Frontiers in Communications and Networks
+91. [Apr 7, 202]  | Fierce Wireless
+92. [Tue, 31 Ma] Amazon Leo to power in-flight Wi-Fi for Delta Air Lines starting in 2028 - About | aboutamazon.com
+93. [Tue, 07 Ap] It’s Unanimous: Space Already Functions as Critical Infrastructure | Via Satellite
+94. [Tue, 24 Ma] A New Framework for Evaluating Voice Agents (EVA) | Hugging Face Blog
+95. [Apr 7, 202]  | Fierce Wireless
+96. [2026-04-07] The same kinds of productivity gains we've seen in coding with AI agents are hea | follow-builders X Feed
+97. [Mon, 03 Ju] Germany – Thousands Evacuate Floods in Bavaria and Baden-Wuerttemberg | FloodList
+98. [2025-04-14] GPS-Independent Localization Techniques for Disaster Rescue | arXiv Emergency and Disaster Response
+99. [Mon, 06 Ap] U.S. Navy’s F/A-XX fighter mired in delays and disagreements despite fresh fundi | The Air Current
+100. [Wed, 08 Ap] Design and Analysis of Chirp-Layered Superposition Coding for LoRa | arXiv Networking & Communications
+101. [Tue, 07 Ap] MSI, T-Mobile bring satellite-direct-to-device service to devices | Urgent Communications
+102. [2015-11-17] Active exploration of sensor networks from a robotics perspective | arXiv Applied AI and Robotics
+103. [Wed, 01 Ap] Feds and AT&T Reach $2B Deal for FirstNet Upgrades - govtech.com | govtech.com
+104. [Tue, 07 Ap] Why AI Systems Fail Quietly | IEEE Spectrum
+105. [Tue, 07 Ap] LEO Satellite Networks: Supporting Maritime Safety, Efficiency and Innovation - | marinelink.com
+106. [2022-10-08] Cloud Native Robotic Applications with GPU Sharing on Kubernetes | arXiv Applied AI and Robotics
+107. [2026-04-08] ok amazon i see you - https://t.co/j57n1RekB4 - https://t.co/PKU3KC9cW0 (wew i'm | follow-builders X Feed
+108. [Wed, 01 Ap] AI may revive old-school tradecraft even as it transforms intelligence work | Defense One Technology
+109. [Wed, 03 Se] Axon Air > DroneSense Branding Migration | DroneSense Blog
+110. [Thu, 02 Ap] Welcome Gemma 4: Frontier multimodal intelligence on device | Hugging Face Blog
+111. [Wed, 08 Ap] UAV-Assisted Resilience in 6G and Beyond Network Energy Saving: A Multi-Agent DR | arXiv Networking & Communications
+112. [Wed, 01 Ap] D.C.-area ATC evacuations followed 2025 smoke event which injured controllers | The Air Current
+113. [Tue, 07 Ap] LLM-referred traffic converts at 30-40% — and most enterprises aren't optimizing | VentureBeat AI
+114. [Wed, 18 Fe] Turning proteins into PROSE | DARPA News RSS
+115. [2026-04-08] @jackbutcher @thisiskp_ @danlovesproofs @bfirsh @akshat_b here is @simonw on the | follow-builders X Feed
+116. [Thu, 02 Ap] New Rowhammer attacks give complete control of machines running Nvidia GPUs | Ars Technica Technology Lab
+117. [Mon, 30 Ma] Taiwan's KBRO taps Harmonic for multi-gig network upgrades - Light Reading | lightreading.com
+118. [Wed, 08 Ap] 'It just made it even more special': Being so far from Earth makes you appreciat | Space.com News
+119. [Tue, 31 Ma] Fiber castles, cable forts, FWA camps and satellite warbands - Light Reading | lightreading.com
+120. [Fri, 20 Ma] Build a Domain-Specific Embedding Model in Under a Day | Hugging Face Blog
+121. [Wed, 01 Ap] ESN ‘on track’ for 2030 completion, UK official tells BAPCO | Urgent Communications
+122. [Tue, 07 Ap] Relive Artemis 2's epic moon flyby with these amazing photos | Space.com News
+123. [2026-04-08] Direct-to-satellite internet of things (DtS-IoT): a tutorial review on architect | Frontiers in Communications and Networks
+124. [2026-04-07] Many designers and eng. do well when you ask them to think through product quest | follow-builders X Feed
+125. [Tue, 31 Ma] Quantum computers need vastly fewer resources than thought to break vital encryp | Ars Technica Technology Lab
+126. [Mon, 06 Ap] The one piece of data that could actually shed light on your job and AI | MIT Technology Review
+127. [Tue, 07 Ap] Over-the-Air Computation Uses Radio Interference to Crunch Data | IEEE Spectrum
+128. [2026-04-08] Evaluating and enhancing internal networks for an institution to meet E-governme | Frontiers in Communications and Networks
+129. [Tue, 20 Ja] Thermonat makes nanoscale thermal prediction practical for real-world chip desig | DARPA News RSS
+130. [Wed, 25 Fe] ROCkN enables GPS-free operations | DARPA News RSS
+131. [2026-04-07] SQLite WAL Mode Across Docker Containers Sharing a Volume | Simon Willison's Blog
+132. [Tue, 24 Ma] TurboQuant: Redefining AI efficiency with extreme compression | Google Research Blog
+133. [Tue, 07 Ap] Earth observation operators push to deliver satellite images within minutes - sp | spacenews.com
+134. [Mon, 15 Ap] Oman – Dozens Rescued, 12 Dead After Heavy Rain Triggers Flash Floods | FloodList
+135. [Tue, 07 Ap] ‘Vanishing Acts’: Missing women and girls as an invisible crisis in post-disaste | PreventionWeb
+136. [Tue, 07 Ap] Heat adaptive architecture design competition: Meet the winners | PreventionWeb
+137. [Wed, 08 Ap] Quasi-stationary Slice Detection-Based Robust Respiration Rate Estimation under | arXiv Satellite & NTN Communications
+138. [Thu, 26 Ma] Watch James Manyika talk AI and creativity with LL COOL J. | Google AI Blog
+139. [Wed, 08 Ap] MSF: Three Years of War Have Shattered Sudan’s Lifelines | UN OCHA ReliefWeb
+140. [Tue, 07 Ap] Dahsyatnya Letusan Gunung Krakatau Tahun 1883, Bincang Bencana dengan Ki Sunda L | Disaster Channel
+141. [Mon, 06 Ap] Import AI 452: Scaling laws for cyberwar; rising tides of AI automation; and a p | Import AI Newsletter
+142. [Wed, 01 Ap] AI Is Eliminating the Window To Respond to Cyberattacks - Dark Reading | darkreading.com
+143. [Wed, 01 Ap] Paratus Group launches connectivity solution for Africa’s essential service orga | developingtelecoms.com
+144. [Tue, 07 Ap] Brooke | PreventionWeb
+145. [2026-04-08] Always a pleasure to speak at @ycombinator. More bullish than ever. Exceptional | follow-builders X Feed
+146. [Wed, 01 Ap] From launch to recovery: Here’s how Space Force is backing NASA’s Artemis II mis | Defense One Technology
+147. [Tue, 07 Ap] AI joins the 8-hour work day as GLM ships 5.1 open source LLM, beating Opus 4.6 | VentureBeat AI
+148. [Fri, 03 Ap] Why backup connectivity matters more than ever - Chain Store Age | chainstoreage.com
+149. [Wed, 08 Ap] Capella Space wins $49 million contract for military communications satellite de | SpaceNews
+150. [2017-07-18] ARREST: A RSSI Based Approach for Mobile Sensing and Tracking of a Moving Object | arXiv Applied AI and Robotics
+151. [Tue, 07 Ap] Why resilience and disaster management are central to jobs | PreventionWeb
+152. [Fri, 13 Fe] CISA Announces New Town Halls to Engage with Stakeholders on Cyber Incident Repo | CISA Alerts & Advisories
+153. [Tue, 07 Ap] How Open Standards Support Industry’s Push for Interoperability - Automation Wor | automationworld.com
+154. [Mon, 13 Ma] Afghanistan – Devastating Flash Floods Claim Hundreds of Lives in Northern Provi | FloodList
+155. [Mon, 06 Ap] SpaceX targets record IPO, riding Starlink’s explosive growth | RCR Wireless News
+156. [Mon, 06 Ap] Automated traffic safety cameras: life-saving or revenue-raising? | Urgent Communications
+157. [Thu, 02 Ap] Why Agentic AI Needs Boundaries Before Freedom - United Nations University | unu.edu
+158. [Wed, 08 Ap] Service Placement in Small Cell Networks Using Distributed Best Arm Identificati | arXiv Networking & Communications
+159. [2026-04-08] Doing a workshop on my technical writing process in SF in 2 weeks, hosted by fri | follow-builders X Feed
+160. [Wed, 01 Ap] Europe’s Grid Is Already a Hybrid War Target—Most Utilities Aren’t Ready - POWER | powermag.com
+161. [Mon, 16 Fe] Not such a long shot | DARPA News RSS
+162. [Wed, 08 Ap] Artemis 2 science gets underway as Orion begins its return trip | SpaceNews
+163. [Sun, 05 Ap] Rocket Lab Sends Up Test Satellites for Europe’s Next-Gen Navigation System - Ga | gadgets360.com
+164. [Wed, 08 Ap] Multi-Band Wireless Access-and-Backhaul (WAB) for 5G: Implementation and Experim | arXiv Networking & Communications
+165. [Wed, 08 Ap] Cerita Tentang Kupang yang Dilanda Gempa 50 Tahun Silam | Disaster Channel
+166. [Mon, 06 Ap] AI is changing how small online sellers decide what to make | MIT Technology Review
+167. [Mon, 06 Ap] Oregon to offer free webinars to help rural communities respond to disasters - O | oregoncapitalchronicle.com
+168. [2023-05-26] Communication-Efficient Reinforcement Learning in Swarm Robotic Networks for Maz | arXiv Applied AI and Robotics
+169. [2026-04-07] Paper Review is built to act more like a careful technical reviewer than a gramm | follow-builders X Feed
+170. [2024-12-06] FogROS2-FT: Fault Tolerant Cloud Robotics | arXiv Applied AI and Robotics
+171. [Tue, 07 Ap] Industry 4.0’s hourglass figure – AI and IoT put squeeze on OT hardware spend | RCR Wireless News
+172. [Wed, 01 Ap] Private 5G: Siemens goes global, Nokia still at the races, open RAN in the UK - | rcrwireless.com
+173. [Sun, 05 Ap] 7,3 M Gempa Maluku, Guncangan Kencang Berpotensi Tsunami | Disaster Channel
+174. [2026-04-07] We released Claude Opus 4.6 just two months ago. Today we're sharing some info o | follow-builders X Feed
+175. [Mon, 18 Ap] Product Realization Pop Quiz | Aviation Week Network
+176. [Tue, 31 Ma] Maximize the value of programmable coherent engines with elastic photonic networ | Nokia Public Safety Blog
+177. [Tue, 31 Ma] Safeguarding cryptocurrency by disclosing quantum vulnerabilities responsibly | Google Research Blog
+178. [2014-06-04] Enabling Disaster Resilient 4G Mobile Communication Networks | arXiv Emergency and Disaster Response
+179. [Wed, 08 Ap] WHO, Pakistan celebrate how medical science saves millions of lives each year | UN OCHA ReliefWeb
+180. [Tue, 07 Ap] Outpaced by the US, China’s military places selective bets on artificial intelli | C4ISRNET
+181. [Tue, 17 Fe] National Museum of the U.S. Air Force to host DARPA Lift Challenge | DARPA News RSS
+182. [Thu, 02 Ap] EF Johnson: Lori Kowal showcases new next-gen control head | Urgent Communications
+183. [Wed, 08 Ap] Major PX4 drone software vulnerability raises hijacking concerns | DroneDJ
+184. [Mon, 06 Ap] Israel to sell PULS systems to Greece for $750 million | C4ISRNET
+185. [Wed, 01 Ap] Honeywell and Odys Develop Laila as Hybrid-electric Anti-drone Platform - ainonl | ainonline.com
+186. [Thu, 02 Ap] Russia conducts Yars drills, launches Rassvet communications satellites - Janes | janes.com
+187. [Thu, 02 Ap] Gemma 4: Byte for byte, the most capable open models | Google DeepMind Blog
+188. [2020-04-03] Hawkes Process Multi-armed Bandits for Disaster Search and Rescue | arXiv Emergency and Disaster Response
+189. [Fri, 03 Ap] Panel discussion: Winning the data advantage - April 14, 2026 - spacenews.com | spacenews.com
+190. [Wed, 08 Ap] Sample entropy for graph signals: An approach to nonlinear dynamic analysis of d | arXiv Satellite & NTN Communications
+191. [Apr 7, 202]  | Fierce Wireless
+192. [Tue, 07 Ap] Army operations center is trying to solve battlefield data problems in real time | Defense One Technology
+193. [Tue, 03 Ma] DARPA’s new X-76: the speed of a jet, the freedom of a helicopter | DARPA News RSS
+194. [Wed, 08 Ap] Space security moves to forefront as threats to satellites spread | SpaceNews
+195. [Mon, 06 Ap] Gempa yang Tak Terdeteksi Seismograf, Warga Banjarnegara Sempat Panik | Disaster Channel
+196. [Tue, 31 Ma] TRL v1.0: Post-Training Library Built to Move with the Field | Hugging Face Blog
+197. [2020-05-18] Disaster Resilience and Asset Prices | arXiv Emergency and Disaster Response
+198. [Tue, 07 Ap] China shifts 5G focus to monetization and enterprise growth - RCR Wireless News | rcrwireless.com
+199. [2026-04-07] Run /powerup to learn our team's favorite Claude Code CLI features! https://t.co | follow-builders X Feed
+200. [Apr 7, 202]  | Fierce Wireless
+201. [2026-04-08] TinyTwinGuard: a lightweight authentication scheme for digital twin edge network | Frontiers in Communications and Networks
+202. [Wed, 01 Ap] Subsea Expansion, Navigation Technology & Autonomous Operations Top UST Reads in | unmannedsystemstechnology.com
+203. [Thu, 26 Ma] Transform your headphones into a live personal translator on iOS. | Google AI Blog
+204. [2026-04-06] datasette-ports 0.2 | Simon Willison's Blog
+205. [Tue, 07 Ap] Amazon Prime Air Adjusts Course After Richardson Setbacks | DroneLife
+206. [Wed, 08 Ap] Inspection cubesat demo planned as first step toward orbital defense mothership | SpaceNews
+207. [Wed, 08 Ap] UserCentrix: An Agentic Memory-augmented AI Framework for Smart Spaces | arXiv Networking & Communications
+208. [Tue, 24 Ma] Mapping the modern world: How S2Vec learns the language of our cities | Google Research Blog
+209. [Sun, 22 Ma] A Visual Guide to Attention Variants in Modern LLMs | Ahead of AI (Sebastian Raschka)
+210. [Wed, 08 Ap] OrbitTransit: Traffic Delivery and Diffusion for Earth Observation via Satellite | arXiv Networking & Communications
+211. [2025-06-06] Hierarchical and Collaborative LLM-Based Control for Multi-UAV Motion and Commun | arXiv Applied AI and Robotics
+212. [Mon, 30 Ma] Scaling Your Public Safety Drone Program With Purpose and Confidence | DroneSense Blog
+213. [Tue, 07 Ap] 'Project Hail Mary' sound designers used surprising animal sounds to create Rock | Space.com News
+214. [Thu, 02 Ap] Google’s new Gemma 4 models bring complex reasoning skills to low-power devices | siliconangle.com
+215. [2026-04-08] Oh man Yahoo Tech... you got so close. You almost had it. Better luck next time! | follow-builders X Feed
+216. [Wed, 25 Fe] A Dream of Spring for Open-Weight LLMs: 10 Architectures from Jan-Feb 2026 | Ahead of AI (Sebastian Raschka)
+217. [Tue, 07 Ap] OFC 2026 takeaways: pluggables, multi-rail, HCF and AI | Nokia Public Safety Blog
+218. [Fri, 07 Ma] BCA Special Edition Newsletter | Aviation Week Network
+219. [2026-03-18] Offload or Overload: A Platform Measurement Study of Mobile Robotic Manipulation | arXiv Applied AI and Robotics
+220. [Thu, 26 Ma] The Army wants to use bullets, mortars, and artillery to take out small drones | Defense One Technology
+221. [Mon, 30 Ma] Import AI 451: Political superintelligence; Google’s society of minds, and a rob | Import AI Newsletter
+222. [Apr 7, 202]  | Fierce Wireless
+223. [Wed, 25 Ma] Get ahead of the quantum threat with a quantum-safe network strategy | Nokia Public Safety Blog
+224. [Wed, 08 Ap] Teledyne FLIR boosts AI power for combat drones | DroneDJ
+225. [Wed, 08 Ap] Astroscale passes key design milestone for UK military space-tracking cubesats | SpaceNews
+226. [Tue, 31 Ma] XPONENTIAL 2026 Connects the Decisions Driving Autonomy Forward - Unmanned Syste | unmannedsystemstechnology.com
+227. [Tue, 24 Ma] Self-propagating malware poisons open source software and wipes Iran-based machi | Ars Technica Technology Lab
+228. [Tue, 07 Ap] Desalination plants in the Middle East are increasingly vulnerable | MIT Technology Review
+229. [Tue, 17 Ma] Measuring progress toward AGI: A cognitive framework | Google DeepMind Blog
+230. [Apr 7, 202]  | Fierce Wireless
+231. [Wed, 08 Ap] AI Adoption in Manufacturing Reaches an Inflection Point in 2026, Finds New Anal | analyticsinsight.net
+232. [Thu, 02 Ap] REPORT: Business Leaders’ Guide to Energy Resilience 2026 - edie.net | edie.net
+233. [Tue, 24 Ma] Breaking a botnet DDoS "Enigma" code | Nokia Public Safety Blog
+234. [Sun, 05 Ap] Studying Human Attitudes Towards Robots Through Experience | IEEE Spectrum
+235. [Tue, 07 Ap] How MassMutual and Mass General Brigham turned AI pilot sprawl into production r | VentureBeat AI
+236. [2026-04-07] Try it out at https://t.co/4MBs45PNiU today and let me know what you think! | follow-builders X Feed
+237. [2024-10-29] Energy-Aware Multi-Agent Reinforcement Learning for Collaborative Execution in M | arXiv Applied AI and Robotics
+238. [Wed, 11 Fe] CISA’s 2025 Year in Review: Driving Security and Resilience Across Critical Infr | CISA Alerts & Advisories
+239. [Thu, 02 Ap] Cinetcomm: Tom Soumas leads tour of demo deployable comms vehicle | Urgent Communications
+240. [2005-09-13] Rescue Model for the Bystanders' Intervention in Emergencies | arXiv Emergency and Disaster Response
+241. [Fri, 27 Ju] DroneSense + Parrot Partner to Deliver NDAA-compliant Drone Solutions for Public | DroneSense Blog
+242. [2026-04-07] @latentspacepod @_lopopolo @OpenAI we didnt get a chance to pod with Alex yet bu | follow-builders X Feed
+243. [Wed, 11 Ma] Translate your bio-attribution research into national security impact | DARPA News RSS
+244. [Mon, 30 Ma] SpaceX Reports Loss Of Contact With Starlink Satellite - Aviation Week | aviationweek.com
+245. [Thu, 10 Ju] DroneSense and MatrixSpace Advance Beyond Visual Line of Sight Drone as First Re | DroneSense Blog
+246. [Tue, 07 Ap] Temple University Student Highlights IEEE Membership Perks | IEEE Spectrum
+247. [Wed, 25 Ma] Vibe Coding XR: Accelerating AI + XR prototyping with XR Blocks and Gemini | Google Research Blog
+248. [Thu, 26 Ma] Gemini 3.1 Flash Live: Making audio AI more natural and reliable | Google AI Blog
+249. [Mon, 06 Ap] AI Is Insatiable | IEEE Spectrum
+250. [Tue, 07 Ap] SBA Communications is on the block – report | Urgent Communications
+251. [Wed, 04 Ma] Quantum Benchmarking Initiative expands quest to separate hype from reality | DARPA News RSS
+252. [Tue, 07 Ap] Amazon S3 Files gives AI agents a native file system workspace, ending the objec | VentureBeat AI
+253. [Wed, 01 Ap] We’re creating a new satellite imagery map to help protect Brazil’s forests. | Google AI Blog
+254. [2026-04-07] GLM-5.1: Towards Long-Horizon Tasks | Simon Willison's Blog
+255. [2026-04-08] A walrus optimization algorithm (WOA) for cluster head selection to optimize ene | Frontiers in Communications and Networks
+256. [2026-04-06] Google AI Edge Gallery | Simon Willison's Blog
+257. [Tue, 07 Ap] Fed agencies see cyberthreats as key barrier to tech improvements | Urgent Communications
+258. [Tue, 31 Ma] OpenAI raises $122 billion to accelerate the next phase of AI - OpenAI | openai.com
+259. [2026-04-08] Emerging threats in AI: a detailed review of misuses and risks across modern AI | Frontiers in Communications and Networks
+260. [Tue, 07 Ap] Block introduces Managerbot, a proactive Square AI agent and the clearest proof | VentureBeat AI
+261. [2026-04-07] Btw: @hemal built this as a simple skill in a few hours, since Prism is powered | follow-builders X Feed
+262. [Tue, 07 Ap] LEO Satellite Networks: Supporting Maritime Safety, Efficiency and Innovation - | marinelink.com
+263. [Tue, 07 Ap] Decentralized Training Can Help Solve AI’s Energy Woes | IEEE Spectrum
+264. [Thu, 19 Ma] DARPA-developed autonomous helicopter technology transitions to U.S. Army | DARPA News RSS
+265. [Fri, 27 Ma] Liberate your OpenClaw | Hugging Face Blog
+266. [Fri, 27 Ma] Ukrainian drones hit all three Baltic States − did Russia redirect them? | C4ISRNET
+267. [Tue, 07 Ap] 'Maul – Shadow Lord' stars Sam Witwer and Gideon Adlon talk Maul's surprising ho | Space.com News
+268. [Mon, 23 Ma] Import AI 450: China’s electronic warfare model; traumatized LLMs; and a scaling | Import AI Newsletter
+269. [Tue, 07 Ap] DJI confirms end-of-support timeline for Mavic 2, Matrice 600 drones | DroneDJ
+270. [Tue, 07 Ap] In-Space Mobility, Maturing From Last Miles to Superhighways | Via Satellite

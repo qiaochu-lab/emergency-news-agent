@@ -7,7 +7,7 @@ from typing import Dict, List
 
 from emergency_intel.analyze.provider import ProviderClient
 from emergency_intel.analyze.service import analyze_items, screen_items
-from emergency_intel.feedback.consumer import consume_pending_reviews
+from emergency_intel.feedback.consumer import consume_pending_reviews, consume_github_feedback
 from emergency_intel.collect.service import collect_items
 from emergency_intel.config import DATA_DIR, OUTPUTS_DIR, Settings
 from emergency_intel.dedup.service import deduplicate_items
@@ -37,6 +37,8 @@ def run_weekly_pipeline(
     # take effect in screening / scoring immediately.
     feedback_summary = consume_pending_reviews()
     print(feedback_summary, flush=True)
+    github_feedback_summary = consume_github_feedback()
+    print(github_feedback_summary, flush=True)
 
     if use_mock_data and settings.provider != "mock":
         settings = Settings(

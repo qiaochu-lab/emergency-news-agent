@@ -11,6 +11,9 @@ data/classified/items.json
 data/scored/items.json
 data/scored/analyzed_items.json
 outputs/weekly/*.md
+outputs/weekly/*.html
+outputs/weekly/archive/
+src/emergency_intel_system.egg-info/
 
 everything-claude-code/
 .claude/

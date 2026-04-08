@@ -294,13 +294,6 @@ def render_report_html(report: WeeklyReport, output_path: Path) -> str:
     # Cover
     body_parts.append(_render_cover(report, rating))
 
-    # 执行摘要（不参与编号）
-    body_parts.append(_render_section(
-        "exec-summary", "执行摘要",
-        _render_exec_summary(report, rating),
-        open_default=True,
-    ))
-
     body_parts.append(_render_section(
         "overview", _next_title("本周概览"),
         _render_overview(report, domain_groups),
@@ -464,7 +457,6 @@ def _e(text: str) -> str:
 
 def _render_nav(report: WeeklyReport, output_path: Path) -> str:
     links = [
-        ("#exec-summary", "执行摘要"),
         ("#overview", "本周概览"),
         ("#featured", "重点事件"),
         ("#domains", "各领域动态"),
@@ -506,7 +498,6 @@ def _render_cover(report: WeeklyReport, rating: str) -> str:
   <h1>泛应急技术行业周报</h1>
   <div class="week">{_e(week)}</div>
   <div class="cover-meta">
-    <div class="badge"><strong>研报评级</strong>{_e(rating)}</div>
     <div class="badge"><strong>覆盖领域</strong>AI · 无人机 · 通信网络 · 泛应急</div>
     <div class="badge"><strong>本期信号数</strong>{count} 条</div>
     <div class="badge"><strong>生成时间</strong>{_e(generated)}</div>
@@ -615,8 +606,8 @@ def _render_featured(report: WeeklyReport) -> str:
             kp_items = "".join(f"<li>{_apply_tooltips(str(kp), glossary_terms)}</li>" for kp in item.key_points[:4] if kp)
             kp_html = f'<div class="section-label">核心要点</div><ul style="padding-left: 20px;">{kp_items}</ul>'
 
-        innovation_html = f'<div class="section-label">意图与产业影响（分析判断）</div><p>{innovation_text}</p>' if innovation_text else ""
-        decision_html = f'<div class="section-label">场景与核心应用（决策启示）</div><p>{_apply_tooltips(decision_text, glossary_terms)}</p>' if decision_text else ""
+        innovation_html = f'<div class="section-label">分析判断</div><p>{innovation_text}</p>' if innovation_text else ""
+        decision_html = f'<div class="section-label">决策启示</div><p>{_apply_tooltips(decision_text, glossary_terms)}</p>' if decision_text else ""
 
         link_html = ""
         if item.url:
@@ -629,7 +620,7 @@ def _render_featured(report: WeeklyReport) -> str:
       <span>日期：{_e(date_str)}</span>
       <span>领域：{_e(domain_str)}</span>
     </div>
-    <h3>{idx}. {_e(item.title)}</h3>
+    <h3>{idx}. {_e(item.title_zh or item.title)}</h3>
   </div>
   <div class="featured-content">
     <div class="fc-left">

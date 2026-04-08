@@ -33,7 +33,12 @@
     "CISA",
     "FirstNet"
   ],
-  "few_shot_good": [],
+  "few_shot_good": [
+    {
+      "title": "tavily-https-www-govtech-com-biz-feds-and-at-t-reach-2b-deal-for-firstnet-upgrades",
+      "reason": "来自周报页面点击反馈"
+    }
+  ],
   "few_shot_bad": [],
   "reader_notes": "更关注技术标准、政策、部署进展，少要纯市场动态；核心业务是灾后通信恢复和重大场合通信保障"
 }

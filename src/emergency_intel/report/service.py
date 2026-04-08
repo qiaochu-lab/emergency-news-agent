@@ -49,10 +49,39 @@ _KV_PREFIX_RE = re.compile(
     re.IGNORECASE,
 )
 
-# Strip LLM preambles like "基于摘要信息：" / "基于摘要信息，" / "基于原文信息："
+# Strip LLM preambles like "基于摘要信息：" / "本周发生了什么："
 _SUMMARY_PREAMBLE_RE = re.compile(
-    r"^基于[摘要信息内容文本原文]{0,8}[：:，,。.\s]+"
+    r"^(?:"
+    r"基于[摘要信息内容文本原文]{0,8}[：:，,。.\s]+"
+    r"|本周发生了什么[：:]\s*"
+    r"|为何重要[：:]\s*"
+    r"|本周[，,、]\s*"
+    r"|本周arXiv发[^，。]{0,10}[，,]\s*"
+    r")"
 )
+
+# Sentence-level openers to drop (entire first sentence if it starts with these)
+_BACKGROUND_OPENER_PREFIXES = ("背景是", "背景：", "背景:", "背景为")
+
+
+def _strip_background_opener(text: str) -> str:
+    """If the first sentence starts with 背景是/背景：, drop it entirely."""
+    if not text:
+        return text
+    stripped = text.lstrip()
+    if not any(stripped.startswith(p) for p in _BACKGROUND_OPENER_PREFIXES):
+        return text
+    # Find end of first sentence
+    for i, ch in enumerate(stripped):
+        if ch in "。！？" and i > 5:
+            remainder = stripped[i + 1:].lstrip()
+            return remainder if len(remainder) >= 15 else text
+    # No sentence boundary found — drop up to first comma as fallback
+    for i, ch in enumerate(stripped):
+        if ch in "，," and i > 10:
+            remainder = stripped[i + 1:].lstrip()
+            return remainder if len(remainder) >= 15 else text
+    return text
 
 # Detect raw HTML / navigation content that leaked into summary fields
 _RAW_CONTENT_RE = re.compile(
@@ -193,7 +222,8 @@ def _get_clean_summary(item: AnalyzedItem) -> str:
     if summary and not _is_raw_content(summary):
         cleaned = _clean_labeled_text(summary)
         if cleaned and len(cleaned) >= 20 and not _NAV_NOISE_RE.match(cleaned):
-            return cleaned
+            cleaned = _strip_background_opener(cleaned)
+            return _strip_emergency_tail(cleaned)
     # Fallback: first non-empty key_point
     for kp in (item.key_points or []):
         if kp and isinstance(kp, str) and len(kp) > 10:
@@ -204,6 +234,28 @@ def _get_clean_summary(item: AnalyzedItem) -> str:
         domain_str = _format_domains(item.domain_tags) or "本领域"
         return f"{item.title}。详情参见原文链接。"
     return result
+
+
+# Strip formulaic "why this matters for emergency" tail sentences added by LLM
+_EMERGENCY_TAIL_RE = re.compile(
+    r"[。！？!?]\s*(?:"
+    r"这(?:很|之所以)?重要[，,]?(?:是)?因为[^。！？!?]{0,120}[。！？!?]"
+    r"|为何重要[：:][^。！？!?]{0,120}[。！？!?]"
+    r"|这对应急[^。！？!?]{0,120}[。！？!?]"
+    r"|此(?:举|事|技术)对[^。！？!?]{0,40}应急[^。！？!?]{0,120}[。！？!?]"
+    r"|对应急[^。！？!?]{0,120}[。！？!?]"
+    r")\s*$",
+    re.DOTALL,
+)
+
+
+def _strip_emergency_tail(text: str) -> str:
+    """Remove formulaic 'why this matters for emergency' tail sentence."""
+    if not text:
+        return text
+    cleaned = _EMERGENCY_TAIL_RE.sub("。", text).rstrip("。") + "。"
+    # Only return stripped version if we actually removed something meaningful
+    return cleaned if len(cleaned) >= 20 else text
 
 
 # Boilerplate opener sentences in the innovation/analysis field to strip
@@ -833,7 +885,6 @@ def _market_supporting_lines(report: WeeklyReport) -> List[str]:
             "从运行结果看，当前更应优先补齐高质量官方源、论文源和产业会议源。",
         ]
     lines = [
-        f"本周共筛出 {len(report.selected_items)} 条重点事件，覆盖 {_watch_directions(report)} 等方向。",
         f"高价值来源主要来自 {_top_source_names(report, limit=3)}。",
     ]
     if any(item.source_type == "official" for item in report.selected_items):

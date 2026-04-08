@@ -60,6 +60,7 @@ class AnalyzedItem(ScoredItem):
     takeaway: str = ""
     non_expert_explanation: str = ""
     glossary_terms: List[Dict[str, str]] = field(default_factory=list)
+    title_zh: str = ""
 
 
 @dataclass
